@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - Profile | YourShopName</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3a86ff;
+            --secondary-color: #8338ec;
+            --light-bg: #f8f9fa;
+            --dark-text: #212529;
+            --border-radius: 10px;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .account-sidebar {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .account-sidebar .nav-link {
+            color: var(--dark-text);
+            padding: 12px 20px;
+            border-radius: 6px;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .account-sidebar .nav-link:hover {
+            background-color: rgba(58, 134, 255, 0.1);
+        }
+        
+        .account-sidebar .nav-link.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .account-sidebar .nav-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .profile-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .avatar-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+        }
+        
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .avatar-upload {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            color: var(--primary-color);
+            transition: all 0.2s ease;
+        }
+        
+        .avatar-upload:hover {
+            transform: scale(1.1);
+        }
+        
+        .form-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .form-card h3 {
+            margin-bottom: 20px;
+            color: var(--dark-text);
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .form-card h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        }
+        
+        .form-label {
+            font-weight: 500;
+            color: #495057;
+        }
+        
+        .form-control {
+            border-radius: 8px;
+            padding: 12px 15px;
+            border: 1px solid #ced4da;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.2);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #2a75ff, #722deb);
+        }
+        
+        .save-button {
+            min-width: 120px;
+        }
+        
+        .password-toggle {
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 12px;
+            color: #6c757d;
+        }
+        
+        .status-badge {
+            font-size: 0.8rem;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background-color: #e9ecef;
+            color: #495057;
+            margin-left: 10px;
+        }
+        
+        .status-badge.verified {
+            background-color: #d1e7dd;
+            color: #0f5132;
+        }
+        
+        .breadcrumb {
+            background-color: transparent;
+            padding: 10px 0;
+        }
+        
+        .form-hint {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        
+        /* Toast notification */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+        }
+        
+        .custom-toast {
+            min-width: 280px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 767.98px) {
+            .account-sidebar {
+                margin-bottom: 20px;
+            }
+            
+            .profile-header {
+                text-align: center;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+{% block content %}
+    <!-- Navigation (simplified for this example) -->
+   {% include 'ecomm/navbar.html' %}
+
+    <!-- Main content -->
+    <div class="container py-5">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">My Account</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Profile</li>
+            </ol>
+        </nav>
+
+        <!-- Page title -->
+        <h1 class="mb-4">My Account</h1>
+
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-3 mb-4">
+                <div class="account-sidebar p-4">
+                    <h5 class="mb-3">Account Dashboard</h5>
+                    <div class="nav flex-column">
+                        <a class="nav-link active" href="#"><i class="fas fa-user"></i> Profile</a>
+                        <a class="nav-link" href="#"><i class="fas fa-shopping-bag"></i> Orders</a>
+                        <a class="nav-link" href="{% url 'wishlist' %}"><i class="fas fa-heart"></i> Wishlist</a>
+                        <a class="nav-link" href="#"><i class="fas fa-map-marker-alt"></i> Addresses</a>
+                        <a class="nav-link" href="#"><i class="fas fa-credit-card"></i> Payment Methods</a>
+                        <a class="nav-link" href="#"><i class="fas fa-bell"></i> Notifications</a>
+                        <div class="dropdown-divider my-3"></div>
+                        <a class="nav-link text-danger" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <div class="col-lg-9">
+                <!-- Profile header -->
+                <div class="profile-header">
+                    <div class="row align-items-center">
+                        <div class="col-md-3 text-center text-md-start">
+                            <div class="avatar-container">
+                                <img src="/api/placeholder/120/120" alt="Profile Picture" class="avatar">
+                                <label for="avatar-upload" class="avatar-upload">
+                                    <i class="fas fa-camera"></i>
+                                </label>
+                                <input type="file" id="avatar-upload" class="d-none">
+                            </div>
+                        </div>
+                        <div class="col-md-9 text-center text-md-start mt-3 mt-md-0">
+                            <h2>John Doe</h2>
+                            <p class="mb-0">Member since January 15, 2025</p>
+                            <p>Premium Member</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Information -->
+                <div class="form-card">
+                    <h3>Personal Information</h3>
+                    <form id="personal-info-form">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName" value="John">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" value="Doe">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email Address</label>
+                                <div class="input-group">
+                                    <input type="email" class="form-control" id="email" value="john.doe@example.com" disabled>
+                                    <span class="input-group-text status-badge verified">Verified</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" value="+1 (555) 123-4567">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="birthdate" class="form-label">Date of Birth</label>
+                                <input type="date" class="form-control" id="birthdate" value="1990-05-15">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="gender" class="form-label">Gender</label>
+                                <select class="form-select" id="gender">
+                                    <option value="">Select Gender</option>
+                                    <option value="male" selected>Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                    <option value="prefer-not-to-say">Prefer not to say</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <button type="button" class="btn btn-primary save-button" id="save-personal-info">
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Change Password -->
+                <div class="form-card">
+                    <h3>Change Password</h3>
+                    <form id="password-form">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="currentPassword" class="form-label">Current Password</label>
+                                <div class="position-relative">
+                                    <input type="password" class="form-control" id="currentPassword">
+                                    <span class="password-toggle" onclick="togglePassword('currentPassword')">
+                                        <i class="fas fa-eye"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="newPassword" class="form-label">New Password</label>
+                                <div class="position-relative">
+                                    <input type="password" class="form-control" id="newPassword">
+                                    <span class="password-toggle" onclick="togglePassword('newPassword')">
+                                        <i class="fas fa-eye"></i>
+                                    </span>
+                                </div>
+                                <div class="form-hint">Password must be at least 8 characters long and include numbers and special characters</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                                <div class="position-relative">
+                                    <input type="password" class="form-control" id="confirmPassword">
+                                    <span class="password-toggle" onclick="togglePassword('confirmPassword')">
+                                        <i class="fas fa-eye"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <button type="button" class="btn btn-primary save-button" id="save-password">
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                Update Password
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Newsletter Preferences -->
+                <div class="form-card">
+                    <h3>Communication Preferences</h3>
+                    <form id="preferences-form">
+                        <div class="mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="newsletterToggle" checked>
+                                <label class="form-check-label" for="newsletterToggle">Subscribe to Newsletter</label>
+                            </div>
+                            <div class="form-hint">Receive updates on new products, sales and offers</div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="orderUpdatesToggle" checked>
+                                <label class="form-check-label" for="orderUpdatesToggle">Order Updates</label>
+                            </div>
+                            <div class="form-hint">Receive notifications about your order status</div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="productUpdatesToggle">
+                                <label class="form-check-label" for="productUpdatesToggle">Product Updates</label>
+                            </div>
+                            <div class="form-hint">Get notified when a product in your wishlist goes on sale</div>
+                        </div>
+                        <div class="text-end">
+                            <button type="button" class="btn btn-primary save-button" id="save-preferences">
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                Save Preferences
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast notification container -->
+    <div class="toast-container"></div>
+
+    <!-- Footer (simplified) -->
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <h5>YourShopName</h5>
+                    <p class="small">Your one-stop shop for quality products at affordable prices.</p>
+                    <div class="mt-3">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Shop</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-decoration-none text-white-50">All Products</a></li>
+                        <li><a href="#" class="text-decoration-none text-white-50">New Arrivals</a></li>
+                        <li><a href="#" class="text-decoration-none text-white-50">Best Sellers</a></li>
+                        <li><a href="#" class="text-decoration-none text-white-50">Sale Items</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Account</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-decoration-none text-white-50">My Account</a></li>
+                        <li><a href="#" class="text-decoration-none text-white-50">Orders</a></li>
+                        <li><a href="#" class="text-decoration-none text-white-50">Wishlist</a></li>
+                        <li><a href="#" class="text-decoration-none text-white-50">Returns</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Support</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-decoration-none text-white-50">Contact Us</a></li>
+                        <li><a href="#" class="text-decoration-none text-white-50">FAQs</a></li>
+                        <li><a href="#" class="text-decoration-none text-white-50">Shipping Policy</a></li>
+                        <li><a href="#" class="text-decoration-none text-white-50">Return Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6 small">
+                    <p class="mb-0">&copy; 2025 YourShopName. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end small">
+                    <a href="#" class="text-decoration-none text-white-50 me-3">Privacy Policy</a>
+                    <a href="#" class="text-decoration-none text-white-50">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Toggle password visibility
+        function togglePassword(inputId) {
+            const passwordInput = document.getElementById(inputId);
+            const icon = passwordInput.nextElementSibling.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+        
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toastContainer = document.querySelector('.toast-container');
+            const toastId = 'toast-' + Date.now();
+            const bgClass = type === 'success' ? 'bg-success' : type === 'error' ? 'bg-danger' : 'bg-primary';
+            const icon = type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle';
+            
+            const toastHtml = `
+                <div id="${toastId}" class="toast custom-toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <i class="fas fa-${icon} me-2 text-${type}"></i>
+                        <strong class="me-auto">${type.charAt(0).toUpperCase() + type.slice(1)}</strong>
+                        <small>Just now</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        ${message}
+                    </div>
+                </div>
+            `;
+            
+            toastContainer.innerHTML += toastHtml;
+            
+            const toastElement = document.getElementById(toastId);
+            const toast = new bootstrap.Toast(toastElement, { autohide: true, delay: 5000 });
+            toast.show();
+            
+            // Remove toast from DOM after it's hidden
+            toastElement.addEventListener('hidden.bs.toast', function () {
+                toastElement.remove();
+            });
+        }
+        
+        // Simulate form submissions
+        document.getElementById('save-personal-info').addEventListener('click', function() {
+            const button = this;
+            const spinner = button.querySelector('.spinner-border');
+            
+            // Disable button and show spinner
+            button.disabled = true;
+            spinner.classList.remove('d-none');
+            
+            // Simulate API call
+            setTimeout(function() {
+                // Enable button and hide spinner
+                button.disabled = false;
+                spinner.classList.add('d-none');
+                
+                // Show success toast
+                showToast('Your personal information has been updated successfully!', 'success');
+            }, 1500);
+        });
+        
+        document.getElementById('save-password').addEventListener('click', function() {
+            const button = this;
+            const spinner = button.querySelector('.spinner-border');
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            // Validate password match
+            if (newPassword !== confirmPassword) {
+                showToast('New password and confirm password do not match.', 'error');
+                return;
+            }
+            
+            // Validate password strength
+            if (newPassword.length < 8) {
+                showToast('Password must be at least 8 characters long.', 'error');
+                return;
+            }
+            
+            // Disable button and show spinner
+            button.disabled = true;
+            spinner.classList.remove('d-none');
+            
+            // Simulate API call
+            setTimeout(function() {
+                // Enable button and hide spinner
+                button.disabled = false;
+                spinner.classList.add('d-none');
+                
+                // Clear password fields
+                document.getElementById('currentPassword').value = '';
+                document.getElementById('newPassword').value = '';
+                document.getElementById('confirmPassword').value = '';
+                
+                // Show success toast
+                showToast('Your password has been updated successfully!', 'success');
+            }, 1500);
+        });
+        
+        document.getElementById('save-preferences').addEventListener('click', function() {
+            const button = this;
+            const spinner = button.querySelector('.spinner-border');
+            
+            // Disable button and show spinner
+            button.disabled = true;
+            spinner.classList.remove('d-none');
+            
+            // Simulate API call
+            setTimeout(function() {
+                // Enable button and hide spinner
+                button.disabled = false;
+                spinner.classList.add('d-none');
+                
+                // Show success toast
+                showToast('Your communication preferences have been saved!', 'success');
+            }, 1500);
+        });
+        
+        // Handle avatar upload
+        document.getElementById('avatar-upload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    document.querySelector('.avatar').src = e.target.result;
+                    showToast('Profile picture updated successfully!', 'success');
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    </script>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation | Your Store</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3a86ff;
+            --secondary-color: #8338ec;
+            --success-color: #06d6a0;
+            --light-bg: #f8f9fa;
+            --dark-text: #212529;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .confirmation-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .header-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .check-circle {
+            background-color: var(--success-color);
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .order-info {
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .product-item {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s;
+        }
+        
+        .product-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .product-img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .product-details {
+            flex-grow: 1;
+        }
+        
+        .summary-card {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+        
+        .summary-total {
+            font-size: 1.3rem;
+            font-weight: bold;
+            padding-top: 0.8rem;
+            margin-top: 0.8rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .action-buttons .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin: 0.5rem;
+        }
+        
+        .shipping-details {
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .badge-shipping {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        .badge-payment {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        .tracking-container {
+            margin-top: 1.5rem;
+        }
+        
+        .tracking-step {
+            position: relative;
+            padding-left: 30px;
+            padding-bottom: 20px;
+        }
+        
+        .tracking-step:before {
+            content: "";
+            position: absolute;
+            left: 12px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: #ddd;
+        }
+        
+        .tracking-step:last-child:before {
+            height: 0;
+        }
+        
+        .tracking-step .step-icon {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: var(--primary-color);
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .tracking-step.complete .step-icon {
+            background-color: var(--success-color);
+        }
+        
+        .tracking-step.pending .step-icon {
+            background-color: #ccc;
+        }
+        
+        .animate-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .help-section {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .help-boxes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .help-box {
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .help-box:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        .help-box i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .help-box:hover i {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .confirmation-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .help-boxes {
+                flex-direction: column;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-buttons .btn {
+                width: 100%;
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="confirmation-container animate-in">
+            <div class="header-section">
+                <div class="check-circle">
+                    <i class="fas fa-check fa-2x"></i>
+                </div>
+                <h1 class="mb-2">Order Confirmed!</h1>
+                <p class="text-muted">Thank you for your purchase. Your order has been successfully placed.</p>
+                <div class="alert alert-success mt-3" role="alert">
+                    <i class="fas fa-envelope me-2"></i> A confirmation email has been sent to <strong id="customerEmail">customer@example.com</strong>
+                </div>
+            </div>
+            
+            <div class="order-info">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5><i class="fas fa-receipt me-2"></i>Order #<span id="orderNumber">ORD-123456</span></h5>
+                        <p class="text-muted mb-0">Placed on <span id="orderDate">March 11, 2025</span></p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <h5><i class="fas fa-truck me-2"></i>Estimated Delivery</h5>
+                        <p class="text-muted mb-0"><span id="deliveryDate">March 16-18, 2025</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <h4 class="mb-3">Order Summary</h4>
+            <div id="productsList">
+                <!-- Products will be loaded here via JavaScript -->
+            </div>
+            
+            <div class="summary-card">
+                <h5 class="mb-3">Payment Summary</h5>
+                <div class="summary-item">
+                    <span>Subtotal</span>
+                    <span id="subtotal">$279.97</span>
+                </div>
+                <div class="summary-item">
+                    <span>Shipping</span>
+                    <span id="shipping">$12.99</span>
+                </div>
+                <div class="summary-item">
+                    <span>Tax</span>
+                    <span id="tax">$28.00</span>
+                </div>
+                <div class="summary-item summary-total">
+                    <span>Total</span>
+                    <span id="total">$320.96</span>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="shipping-details">
+                        <span class="badge-shipping"><i class="fas fa-map-marker-alt me-2"></i>Shipping Address</span>
+                        <h6 id="customerName">John Doe</h6>
+                        <address id="shippingAddress">
+                            123 Main Street<br>
+                            Apt 4B<br>
+                            New York, NY 10001<br>
+                            United States
+                        </address>
+                        <p class="mb-0"><strong>Phone:</strong> <span id="customerPhone">(555) 123-4567</span></p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="shipping-details">
+                        <span class="badge-payment"><i class="fas fa-credit-card me-2"></i>Payment Method</span>
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fab fa-cc-visa me-2 fa-2x text-primary"></i>
+                            <div>
+                                <h6 class="mb-0">Visa ending in <span id="cardLastFour">4242</span></h6>
+                                <small class="text-muted">Expiry: <span id="cardExpiry">09/28</span></small>
+                            </div>
+                        </div>
+                        <p class="mb-0"><strong>Billing Address:</strong> <span id="billingAddress">Same as shipping</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <h5 class="mb-3"><i class="fas fa-shipping-fast me-2"></i>Track Your Order</h5>
+            <div class="tracking-container">
+                <div class="tracking-step complete">
+                    <div class="step-icon"><i class="fas fa-check"></i></div>
+                    <h6>Order Confirmed</h6>
+                    <p class="text-muted">March 11, 2025, 10:30 AM</p>
+                </div>
+                <div class="tracking-step complete">
+                    <div class="step-icon"><i class="fas fa-check"></i></div>
+                    <h6>Processing</h6>
+                    <p class="text-muted">March 11, 2025, 2:45 PM</p>
+                </div>
+                <div class="tracking-step pending">
+                    <div class="step-icon"><i class="fas fa-hourglass-half"></i></div>
+                    <h6>Shipped</h6>
+                    <p class="text-muted">Estimated: March 12-13, 2025</p>
+                </div>
+                <div class="tracking-step pending">
+                    <div class="step-icon"><i class="fas fa-home"></i></div>
+                    <h6>Delivered</h6>
+                    <p class="text-muted">Estimated: March 16-18, 2025</p>
+                </div>
+            </div>
+            
+            <div class="d-flex justify-content-center action-buttons mt-4">
+                <a href="{% url 'user_account' %}" class="btn btn-primary">
+                    <i class="fas fa-user me-2"></i>My Account
+                </a>
+                <a href="{% url 'user_dashboard' %}" class="btn btn-outline-primary">
+                    <i class="fas fa-shopping-bag me-2"></i>Continue Shopping
+                </a>
+                <button id="downloadInvoiceBtn" class="btn btn-outline-secondary">
+                    <i class="fas fa-file-invoice me-2"></i>Download Invoice
+                </button>
+            </div>
+            
+            <div class="help-section">
+                <h5>Need Help?</h5>
+                <p class="text-muted">We're here to assist you with any questions about your order</p>
+                <div class="help-boxes">
+                    <div class="help-box">
+                        <i class="fas fa-question-circle"></i>
+                        <h6>FAQ</h6>
+                        <p class="small mb-0">Find answers to common questions</p>
+                    </div>
+                    <div class="help-box">
+                        <i class="fas fa-comments"></i>
+                        <h6>Chat With Us</h6>
+                        <p class="small mb-0">Live support available</p>
+                    </div>
+                    <div class="help-box">
+                        <i class="fas fa-phone-alt"></i>
+                        <h6>Call Us</h6>
+                        <p class="small mb-0">1-800-123-4567</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="text-center mb-4">
+            <p class="text-muted">© 2025 Your Store. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript for the page -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sample order data - this would typically come from your database or API
+            const orderData = {
+                orderNumber: 'ORD-123456',
+                orderDate: 'March 11, 2025',
+                deliveryDate: 'March 16-18, 2025',
+                customerName: 'John Doe',
+                customerEmail: 'john.doe@example.com',
+                customerPhone: '(555) 123-4567',
+                shippingAddress: '123 Main Street<br>Apt 4B<br>New York, NY 10001<br>United States',
+                paymentMethod: {
+                    type: 'Visa',
+                    lastFour: '4242',
+                    expiry: '09/28'
+                },
+                billingAddress: 'Same as shipping',
+                subtotal: 279.97,
+                shipping: 12.99,
+                tax: 28.00,
+                total: 320.96,
+                products: [
+                    {
+                        id: 1,
+                        name: 'Premium Wireless Headphones',
+                        image: '/api/placeholder/70/70',
+                        price: 149.99,
+                        quantity: 1,
+                        color: 'Space Gray'
+                    },
+                    {
+                        id: 2,
+                        name: 'Smart Fitness Watch',
+                        image: '/api/placeholder/70/70',
+                        price: 89.99,
+                        quantity: 1,
+                        color: 'Black'
+                    },
+                    {
+                        id: 3,
+                        name: 'Ultra Slim Power Bank',
+                        image: '/api/placeholder/70/70',
+                        price: 39.99,
+                        quantity: 1,
+                        color: 'White'
+                    }
+                ]
+            };
+            
+            // Populate the page with order data
+            document.getElementById('orderNumber').textContent = orderData.orderNumber;
+            document.getElementById('orderDate').textContent = orderData.orderDate;
+            document.getElementById('deliveryDate').textContent = orderData.deliveryDate;
+            document.getElementById('customerName').textContent = orderData.customerName;
+            document.getElementById('customerEmail').textContent = orderData.customerEmail;
+            document.getElementById('customerPhone').textContent = orderData.customerPhone;
+            document.getElementById('shippingAddress').innerHTML = orderData.shippingAddress;
+            document.getElementById('cardLastFour').textContent = orderData.paymentMethod.lastFour;
+            document.getElementById('cardExpiry').textContent = orderData.paymentMethod.expiry;
+            document.getElementById('billingAddress').textContent = orderData.billingAddress;
+            document.getElementById('subtotal').textContent = `$${orderData.subtotal.toFixed(2)}`;
+            document.getElementById('shipping').textContent = `$${orderData.shipping.toFixed(2)}`;
+            document.getElementById('tax').textContent = `$${orderData.tax.toFixed(2)}`;
+            document.getElementById('total').textContent = `$${orderData.total.toFixed(2)}`;
+            
+            // Generate product list
+            const productsContainer = document.getElementById('productsList');
+            orderData.products.forEach(product => {
+                const productHTML = `
+                    <div class="product-item mb-3">
+                        <div class="d-flex align-items-center">
+                            <img src="${product.image}" alt="${product.name}" class="product-img me-3">
+                            <div class="product-details">
+                                <h6 class="mb-1">${product.name}</h6>
+                                <p class="text-muted mb-1">Color: ${product.color}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-muted">Qty: ${product.quantity}</span>
+                                    <span class="fw-bold">$${product.price.toFixed(2)}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                productsContainer.innerHTML += productHTML;
+            });
+            
+            // Download Invoice functionality (sample - would typically generate a real PDF)
+            document.getElementById('downloadInvoiceBtn').addEventListener('click', function() {
+                alert('Invoice download functionality would be implemented here. This would typically generate a PDF with the order details.');
+            });
+            
+            // Animation effect for elements
+            setTimeout(() => {
+                document.querySelectorAll('.product-item').forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('animate-in');
+                    }, index * 100);
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>

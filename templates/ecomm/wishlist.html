@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist | YourShop</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3a86ff;
+            --secondary-color: #ff006e;
+            --accent-color: #fb5607;
+            --light-bg: #f8f9fa;
+            --dark-text: #212529;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .wishlist-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-radius: 0 0 15px 15px;
+        }
+        
+        .card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card .wishlist-remove {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: all 0.2s ease;
+        }
+        
+        .card .wishlist-remove:hover {
+            opacity: 1;
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2a75e6;
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .badge-discount {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--accent-color);
+            padding: 0.4rem 0.6rem;
+            border-radius: 5px;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .empty-wishlist {
+            text-align: center;
+            padding: 3rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .empty-wishlist i {
+            font-size: 4rem;
+            color: #dee2e6;
+            margin-bottom: 1rem;
+        }
+        
+        .price-section {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        .current-price {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+        
+        .rating {
+            color: #ffc107;
+        }
+        
+        .shareBtn {
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .shareBtn:hover {
+            color: var(--secondary-color);
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .card-img-top {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+{% block content %}
+    <!-- Navigation -->
+  {% include 'ecomm/navbar.html' %}
+    <!-- Wishlist Header -->
+    <div class="wishlist-header">
+        <div class="container">
+            <h1><i class="fas fa-heart me-2"></i> My Wishlist</h1>
+            <p class="mb-0">Items you've saved for later</p>
+        </div>
+    </div>
+
+    <!-- Wishlist Content -->
+    <div class="container mb-5">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <p id="wishlistCount"><span id="itemCount">5</span> items in your wishlist</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <div class="btn-group">
+                    <button class="btn btn-outline-primary" id="clearWishlist">
+                        <i class="fas fa-trash-alt me-1"></i> Clear All
+                    </button>
+                    <button class="btn btn-primary" id="addAllToCart">
+                        <i class="fas fa-shopping-cart me-1"></i> Add All to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wishlist Items -->
+        <div class="row g-4" id="wishlistItems">
+            <!-- Item 1 -->
+            <div class="col-md-6 col-lg-4 wishlist-item">
+                <div class="card">
+                    <div class="wishlist-remove" onclick="removeItem(this)">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <span class="badge-discount">20% OFF</span>
+                    <img src="/api/placeholder/400/320" alt="Product Image" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Wireless Bluetooth Headphones</h5>
+                        <div class="rating mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span class="text-muted ms-1">(128)</span>
+                        </div>
+                        <div class="price-section mb-3">
+                            <span class="original-price">$129.99</span>
+                            <span class="current-price">$103.99</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-primary" onclick="addToCart(this)">
+                                <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                            </button>
+                            <i class="fas fa-share-alt shareBtn" onclick="shareProduct(this)" data-product="Wireless Bluetooth Headphones"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 2 -->
+            <div class="col-md-6 col-lg-4 wishlist-item">
+                <div class="card">
+                    <div class="wishlist-remove" onclick="removeItem(this)">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <img src="/api/placeholder/400/320" alt="Product Image" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Smart Fitness Tracker</h5>
+                        <div class="rating mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span class="text-muted ms-1">(89)</span>
+                        </div>
+                        <div class="price-section mb-3">
+                            <span class="current-price">$79.99</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-primary" onclick="addToCart(this)">
+                                <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                            </button>
+                            <i class="fas fa-share-alt shareBtn" onclick="shareProduct(this)" data-product="Smart Fitness Tracker"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 3 -->
+            <div class="col-md-6 col-lg-4 wishlist-item">
+                <div class="card">
+                    <div class="wishlist-remove" onclick="removeItem(this)">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <span class="badge-discount">15% OFF</span>
+                    <img src="/api/placeholder/400/320" alt="Product Image" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Premium Leather Wallet</h5>
+                        <div class="rating mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="text-muted ms-1">(203)</span>
+                        </div>
+                        <div class="price-section mb-3">
+                            <span class="original-price">$59.99</span>
+                            <span class="current-price">$50.99</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-primary" onclick="addToCart(this)">
+                                <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                            </button>
+                            <i class="fas fa-share-alt shareBtn" onclick="shareProduct(this)" data-product="Premium Leather Wallet"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 4 -->
+            <div class="col-md-6 col-lg-4 wishlist-item">
+                <div class="card">
+                    <div class="wishlist-remove" onclick="removeItem(this)">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <img src="/api/placeholder/400/320" alt="Product Image" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Stainless Steel Water Bottle</h5>
+                        <div class="rating mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i>
+                            <span class="text-muted ms-1">(56)</span>
+                        </div>
+                        <div class="price-section mb-3">
+                            <span class="current-price">$24.99</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-primary" onclick="addToCart(this)">
+                                <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                            </button>
+                            <i class="fas fa-share-alt shareBtn" onclick="shareProduct(this)" data-product="Stainless Steel Water Bottle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 5 -->
+            <div class="col-md-6 col-lg-4 wishlist-item">
+                <div class="card">
+                    <div class="wishlist-remove" onclick="removeItem(this)">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <span class="badge-discount">30% OFF</span>
+                    <img src="/api/placeholder/400/320" alt="Product Image" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Portable Bluetooth Speaker</h5>
+                        <div class="rating mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span class="text-muted ms-1">(112)</span>
+                        </div>
+                        <div class="price-section mb-3">
+                            <span class="original-price">$89.99</span>
+                            <span class="current-price">$62.99</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-primary" onclick="addToCart(this)">
+                                <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                            </button>
+                            <i class="fas fa-share-alt shareBtn" onclick="shareProduct(this)" data-product="Portable Bluetooth Speaker"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Empty Wishlist (Hidden by default) -->
+        <div class="empty-wishlist d-none" id="emptyWishlist">
+            <i class="fas fa-heart-broken"></i>
+            <h3>Your wishlist is empty</h3>
+            <p class="text-muted">Save items you like for later by clicking the heart icon on product pages.</p>
+            <a href="#" class="btn btn-primary mt-3">Continue Shopping</a>
+        </div>
+    </div>
+    
+    <!-- Related Products -->
+    <div class="container mb-5">
+        <h3 class="mb-4">You Might Also Like</h3>
+        <div class="row g-4">
+            <!-- Related Product 1 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card">
+                    <img src="/api/placeholder/400/320" alt="Product Image" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Wireless Charging Pad</h5>
+                        <div class="rating mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span class="text-muted ms-1">(78)</span>
+                        </div>
+                        <div class="price-section mb-3">
+                            <span class="current-price">$34.99</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-sm btn-primary" onclick="addToWishlist(this)">
+                                <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                            </button>
+                            <i class="far fa-heart" onclick="addToWishlist(this)" style="cursor: pointer;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Related Product 2 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card">
+                    <img src="/api/placeholder/400/320" alt="Product Image" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Travel Laptop Backpack</h5>
+                        <div class="rating mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span class="text-muted ms-1">(154)</span>
+                        </div>
+                        <div class="price-section mb-3">
+                            <span class="current-price">$49.99</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-sm btn-primary" onclick="addToWishlist(this)">
+                                <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                            </button>
+                            <i class="far fa-heart" onclick="addToWishlist(this)" style="cursor: pointer;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Related Product 3 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card">
+                    <span class="badge-discount">10% OFF</span>
+                    <img src="/api/placeholder/400/320" alt="Product Image" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Smart LED Desk Lamp</h5>
+                        <div class="rating mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span class="text-muted ms-1">(67)</span>
+                        </div>
+                        <div class="price-section mb-3">
+                            <span class="original-price">$39.99</span>
+                            <span class="current-price">$35.99</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-sm btn-primary" onclick="addToWishlist(this)">
+                                <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                            </button>
+                            <i class="far fa-heart" onclick="addToWishlist(this)" style="cursor: pointer;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Related Product 4 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card">
+                    <img src="/api/placeholder/400/320" alt="Product Image" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Wireless Earbuds</h5>
+                        <div class="rating mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="text-muted ms-1">(201)</span>
+                        </div>
+                        <div class="price-section mb-3">
+                            <span class="current-price">$59.99</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-sm btn-primary" onclick="addToWishlist(this)">
+                                <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                            </button>
+                            <i class="far fa-heart" onclick="addToWishlist(this)" style="cursor: pointer;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast notifications -->
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="notificationToast">
+        <div class="toast-header">
+            <strong class="me-auto">Notification</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="toastMessage">
+            Item added to cart successfully!
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>YourShop</h5>
+                    <p class="text-muted">Your one-stop destination for quality products at affordable prices.</p>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h6>Shop</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted text-decoration-none">Products</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Categories</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Deals</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">New Arrivals</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted text-decoration-none">FAQs</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Contact Us</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Shipping</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Returns</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6>Newsletter</h6>
+                    <p class="text-muted">Subscribe to receive updates on new arrivals and special offers</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Email Address">
+                        <button class="btn btn-primary" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4 mb-3">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0 text-muted">&copy; 2025 YourShop. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                    <img src="/api/placeholder/240/40" alt="Payment Methods" class="img-fluid" style="max-height: 30px;">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize toasts
+        const toastEl = document.getElementById('notificationToast');
+        const toast = new bootstrap.Toast(toastEl, { delay: 3000 });
+        const toastMessage = document.getElementById('toastMessage');
+        
+        // Function to show toast notification
+        function showNotification(message) {
+            toastMessage.textContent = message;
+            toast.show();
+        }
+        
+        // Function to remove item from wishlist
+        function removeItem(element) {
+            const wishlistItem = element.closest('.wishlist-item');
+            wishlistItem.classList.add('animate__animated', 'animate__fadeOut');
+            
+            setTimeout(() => {
+                wishlistItem.remove();
+                updateWishlistCount();
+                showNotification('Item removed from wishlist');
+                checkEmptyWishlist();
+            }, 300);
+        }
+        
+        // Function to add item to cart
+        function addToCart(element) {
+            const productName = element.closest('.card').querySelector('.card-title').textContent;
+            showNotification(`"${productName}" added to cart successfully!`);
+        }
+        
+        // Function to add to wishlist (for related products)
+        function addToWishlist(element) {
+            const heartIcon = element.closest('.card').querySelector('.fa-heart');
+            
+            if (heartIcon.classList.contains('far')) {
+                heartIcon.classList.remove('far');
+                heartIcon.classList.add('fas');
+                heartIcon.style.color = '#ff006e';
+                showNotification('Item added to wishlist');
+            } else {
+                heartIcon.classList.remove('fas');
+                heartIcon.classList.add('far');
+                heartIcon.style.color = '';
+                showNotification('Item removed from wishlist');
+            }
+        }
+        
+        // Function to share product
+        function shareProduct(element) {
+            const productName = element.getAttribute('data-product');
+            showNotification(`Share link for "${productName}" copied to clipboard!`);
+        }
+        
+        // Function to update wishlist count
+        function updateWishlistCount() {
+            const count = document.querySelectorAll('.wishlist-item').length;
+            document.getElementById('itemCount').textContent = count;
+        }
+        
+        // Function to check if wishlist is empty
+        function checkEmptyWishlist() {
+            const wishlistItems = document.querySelectorAll('.wishlist-item').length;
+            const wishlistContainer = document.getElementById('wishlistItems');
+            const emptyWishlist = document.getElementById('emptyWishlist');
+            const wishlistCount = document.getElementById('wishlistCount');
+            const actionButtons = document.querySelector('.btn-group');
+            
+            if (wishlistItems === 0) {
+                wishlistContainer.classList.add('d-none');
+                emptyWishlist.classList.remove('d-none');
+                wishlistCount.classList.add('d-none');
+                actionButtons.classList.add('d-none');
+            } else {
+                wishlistContainer.classList.remove('d-none');
+                emptyWishlist.classList.add('d-none');
+                wishlistCount.classList.remove('d-none');
+                actionButtons.classList.remove('d-none');
+            }
+        }
+        
+        // Clear all items from wishlist
+        document.getElementById('clearWishlist').addEventListener('click', function() {
+            const wishlistItems = document.querySelectorAll('.wishlist-item');
+            
+            wishlistItems.forEach(item => {
+                item.remove();
+            });
+            
+            updateWishlistCount();
+            checkEmptyWishlist();
+            showNotification('All items removed from wishlist');
+        });
+        
+        // Add all items to cart
+        document.getElementById('addAllToCart').addEventListener('click', function() {
+            const productNames = [];
+            const items = document.querySelectorAll('.wishlist-item .card-title');
+            
+            items.forEach(item => {
+                productNames.push(item.textContent);
+            });
+            
+            showNotification('All items added to cart successfully!');
+        });
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateWishlistCount();
+            checkEmptyWishlist();
+        });
+    </script>
+{% endblock %}
+</body>
+</html>

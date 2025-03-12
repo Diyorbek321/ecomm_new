@@ -1,0 +1,55 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'user_dashboard' %}">ShopEase</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'user_dashboard' %}">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="{% url 'category' %}" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categories
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                            <li><a class="dropdown-item" href="{% url 'category' %}">Electronics</a></li>
+                            <li><a class="dropdown-item" href="#">Fashion</a></li>
+                            <li><a class="dropdown-item" href="#">Home & Kitchen</a></li>
+                            <li><a class="dropdown-item" href="#">Beauty & Health</a></li>
+                            <li><a class="dropdown-item" href="#">Sports & Outdoors</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Deals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">New Arrivals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+                    </li>
+                </ul>
+                <form class="d-flex me-4">
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Search products" aria-label="Search">
+                        <button class="btn btn-outline-primary" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                <div class="d-flex">
+                    <a href="{% url 'autheticate' %}" class="btn btn-outline-primary me-2">
+                        <i class="fas fa-user me-1"></i> Login
+                    </a>
+                    <a href="{% url 'product_cart' %}" class="btn btn-primary d-none d-lg-block">
+                        <i class="fas fa-shopping-cart me-1"></i> Cart
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+{% block content %}
+{% endblock %}

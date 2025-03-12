@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart | YourStore</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3a86ff;
+            --secondary-color: #8338ec;
+            --accent-color: #ff006e;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .cart-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .cart-header {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        
+        .product-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .product-title {
+            font-weight: 600;
+            color: var(--dark-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .product-title:hover {
+            color: var(--primary-color);
+        }
+        
+        .quantity-selector {
+            width: 120px;
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 38px;
+            background-color: #f1f1f1;
+            border: none;
+            color: #555;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .quantity-btn:hover {
+            background-color: #e1e1e1;
+        }
+        
+        .quantity-input {
+            width: 60px;
+            height: 38px;
+            border: none;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .quantity-input:focus {
+            outline: none;
+        }
+        
+        .remove-btn {
+            color: #dc3545;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .remove-btn:hover {
+            color: #c82333;
+        }
+        
+        .price {
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+        
+        .summary-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .summary-title {
+            font-weight: 700;
+            color: var(--dark-gray);
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .total-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+        
+        .checkout-btn {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border: none;
+            color: white;
+            padding: 12px 0;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .continue-shopping {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .continue-shopping:hover {
+            color: var(--secondary-color);
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 50px 0;
+        }
+        
+        .empty-cart i {
+            font-size: 5rem;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .coupon-input {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px 15px;
+        }
+        
+        .coupon-btn {
+            background-color: var(--dark-gray);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .coupon-btn:hover {
+            background-color: #212529;
+        }
+        
+        .badge-discount {
+            background-color: #28a745;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+        
+        .alert-coupon {
+            display: none;
+            border-radius: 5px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .cart-item {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        /* Mobile responsive adjustments */
+        @media (max-width: 767.98px) {
+            .product-image {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .cart-item-details {
+                padding-left: 0 !important;
+            }
+            
+            .quantity-selector {
+                width: 100px;
+            }
+            
+            .summary-card {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+{% block content %}
+    <!-- Navigation Bar -->
+   {% include 'ecomm/navbar.html' %}
+    
+    <!-- Page Title -->
+    <div class="bg-light-gray py-4">
+        <div class="container">
+            <h1 class="h3 mb-0">Your Shopping Cart</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Cart</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="container py-5">
+        <div id="cartContent">
+            <!-- Cart Items Section -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="cart-container p-4 mb-4">
+                        <div class="cart-header d-flex justify-content-between align-items-center mb-4">
+                            <h2 class="h4 mb-0">Cart Items (3)</h2>
+                            <button id="clearCartBtn" class="btn btn-sm btn-outline-secondary">
+                                <i class="fas fa-trash-alt me-1"></i> Clear Cart
+                            </button>
+                        </div>
+                        
+                        <div id="cartItems">
+                            <!-- Cart Item 1 -->
+                            <div class="cart-item mb-4 pb-4 border-bottom">
+                                <div class="row align-items-center">
+                                    <div class="col-md-2 col-4">
+                                        <img src="/api/placeholder/400/400" alt="Product 1" class="product-image">
+                                    </div>
+                                    <div class="col-md-4 col-8 cart-item-details ps-md-3">
+                                        <a href="#" class="product-title mb-1 d-block">Premium Wireless Headphones</a>
+                                        <span class="badge bg-secondary mb-2">Electronics</span>
+                                        <span class="badge badge-discount">20% OFF</span>
+                                    </div>
+                                    <div class="col-md-3 col-6 mt-3 mt-md-0">
+                                        <div class="quantity-selector">
+                                            <button class="quantity-btn decrease-btn" data-id="1">-</button>
+                                            <input type="text" class="quantity-input" value="1" readonly>
+                                            <button class="quantity-btn increase-btn" data-id="1">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-3 mt-3 mt-md-0 text-md-end">
+                                        <span class="price">$129.99</span>
+                                    </div>
+                                    <div class="col-md-1 col-3 mt-3 mt-md-0 text-end">
+                                        <i class="fas fa-times remove-btn" data-id="1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Cart Item 2 -->
+                            <div class="cart-item mb-4 pb-4 border-bottom">
+                                <div class="row align-items-center">
+                                    <div class="col-md-2 col-4">
+                                        <img src="/api/placeholder/400/400" alt="Product 2" class="product-image">
+                                    </div>
+                                    <div class="col-md-4 col-8 cart-item-details ps-md-3">
+                                        <a href="#" class="product-title mb-1 d-block">Smart Watch Series 5</a>
+                                        <span class="badge bg-secondary mb-2">Wearables</span>
+                                    </div>
+                                    <div class="col-md-3 col-6 mt-3 mt-md-0">
+                                        <div class="quantity-selector">
+                                            <button class="quantity-btn decrease-btn" data-id="2">-</button>
+                                            <input type="text" class="quantity-input" value="2" readonly>
+                                            <button class="quantity-btn increase-btn" data-id="2">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-3 mt-3 mt-md-0 text-md-end">
+                                        <span class="price">$249.99</span>
+                                    </div>
+                                    <div class="col-md-1 col-3 mt-3 mt-md-0 text-end">
+                                        <i class="fas fa-times remove-btn" data-id="2"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Cart Item 3 -->
+                            <div class="cart-item mb-4 pb-4 border-bottom">
+                                <div class="row align-items-center">
+                                    <div class="col-md-2 col-4">
+                                        <img src="/api/placeholder/400/400" alt="Product 3" class="product-image">
+                                    </div>
+                                    <div class="col-md-4 col-8 cart-item-details ps-md-3">
+                                        <a href="#" class="product-title mb-1 d-block">Designer Leather Wallet</a>
+                                        <span class="badge bg-secondary mb-2">Accessories</span>
+                                    </div>
+                                    <div class="col-md-3 col-6 mt-3 mt-md-0">
+                                        <div class="quantity-selector">
+                                            <button class="quantity-btn decrease-btn" data-id="3">-</button>
+                                            <input type="text" class="quantity-input" value="1" readonly>
+                                            <button class="quantity-btn increase-btn" data-id="3">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-3 mt-3 mt-md-0 text-md-end">
+                                        <span class="price">$49.99</span>
+                                    </div>
+                                    <div class="col-md-1 col-3 mt-3 mt-md-0 text-end">
+                                        <i class="fas fa-times remove-btn" data-id="3"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Coupon Section -->
+                        <div class="coupon-section mt-4">
+                            <div class="alert alert-success alert-coupon" id="couponSuccess">
+                                <i class="fas fa-check-circle me-2"></i> Coupon applied successfully!
+                            </div>
+                            <div class="alert alert-danger alert-coupon" id="couponError">
+                                <i class="fas fa-exclamation-circle me-2"></i> Invalid coupon code.
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" id="couponCode" class="form-control coupon-input" placeholder="Enter coupon code">
+                                </div>
+                                <div class="col-md-6 mt-2 mt-md-0">
+                                    <button id="applyCouponBtn" class="btn coupon-btn w-100">Apply Coupon</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Continue Shopping -->
+                    <div class="d-flex justify-content-start">
+                        <a href="#" class="continue-shopping">
+                            <i class="fas fa-arrow-left me-2"></i> Continue Shopping
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Order Summary Section -->
+                <div class="col-lg-4">
+                    <div class="summary-card p-4">
+                        <h3 class="summary-title mb-4">Order Summary</h3>
+                        
+                        <div class="summary-details">
+                            <div class="summary-item">
+                                <span>Subtotal</span>
+                                <span class="price">$679.97</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Discount</span>
+                                <span class="price text-success">-$26.00</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Shipping</span>
+                                <span class="price">$12.00</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Tax</span>
+                                <span class="price">$53.28</span>
+                            </div>
+                            <hr>
+                            <div class="summary-item">
+                                <span class="fw-bold">Total</span>
+                                <span class="total-price">$719.25</span>
+                            </div>
+                        </div>
+                        
+                        <button class="checkout-btn btn w-100 mt-4">
+                            Proceed to Checkout <i class="fas fa-arrow-right ms-2"></i>
+                        </button>
+                        
+                        <div class="payment-icons text-center mt-4">
+                            <span class="me-2"><i class="fab fa-cc-visa fa-lg"></i></span>
+                            <span class="me-2"><i class="fab fa-cc-mastercard fa-lg"></i></span>
+                            <span class="me-2"><i class="fab fa-cc-amex fa-lg"></i></span>
+                            <span class="me-2"><i class="fab fa-cc-paypal fa-lg"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Empty Cart Template (Hidden by default) -->
+        <div id="emptyCartTemplate" class="d-none">
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <h3>Your cart is empty</h3>
+                <p class="text-muted mb-4">Looks like you haven't added any products to your cart yet.</p>
+                <a href="#" class="btn btn-primary px-4 py-2">
+                    Start Shopping <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer Section -->
+    <footer class="bg-dark text-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h5>YourStore</h5>
+                    <p class="text-muted mt-3">Quality products for your everyday needs. Shop with confidence.</p>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled mt-3">
+                        <li class="mb-2"><a href="#" class="text-muted">Home</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">Shop</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">About Us</a></li>
+                        <li><a href="#" class="text-muted">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h5>Customer Service</h5>
+                    <ul class="list-unstyled mt-3">
+                        <li class="mb-2"><a href="#" class="text-muted">FAQ</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">Shipping Policy</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">Returns & Refunds</a></li>
+                        <li><a href="#" class="text-muted">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Connect With Us</h5>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                    <div class="mt-4">
+                        <h6>Subscribe to our newsletter</h6>
+                        <div class="input-group mt-3">
+                            <input type="email" class="form-control" placeholder="Your email">
+                            <button class="btn btn-primary">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0 text-muted">&copy; 2025 YourStore. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-muted me-3">Privacy Policy</a>
+                    <a href="#" class="text-muted me-3">Terms of Service</a>
+                    <a href="#" class="text-muted">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Product data (would typically come from a database)
+            const products = [
+                {
+                    id: 1,
+                    name: 'Premium Wireless Headphones',
+                    price: 129.99,
+                    category: 'Electronics',
+                    discount: 20,
+                    quantity: 1
+                },
+                {
+                    id: 2,
+                    name: 'Smart Watch Series 5',
+                    price: 249.99,
+                    category: 'Wearables',
+                    discount: 0,
+                    quantity: 2
+                },
+                {
+                    id: 3,
+                    name: 'Designer Leather Wallet',
+                    price: 49.99,
+                    category: 'Accessories',
+                    discount: 0,
+                    quantity: 1
+                }
+            ];
+            
+            // Get DOM elements
+            const clearCartBtn = document.getElementById('clearCartBtn');
+            const applyCouponBtn = document.getElementById('applyCouponBtn');
+            const couponInput = document.getElementById('couponCode');
+            const couponSuccess = document.getElementById('couponSuccess');
+            const couponError = document.getElementById('couponError');
+            const cartContent = document.getElementById('cartContent');
+            const emptyCartTemplate = document.getElementById('emptyCartTemplate');
+            
+            // Quantity buttons
+            const increaseButtons = document.querySelectorAll('.increase-btn');
+            const decreaseButtons = document.querySelectorAll('.decrease-btn');
+            const removeButtons = document.querySelectorAll('.remove-btn');
+            
+            // Handle quantity increase
+            increaseButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.dataset.id;
+                    const input = this.parentElement.querySelector('.quantity-input');
+                    let value = parseInt(input.value);
+                    input.value = value + 1;
+                    
+                    // Update cart summary (in a real app, you'd update the server too)
+                    updateCartSummary();
+                });
+            });
+            
+            // Handle quantity decrease
+            decreaseButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.dataset.id;
+                    const input = this.parentElement.querySelector('.quantity-input');
+                    let value = parseInt(input.value);
+                    if (value > 1) {
+                        input.value = value - 1;
+                        
+                        // Update cart summary
+                        updateCartSummary();
+                    }
+                });
+            });
+            
+            // Handle item removal
+            removeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.dataset.id;
+                    const cartItem = this.closest('.cart-item');
+                    
+                    // Add a fade-out animation
+                    cartItem.style.opacity = '0';
+                    cartItem.style.transform = 'translateY(20px)';
+                    cartItem.style.transition = 'opacity 0.3s, transform 0.3s';
+                    
+                    // Remove the item after animation
+                    setTimeout(() => {
+                        cartItem.remove();
+                        updateCartCount();
+                        updateCartSummary();
+                        
+                        // Check if cart is empty
+                        if (document.querySelectorAll('.cart-item').length === 0) {
+                            showEmptyCart();
+                        }
+                    }, 300);
+                });
+            });
+            
+            // Clear entire cart
+            clearCartBtn.addEventListener('click', function() {
+                // Simple confirmation
+                if (confirm('Are you sure you want to clear your cart?')) {
+                    showEmptyCart();
+                }
+            });
+            
+            // Apply coupon
+            applyCouponBtn.addEventListener('click', function() {
+                const couponCode = couponInput.value.trim();
+                
+                // Hide any existing alerts
+                couponSuccess.style.display = 'none';
+                couponError.style.display = 'none';
+                
+                // Simple validation (in a real app, you'd verify with the server)
+                if (couponCode.toLowerCase() === 'discount10') {
+                    couponSuccess.style.display = 'block';
+                    // In a real app, you'd update the discount in the order summary
+                    updateCartSummary(true);
+                } else {
+                    couponError.style.display = 'block';
+                }
+            });
+            
+            // Function to update cart count
+            function updateCartCount() {
+                const itemCount = document.querySelectorAll('.cart-item').length;
+                const cartHeader = document.querySelector('.cart-header h2');
+                const navCartCount = document.querySelector('.navbar-nav .active');
+                
+                if (cartHeader) {
+                    cartHeader.textContent = `Cart Items (${itemCount})`;
+                }
+                
+                if (navCartCount) {
+                    navCartCount.innerHTML = `<i class="fas fa-shopping-cart me-1"></i> Cart (${itemCount})`;
+                }
+            }
+            
+            // Function to update cart summary
+            function updateCartSummary(couponApplied = false) {
+                // Calculate totals based on current quantities
+                let subtotal = 0;
+                let discount = 0;
+                
+                document.querySelectorAll('.cart-item').forEach((item, index) => {
+                    const priceEl = item.querySelector('.price');
+                    const quantityEl = item.querySelector('.quantity-input');
+                    const price = parseFloat(priceEl.textContent.replace('$', ''));
+                    const quantity = parseInt(quantityEl.value);
+                    
+                    // Calculate item total
+                    const itemTotal = price * quantity;
+                    subtotal += itemTotal;
+                    
+                    // Apply product-specific discounts
+                    if (products[index] && products[index].discount > 0) {
+                        const productDiscount = (price * products[index].discount / 100) * quantity;
+                        discount += productDiscount;
+                    }
+                });
+                
+                // Apply coupon discount if valid
+                if (couponApplied) {
+                    discount += subtotal * 0.1; // 10% discount
+                }
+                
+                // Calculate other values
+                const shipping = subtotal > 0 ? 12.00 : 0;
+                const tax = subtotal > 0 ? subtotal * 0.08 : 0; // 8% tax
+                const total = subtotal - discount + shipping + tax;
+                
+                // Update the summary section
+                const summaryItems = document.querySelectorAll('.summary-item');
+                if (summaryItems.length >= 5) {
+                    summaryItems[0].querySelector('.price').textContent = `$${subtotal.toFixed(2)}`;
+                    summaryItems[1].querySelector('.price').textContent = `-$${discount.toFixed(2)}`;
+                    summaryItems[2].querySelector('.price').textContent = `$${shipping.toFixed(2)}`;
+                    summaryItems[3].querySelector('.price').textContent = `$${tax.toFixed(2)}`;
+                    summaryItems[4].querySelector('.total-price').textContent = `$${total.toFixed(2)}`;
+                }
+            }
+            
+            // Function to show empty cart
+            function showEmptyCart() {
+                cartContent.innerHTML = '';
+                emptyCartTemplate.classList.remove('d-none');
+                cartContent.appendChild(emptyCartTemplate.cloneNode(true));
+                document.querySelector('.navbar-nav .active').innerHTML = '<i class="fas fa-shopping-cart me-1"></i> Cart (0)';
+            }
+        });
+    </script>
+{% endblock %}
+</body>
+</html>
