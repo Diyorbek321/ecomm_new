@@ -17,70 +17,28 @@
             --danger-color: #e74a3b;
             --sidebar-width: 250px;
         }
-        
+
         body {
             font-family: 'Nunito', sans-serif;
             background-color: #f8f9fc;
             overflow-x: hidden;
         }
-        
-        /* Sidebar Styles */
-        #sidebar {
-            position: fixed;
-            width: var(--sidebar-width);
-            height: 100vh;
-            background: linear-gradient(180deg, var(--primary-color) 0%, #224abe 100%);
-            color: white;
-            transition: all 0.3s;
-            z-index: 1000;
-        }
-        
-        #sidebar .sidebar-brand {
-            padding: 1.5rem 1rem;
-            font-size: 1.2rem;
-            font-weight: 800;
-            text-align: center;
-            text-transform: uppercase;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        #sidebar .nav-item {
-            margin-bottom: 0.25rem;
-        }
-        
-        #sidebar .nav-link {
-            color: rgba(255, 255, 255, 0.8);
-            padding: 1rem;
-            font-weight: 600;
-            border-radius: 0.35rem;
-            margin: 0 0.5rem;
-        }
-        
-        #sidebar .nav-link:hover, #sidebar .nav-link.active {
-            color: white;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        #sidebar .nav-link i {
-            margin-right: 0.5rem;
-            width: 1.25rem;
-            text-align: center;
-        }
-        
+
+
         /* Content Area */
         #content {
             margin-left: var(--sidebar-width);
             padding: 0;
             min-height: 100vh;
         }
-        
+
         /* Topbar */
         .topbar {
             height: 4.375rem;
             background-color: white;
             box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
         }
-        
+
         /* Cards */
         .card {
             border: none;
@@ -88,33 +46,33 @@
             box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
             margin-bottom: 1.5rem;
         }
-        
+
         .card-header {
             background-color: #f8f9fc;
             border-bottom: 1px solid #e3e6f0;
             padding: 1rem 1.35rem;
         }
-        
+
         .btn-primary {
             background-color: var(--primary-color);
             border-color: var(--primary-color);
         }
-        
+
         .btn-success {
             background-color: var(--secondary-color);
             border-color: var(--secondary-color);
         }
-        
+
         .btn-danger {
             background-color: var(--danger-color);
             border-color: var(--danger-color);
         }
-        
+
         .table thead th {
             font-weight: 600;
             background-color: #f8f9fc;
         }
-        
+
         /* Category Badges */
         .category-badge {
             display: inline-block;
@@ -123,56 +81,66 @@
             font-size: 0.875rem;
             font-weight: 600;
         }
-        
+
         /* Modal Custom Styles */
         .modal-header {
             background-color: var(--primary-color);
             color: white;
         }
-        
+
         /* Category Tree View */
         .tree-view {
             list-style-type: none;
             padding-left: 0;
         }
-        
+
         .tree-view li {
             padding: 8px 0;
         }
-        
+
         .tree-view ul {
             list-style-type: none;
             padding-left: 20px;
         }
-        
+
         .tree-toggle {
             cursor: pointer;
             margin-right: 5px;
         }
-        
+
         .tree-view .collapse {
             margin-top: 8px;
         }
-        
+
         /* Custom animations */
         .fade-in {
             animation: fadeIn 0.5s;
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
-        
+
         .slide-in {
             animation: slideIn 0.3s;
         }
-        
+
         @keyframes slideIn {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
-        
+
         /* Toast notifications */
         .toast-container {
             position: fixed;
@@ -180,16 +148,16 @@
             right: 20px;
             z-index: 9999;
         }
-        
+
         /* Color indicators for status */
         .status-active {
             background-color: #1cc88a;
         }
-        
+
         .status-inactive {
             background-color: #e74a3b;
         }
-        
+
         /* Category image preview */
         .cat-img-preview {
             width: 40px;
@@ -197,7 +165,7 @@
             object-fit: cover;
             border-radius: 4px;
         }
-        
+
         .image-dropzone {
             border: 2px dashed #ddd;
             border-radius: 5px;
@@ -206,888 +174,1010 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-        
+
         .image-dropzone:hover {
             border-color: var(--primary-color);
         }
-        
+
         /* Form validations */
         .is-invalid {
             border-color: var(--danger-color) !important;
         }
-        
+
         .invalid-feedback {
             color: var(--danger-color);
             font-size: 80%;
         }
-        
+
         /* Drag and drop */
         .draggable {
             cursor: move;
         }
-        
+
         .drag-over {
             background-color: rgba(78, 115, 223, 0.1);
         }
     </style>
 </head>
 <body>
-    <!-- Main Container -->
-    <div class="d-flex" id="wrapper">
-        <!-- Sidebar -->
-        <div id="sidebar">
-            <div class="sidebar-brand">
-                <i class="fas fa-shopping-cart me-2"></i>
-                <span>E-Shop Admin</span>
-            </div>
-            <hr class="sidebar-divider my-0">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="dashboard.html">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="products.html">
-                        <i class="fas fa-fw fa-box"></i>
-                        <span>Products</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="categories.html">
-                        <i class="fas fa-fw fa-folder"></i>
-                        <span>Categories</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="orders.html">
-                        <i class="fas fa-fw fa-shopping-basket"></i>
-                        <span>Orders</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="customers.html">
-                        <i class="fas fa-fw fa-users"></i>
-                        <span>Customers</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="reviews.html">
-                        <i class="fas fa-fw fa-star"></i>
-                        <span>Reviews</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="promotions.html">
-                        <i class="fas fa-fw fa-tags"></i>
-                        <span>Promotions</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="settings.html">
-                        <i class="fas fa-fw fa-cog"></i>
-                        <span>Settings</span>
-                    </a>
-                </li>
-                <li class="nav-item mt-3">
-                    <a class="nav-link" href="logout.html">
-                        <i class="fas fa-fw fa-sign-out-alt"></i>
-                        <span>Logout</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        
-        <!-- Page Content -->
-        <div id="content">
-            <!-- Topbar -->
-            <nav class="navbar navbar-expand topbar mb-4 static-top">
-                <div class="container-fluid">
-                    <button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <h1 class="h3 mb-0 text-gray-800">Category Management</h1>
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="me-2 d-none d-lg-inline text-gray-600 small">Admin User</span>
-                                <img class="img-profile rounded-circle" src="/api/placeholder/32/32" alt="Admin Profile">
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end shadow animated--grow-in"
-                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            
-            <!-- Begin Page Content -->
+{% block content %}
+<!-- Main Container -->
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+   {% include 'ecomm/admin/sidebar.html' %}
+
+    <!-- Page Content -->
+    <div id="content">
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand topbar mb-4 static-top">
             <div class="container-fluid">
-                <div class="row">
-                    <!-- Category Tree View -->
-                    <div class="col-md-4">
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Category Hierarchy</h6>
-                                <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                       data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-end shadow animated--fade-in"
-                                         aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="#" id="expandAllCategories">Expand All</a>
-                                        <a class="dropdown-item" href="#" id="collapseAllCategories">Collapse All</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#" id="exportCategoriesCSV">Export to CSV</a>
-                                    </div>
+                <button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <h1 class="h3 mb-0 text-gray-800">Category Management</h1>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="me-2 d-none d-lg-inline text-gray-600 small">Admin User</span>
+                            <img class="img-profile rounded-circle" src="/api/placeholder/32/32" alt="Admin Profile">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end shadow animated--grow-in"
+                             aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>
+                                Profile
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>
+                                Settings
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Category Tree View -->
+                <div class="col-md-4">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Category Hierarchy</h6>
+                            <div class="dropdown no-arrow">
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end shadow animated--fade-in"
+                                     aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="#" id="expandAllCategories">Expand All</a>
+                                    <a class="dropdown-item" href="#" id="collapseAllCategories">Collapse All</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#" id="exportCategoriesCSV">Export to CSV</a>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <div class="form-group mb-3">
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group mb-3">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="categorySearch"
+                                           placeholder="Search categories...">
+                                    <button class="btn btn-primary" type="button" id="searchCategoryBtn">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <ul class="tree-view" id="categoryTree">
+                                <li>
+                                        <span class="tree-toggle" data-bs-toggle="collapse"
+                                              data-bs-target="#electronics">
+                                            <i class="fas fa-caret-right"></i>
+                                        </span>
+                                    <span class="fw-bold">Electronics</span>
+                                    <span class="badge bg-info rounded-pill ms-2">42</span>
+                                    <span class="float-end">
+                                            <button class="btn btn-sm btn-outline-primary me-1"
+                                                    onclick="editCategory('electronics', 'Electronics')">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-danger"
+                                                    onclick="deleteCategory('electronics')">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </span>
+
+                                    <ul class="collapse" id="electronics">
+                                        <li>
+                                                <span class="tree-toggle" data-bs-toggle="collapse"
+                                                      data-bs-target="#smartphones">
+                                                    <i class="fas fa-caret-right"></i>
+                                                </span>
+                                            <span>Smartphones</span>
+                                            <span class="badge bg-info rounded-pill ms-2">15</span>
+                                            <span class="float-end">
+                                                    <button class="btn btn-sm btn-outline-primary me-1"
+                                                            onclick="editCategory('smartphones', 'Smartphones')">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger"
+                                                            onclick="deleteCategory('smartphones')">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </span>
+
+                                            <ul class="collapse" id="smartphones">
+                                                <li>
+                                                    <span class="ms-3">Android</span>
+                                                    <span class="badge bg-info rounded-pill ms-2">8</span>
+                                                    <span class="float-end">
+                                                            <button class="btn btn-sm btn-outline-primary me-1"
+                                                                    onclick="editCategory('android', 'Android')">
+                                                                <i class="fas fa-edit"></i>
+                                                            </button>
+                                                            <button class="btn btn-sm btn-outline-danger"
+                                                                    onclick="deleteCategory('android')">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                        </span>
+                                                </li>
+                                                <li>
+                                                    <span class="ms-3">iOS</span>
+                                                    <span class="badge bg-info rounded-pill ms-2">7</span>
+                                                    <span class="float-end">
+                                                            <button class="btn btn-sm btn-outline-primary me-1"
+                                                                    onclick="editCategory('ios', 'iOS')">
+                                                                <i class="fas fa-edit"></i>
+                                                            </button>
+                                                            <button class="btn btn-sm btn-outline-danger"
+                                                                    onclick="deleteCategory('ios')">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                        </span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                                <span class="tree-toggle" data-bs-toggle="collapse"
+                                                      data-bs-target="#laptops">
+                                                    <i class="fas fa-caret-right"></i>
+                                                </span>
+                                            <span>Laptops</span>
+                                            <span class="badge bg-info rounded-pill ms-2">12</span>
+                                            <span class="float-end">
+                                                    <button class="btn btn-sm btn-outline-primary me-1"
+                                                            onclick="editCategory('laptops', 'Laptops')">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger"
+                                                            onclick="deleteCategory('laptops')">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </span>
+
+                                            <ul class="collapse" id="laptops">
+                                                <li>
+                                                    <span class="ms-3">Gaming</span>
+                                                    <span class="badge bg-info rounded-pill ms-2">5</span>
+                                                    <span class="float-end">
+                                                            <button class="btn btn-sm btn-outline-primary me-1"
+                                                                    onclick="editCategory('gaming', 'Gaming')">
+                                                                <i class="fas fa-edit"></i>
+                                                            </button>
+                                                            <button class="btn btn-sm btn-outline-danger"
+                                                                    onclick="deleteCategory('gaming')">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                        </span>
+                                                </li>
+                                                <li>
+                                                    <span class="ms-3">Business</span>
+                                                    <span class="badge bg-info rounded-pill ms-2">7</span>
+                                                    <span class="float-end">
+                                                            <button class="btn btn-sm btn-outline-primary me-1"
+                                                                    onclick="editCategory('business', 'Business')">
+                                                                <i class="fas fa-edit"></i>
+                                                            </button>
+                                                            <button class="btn btn-sm btn-outline-danger"
+                                                                    onclick="deleteCategory('business')">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                        </span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="mt-2">
+                                        <span class="tree-toggle" data-bs-toggle="collapse" data-bs-target="#clothing">
+                                            <i class="fas fa-caret-right"></i>
+                                        </span>
+                                    <span class="fw-bold">Clothing</span>
+                                    <span class="badge bg-info rounded-pill ms-2">35</span>
+                                    <span class="float-end">
+                                            <button class="btn btn-sm btn-outline-primary me-1"
+                                                    onclick="editCategory('clothing', 'Clothing')">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-danger"
+                                                    onclick="deleteCategory('clothing')">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </span>
+
+                                    <ul class="collapse" id="clothing">
+                                        <li>
+                                            <span>Men</span>
+                                            <span class="badge bg-info rounded-pill ms-2">18</span>
+                                            <span class="float-end">
+                                                    <button class="btn btn-sm btn-outline-primary me-1"
+                                                            onclick="editCategory('men', 'Men')">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger"
+                                                            onclick="deleteCategory('men')">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </span>
+                                        </li>
+                                        <li>
+                                            <span>Women</span>
+                                            <span class="badge bg-info rounded-pill ms-2">17</span>
+                                            <span class="float-end">
+                                                    <button class="btn btn-sm btn-outline-primary me-1"
+                                                            onclick="editCategory('women', 'Women')">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger"
+                                                            onclick="deleteCategory('women')">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </span>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="mt-2">
+                                        <span class="tree-toggle" data-bs-toggle="collapse" data-bs-target="#home">
+                                            <i class="fas fa-caret-right"></i>
+                                        </span>
+                                    <span class="fw-bold">Home & Garden</span>
+                                    <span class="badge bg-info rounded-pill ms-2">28</span>
+                                    <span class="float-end">
+                                            <button class="btn btn-sm btn-outline-primary me-1"
+                                                    onclick="editCategory('home', 'Home & Garden')">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-danger"
+                                                    onclick="deleteCategory('home')">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </span>
+
+                                    <ul class="collapse" id="home">
+                                        <li>
+                                            <span>Furniture</span>
+                                            <span class="badge bg-info rounded-pill ms-2">12</span>
+                                            <span class="float-end">
+                                                    <button class="btn btn-sm btn-outline-primary me-1"
+                                                            onclick="editCategory('furniture', 'Furniture')">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger"
+                                                            onclick="deleteCategory('furniture')">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </span>
+                                        </li>
+                                        <li>
+                                            <span>Garden</span>
+                                            <span class="badge bg-info rounded-pill ms-2">16</span>
+                                            <span class="float-end">
+                                                    <button class="btn btn-sm btn-outline-primary me-1"
+                                                            onclick="editCategory('garden', 'Garden')">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger"
+                                                            onclick="deleteCategory('garden')">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </span>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <div class="text-center mt-3">
+                                <button class="btn btn-success" data-bs-toggle="modal"
+                                        data-bs-target="#addCategoryModal">
+                                    <i class="fas fa-plus me-1"></i> Add Category
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category List -->
+                <div class="col-md-8">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">All Categories</h6>
+                            <div class="dropdown no-arrow">
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end shadow animated--fade-in"
+                                     aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="#" id="bulkActivate">Bulk Activate</a>
+                                    <a class="dropdown-item" href="#" id="bulkDeactivate">Bulk Deactivate</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#" id="bulkDelete">Bulk Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="categorySearch" placeholder="Search categories...">
-                                        <button class="btn btn-primary" type="button" id="searchCategoryBtn">
+                                        <input type="text" class="form-control" id="categoryTableSearch"
+                                               placeholder="Search categories...">
+                                        <button class="btn btn-primary" type="button">
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
                                 </div>
-                                
-                                <ul class="tree-view" id="categoryTree">
-                                    <li>
-                                        <span class="tree-toggle" data-bs-toggle="collapse" data-bs-target="#electronics">
-                                            <i class="fas fa-caret-right"></i>
-                                        </span>
-                                        <span class="fw-bold">Electronics</span>
-                                        <span class="badge bg-info rounded-pill ms-2">42</span>
-                                        <span class="float-end">
-                                            <button class="btn btn-sm btn-outline-primary me-1" onclick="editCategory('electronics', 'Electronics')">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-outline-danger" onclick="deleteCategory('electronics')">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </span>
-                                        
-                                        <ul class="collapse" id="electronics">
-                                            <li>
-                                                <span class="tree-toggle" data-bs-toggle="collapse" data-bs-target="#smartphones">
-                                                    <i class="fas fa-caret-right"></i>
-                                                </span>
-                                                <span>Smartphones</span>
-                                                <span class="badge bg-info rounded-pill ms-2">15</span>
-                                                <span class="float-end">
-                                                    <button class="btn btn-sm btn-outline-primary me-1" onclick="editCategory('smartphones', 'Smartphones')">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button class="btn btn-sm btn-outline-danger" onclick="deleteCategory('smartphones')">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </span>
-                                                
-                                                <ul class="collapse" id="smartphones">
-                                                    <li>
-                                                        <span class="ms-3">Android</span>
-                                                        <span class="badge bg-info rounded-pill ms-2">8</span>
-                                                        <span class="float-end">
-                                                            <button class="btn btn-sm btn-outline-primary me-1" onclick="editCategory('android', 'Android')">
-                                                                <i class="fas fa-edit"></i>
-                                                            </button>
-                                                            <button class="btn btn-sm btn-outline-danger" onclick="deleteCategory('android')">
-                                                                <i class="fas fa-trash"></i>
-                                                            </button>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="ms-3">iOS</span>
-                                                        <span class="badge bg-info rounded-pill ms-2">7</span>
-                                                        <span class="float-end">
-                                                            <button class="btn btn-sm btn-outline-primary me-1" onclick="editCategory('ios', 'iOS')">
-                                                                <i class="fas fa-edit"></i>
-                                                            </button>
-                                                            <button class="btn btn-sm btn-outline-danger" onclick="deleteCategory('ios')">
-                                                                <i class="fas fa-trash"></i>
-                                                            </button>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <span class="tree-toggle" data-bs-toggle="collapse" data-bs-target="#laptops">
-                                                    <i class="fas fa-caret-right"></i>
-                                                </span>
-                                                <span>Laptops</span>
-                                                <span class="badge bg-info rounded-pill ms-2">12</span>
-                                                <span class="float-end">
-                                                    <button class="btn btn-sm btn-outline-primary me-1" onclick="editCategory('laptops', 'Laptops')">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button class="btn btn-sm btn-outline-danger" onclick="deleteCategory('laptops')">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </span>
-                                                
-                                                <ul class="collapse" id="laptops">
-                                                    <li>
-                                                        <span class="ms-3">Gaming</span>
-                                                        <span class="badge bg-info rounded-pill ms-2">5</span>
-                                                        <span class="float-end">
-                                                            <button class="btn btn-sm btn-outline-primary me-1" onclick="editCategory('gaming', 'Gaming')">
-                                                                <i class="fas fa-edit"></i>
-                                                            </button>
-                                                            <button class="btn btn-sm btn-outline-danger" onclick="deleteCategory('gaming')">
-                                                                <i class="fas fa-trash"></i>
-                                                            </button>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="ms-3">Business</span>
-                                                        <span class="badge bg-info rounded-pill ms-2">7</span>
-                                                        <span class="float-end">
-                                                            <button class="btn btn-sm btn-outline-primary me-1" onclick="editCategory('business', 'Business')">
-                                                                <i class="fas fa-edit"></i>
-                                                            </button>
-                                                            <button class="btn btn-sm btn-outline-danger" onclick="deleteCategory('business')">
-                                                                <i class="fas fa-trash"></i>
-                                                            </button>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="mt-2">
-                                        <span class="tree-toggle" data-bs-toggle="collapse" data-bs-target="#clothing">
-                                            <i class="fas fa-caret-right"></i>
-                                        </span>
-                                        <span class="fw-bold">Clothing</span>
-                                        <span class="badge bg-info rounded-pill ms-2">35</span>
-                                        <span class="float-end">
-                                            <button class="btn btn-sm btn-outline-primary me-1" onclick="editCategory('clothing', 'Clothing')">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-outline-danger" onclick="deleteCategory('clothing')">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </span>
-                                        
-                                        <ul class="collapse" id="clothing">
-                                            <li>
-                                                <span>Men</span>
-                                                <span class="badge bg-info rounded-pill ms-2">18</span>
-                                                <span class="float-end">
-                                                    <button class="btn btn-sm btn-outline-primary me-1" onclick="editCategory('men', 'Men')">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button class="btn btn-sm btn-outline-danger" onclick="deleteCategory('men')">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span>Women</span>
-                                                <span class="badge bg-info rounded-pill ms-2">17</span>
-                                                <span class="float-end">
-                                                    <button class="btn btn-sm btn-outline-primary me-1" onclick="editCategory('women', 'Women')">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button class="btn btn-sm btn-outline-danger" onclick="deleteCategory('women')">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </span>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="mt-2">
-                                        <span class="tree-toggle" data-bs-toggle="collapse" data-bs-target="#home">
-                                            <i class="fas fa-caret-right"></i>
-                                        </span>
-                                        <span class="fw-bold">Home & Garden</span>
-                                        <span class="badge bg-info rounded-pill ms-2">28</span>
-                                        <span class="float-end">
-                                            <button class="btn btn-sm btn-outline-primary me-1" onclick="editCategory('home', 'Home & Garden')">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-outline-danger" onclick="deleteCategory('home')">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </span>
-                                        
-                                        <ul class="collapse" id="home">
-                                            <li>
-                                                <span>Furniture</span>
-                                                <span class="badge bg-info rounded-pill ms-2">12</span>
-                                                <span class="float-end">
-                                                    <button class="btn btn-sm btn-outline-primary me-1" onclick="editCategory('furniture', 'Furniture')">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button class="btn btn-sm btn-outline-danger" onclick="deleteCategory('furniture')">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span>Garden</span>
-                                                <span class="badge bg-info rounded-pill ms-2">16</span>
-                                                <span class="float-end">
-                                                    <button class="btn btn-sm btn-outline-primary me-1" onclick="editCategory('garden', 'Garden')">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button class="btn btn-sm btn-outline-danger" onclick="deleteCategory('garden')">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </span>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                
-                                <div class="text-center mt-3">
-                                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
-                                        <i class="fas fa-plus me-1"></i> Add Category
-                                    </button>
+                                <div class="col-md-3">
+                                    <select class="form-select" id="statusFilter">
+                                        <option value="all">All Status</option>
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-select" id="sortFilter">
+                                        <option value="name_asc">Name (A-Z)</option>
+                                        <option value="name_desc">Name (Z-A)</option>
+                                        <option value="products_desc">Most Products</option>
+                                        <option value="products_asc">Least Products</option>
+                                    </select>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Category List -->
-                    <div class="col-md-8">
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">All Categories</h6>
-                                <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                       data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-end shadow animated--fade-in"
-                                         aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="#" id="bulkActivate">Bulk Activate</a>
-                                        <a class="dropdown-item" href="#" id="bulkDeactivate">Bulk Deactivate</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#" id="bulkDelete">Bulk Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="categoryTableSearch" placeholder="Search categories...">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <select class="form-select" id="statusFilter">
-                                            <option value="all">All Status</option>
-                                            <option value="active">Active</option>
-                                            <option value="inactive">Inactive</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <select class="form-select" id="sortFilter">
-                                            <option value="name_asc">Name (A-Z)</option>
-                                            <option value="name_desc">Name (Z-A)</option>
-                                            <option value="products_desc">Most Products</option>
-                                            <option value="products_asc">Least Products</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover" id="categoryTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th width="30px">
-                                                    <input type="checkbox" id="selectAll">
-                                                </th>
-                                                <th width="50px"></th>
-                                                <th>Category Name</th>
-                                                <th>Parent</th>
-                                                <th>Products</th>
-                                                <th>Status</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><input type="checkbox" class="category-checkbox"></td>
-                                                <td><img src="/api/placeholder/40/40" class="cat-img-preview" alt="Electronics"></td>
-                                                <td>Electronics</td>
-                                                <td>None</td>
-                                                <td>42</td>
-                                                <td><span class="badge bg-success">Active</span></td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-primary" onclick="editCategory('electronics', 'Electronics')"><i class="fas fa-edit"></i></button>
-                                                    <button class="btn btn-sm btn-info" onclick="viewCategory('electronics')"><i class="fas fa-eye"></i></button>
-                                                    <button class="btn btn-sm btn-danger" onclick="deleteCategory('electronics')"><i class="fas fa-trash"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="checkbox" class="category-checkbox"></td>
-                                                <td><img src="/api/placeholder/40/40" class="cat-img-preview" alt="Smartphones"></td>
-                                                <td>Smartphones</td>
-                                                <td>Electronics</td>
-                                                <td>15</td>
-                                                <td><span class="badge bg-success">Active</span></td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-primary" onclick="editCategory('smartphones', 'Smartphones')"><i class="fas fa-edit"></i></button>
-                                                    <button class="btn btn-sm btn-info" onclick="viewCategory('smartphones')"><i class="fas fa-eye"></i></button>
-                                                    <button class="btn btn-sm btn-danger" onclick="deleteCategory('smartphones')"><i class="fas fa-trash"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="checkbox" class="category-checkbox"></td>
-                                                <td><img src="/api/placeholder/40/40" class="cat-img-preview" alt="Android"></td>
-                                                <td>Android</td>
-                                                <td>Smartphones</td>
-                                                <td>8</td>
-                                                <td><span class="badge bg-success">Active</span></td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-primary" onclick="editCategory('android', 'Android')"><i class="fas fa-edit"></i></button>
-                                                    <button class="btn btn-sm btn-info" onclick="viewCategory('android')"><i class="fas fa-eye"></i></button>
-                                                    <button class="btn btn-sm btn-danger" onclick="deleteCategory('android')"><i class="fas fa-trash"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="checkbox" class="category-checkbox"></td>
-                                                <td><img src="/api/placeholder/40/40" class="cat-img-preview" alt="iOS"></td>
-                                                <td>iOS</td>
-                                                <td>Smartphones</td>
-                                                <td>7</td>
-                                                <td><span class="badge bg-success">Active</span></td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-primary" onclick="editCategory('ios', 'iOS')"><i class="fas fa-edit"></i></button>
-                                                    <button class="btn btn-sm btn-info" onclick="viewCategory('ios')"><i class="fas fa-eye"></i></button>
-                                                    <button class="btn btn-sm btn-danger" onclick="deleteCategory('ios')"><i class="fas fa-trash"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="checkbox" class="category-checkbox"></td>
-                                                <td><img src="/api/placeholder/40/40" class="cat-img-preview" alt="Laptops"></td>
-                                                <td>Laptops</td>
-                                                <td>Electronics</td>
-                                                <td>12</td>
-                                                <td><span class="badge bg-success">Active</span></td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-primary" onclick="editCategory('laptops', 'Laptops')"><i class="fas fa-edit"></i></button>
-                                                    <button class="btn btn-sm btn-info" onclick="viewCategory('laptops')"><i class="fas fa-eye"></i></button>
-                                                    <button class="btn btn-sm btn-danger" onclick="deleteCategory('laptops')"><i class="fas fa-trash"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="checkbox" class="category-checkbox"></td>
-                                                <td><img src="/api/placeholder/40/40" class="cat-img-preview" alt="Clothing"></td>
-                                                <td>Clothing</td>
-                                                <td>None</td>
-                                                <td>35</td>
-                                                <td><span class="badge bg-success">Active</span></td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-primary" onclick="editCategory('clothing', 'Clothing')"><i class="fas fa-edit"></i></button>
-                                                    <button class="btn btn-sm btn-info" onclick="viewCategory('clothing')"><i class="fas fa-eye"></i></button>
-                                                    <button class="btn btn-sm btn-danger" onclick="deleteCategory('clothing')"><i class="fas fa-trash"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="checkbox" class="category-checkbox"></td>
-                                                <td><img src="/api/placeholder/40/40" class="cat-img-preview" alt="Home & Garden"></td>
-                                                <td>Home & Garden</td>
-                                                <td>None</td>
-                                                <td>28</td>
-                                                <td><span class="badge bg-danger">Inactive</span></td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-primary" onclick="editCategory('home', 'Home & Garden')"><i class="fas fa-edit"></i></button>
-                                                    <button class="btn btn-sm btn-info" onclick="viewCategory('home')"><i class="fas fa-eye"></i></button>
-                                                    <button class="btn btn-sm btn-danger" onclick="deleteCategory('home')"><i class="fas fa-trash"></i></button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <div>
-                                        <span>Showing 1 to 7 of 7 entries</span>
-                                    </div>
-                                    <nav aria-label="Page navigation">
-                                        <ul class="pagination">
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="#" aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                </a>
-                                            </li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="#" aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Add Category Modal -->
-    <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addCategoryModalLabel">Add New Category</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="addCategoryForm">
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="categoryName" class="form-label">Category Name *</label>
-                                <input type="text" class="form-control" id="categoryName" required>
-                                <div class="invalid-feedback">
-                                    Category name is required
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="categorySlug" class="form-label">Slug</label>
-                                <input type="text" class="form-control" id="categorySlug">
-                                <small class="text-muted">Leave blank to auto-generate from name</small>
-                            </div>
-                        </div>
-                        
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="parentCategory" class="form-label">Parent Category</label>
-                                <select class="form-select" id="parentCategory">
-                                    <option value="">None (Top Level)</option>
-                                    <option value="electronics">Electronics</option>
-                                    <option value="smartphones">- Smartphones</option>
-                                    <option value="laptops">- Laptops</option>
-                                    <option value="clothing">Clothing</option>
-                                    <option value="home">Home & Garden</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="categoryStatus" class="form-label">Status</label>
-                                <select class="form-select" id="categoryStatus">
-                                    <option value="active">Active</option>
-                                    <option value="inactive">Inactive</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="categoryDescription" class="form-label">Description</label>
-                            <textarea class="form-control" id="categoryDescription" rows="3"></textarea>
-                        </div>
-                        
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label class="form-label">Category Image</label>
-                                <div class="image-dropzone" id="categoryImageDropzone">
-                                    <i class="fas fa-cloud-upload-alt fa-2x mb-2"></i>
-                                    <p>Drag & drop your image here or click to browse</p>
-                                    <input type="file" id="categoryImage" accept="image/*" class="d-none">
-                                </div>
-                                <small class="text-muted">Recommended size: 200x200px. Max size: 2MB</small>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Preview</label>
-                                <div class="text-center p-3 border rounded" id="imagePreview">
-                                    <img src="/api/placeholder/200/200" class="img-fluid" alt="Category Image Preview">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label class="form-label">SEO Settings</label>
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="mb-3">
-                                        <label for="metaTitle" class="form-label">Meta Title</label>
-                                        <input type="text" class="form-control" id="metaTitle">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="metaDescription" class="form-label">Meta Description</label>
-                                        <textarea class="form-control" id="metaDescription" rows="2"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="metaKeywords" class="form-label">Meta Keywords</label>
-                                        <input type="text" class="form-control" id="metaKeywords" placeholder="Comma separated keywords">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="saveCategory">Save Category</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Edit Category Modal -->
-    <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Same form structure as Add Category Modal but with pre-filled values -->
-                    <input type="hidden" id="editCategoryId">
-                    <!-- Rest of the form will be dynamically populated -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="updateCategory">Update Category</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- View Category Modal -->
-    <div class="modal fade" id="viewCategoryModal" tabindex="-1" aria-labelledby="viewCategoryModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="viewCategoryModalLabel">Category Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-4 text-center">
-                            <img src="/api/placeholder/200/200" class="img-fluid rounded mb-3" id="viewCategoryImage" alt="Category Image">
-                        </div>
-                        <div class="col-md-8">
-                            <h4 id="viewCategoryName">Category Name</h4>
-                            <p id="viewCategoryDescription">Category Description</p>
-                            
-                            <div class="row mt-3">
-                                <div class="col-md-6">
-                                    <p><strong>Status:</strong> <span class="badge bg-success" id="viewCategoryStatus">Active</span></p>
-                                    <p><strong>Parent Category:</strong> <span id="viewCategoryParent">None</span></p>
-                                    <p><strong>Products:</strong> <span id="viewCategoryProducts">0</span></p>
-                                </div>
-                                <div class="col-md-6">
-                                    <p><strong>Created:</strong> <span id="viewCategoryCreated">Jan 1, 2023</span></p>
-                                    <p><strong>Last Updated:</strong> <span id="viewCategoryUpdated">Jan 15, 2023</span></p>
-                                    <p><strong>Slug:</strong> <span id="viewCategorySlug">category-slug</span></p>
-                                </div>
-                            </div>
-                            
-                            <div class="mt-3">
-                                <h5>SEO Information</h5>
-                                <p><strong>Meta Title:</strong> <span id="viewMetaTitle">Category Meta Title</span></p>
-                                <p><strong>Meta Description:</strong> <span id="viewMetaDescription">Category meta description goes here...</span></p>
-                                <p><strong>Meta Keywords:</strong> <span id="viewMetaKeywords">keyword1, keyword2, keyword3</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <h5>Related Products</h5>
+
                             <div class="table-responsive">
-                                <table class="table table-bordered table-sm">
+                                <table class="table table-bordered table-hover" id="categoryTable" width="100%"
+                                       cellspacing="0">
                                     <thead>
-                                        <tr>
-                                            <th>Product</th>
-                                            <th>SKU</th>
-                                            <th>Price</th>
-                                            <th>Stock</th>
-                                            <th>Action</th>
-                                        </tr>
+                                    <tr>
+                                        <th width="30px">
+                                            <input type="checkbox" id="selectAll">
+                                        </th>
+                                        <th width="50px"></th>
+                                        <th>Category Name</th>
+                                        <th>Parent</th>
+                                        <th>Products</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
                                     </thead>
-                                    <tbody id="relatedProductsTable">
+
+                                    <tbody>
+                                    {% for category in categories %}
                                         <tr>
-                                            <td>Example Product 1</td>
-                                            <td>SKU-001</td>
-                                            <td>$99.99</td>
-                                            <td>15</td>
-                                            <td><a href="#" class="btn btn-sm btn-info">View</a></td>
+                                            <td><input type="checkbox" class="category-checkbox"
+                                                       value="{{ category.pk }}"></td>
+                                            <td>
+                                                {# <img src="{% if category.image %}{{ category.image.url }}{% else %}{% static 'images/placeholder.png' %}{% endif %}" #}
+                                                {#      class="cat-img-preview" alt="{{ category.name }}" style="width: 40px; height: 40px;"> #}
+                                            </td>
+                                            <td>{{ category.name }}</td>
+                                            <td>{{ category.parent.name|default:"None" }}</td>
+                                            <td>{{ category.products.count }}</td>
+                                            <!-- Assumes related_name='products' -->
+                                            <td>
+                <span class="badge {% if category.status == 'active' %}bg-success{% else %}bg-danger{% endif %}">
+                    {{ category.status|capfirst }}
+                </span>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#addCategoryModal"
+                                                        onclick="openEditModal('{% url 'admin-category-update' category.pk %}')">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-info"
+                                                        onclick="viewCategory('{{ category.slug }}')">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-danger"
+                                                        onclick="deleteCategory('{{ category.slug }}')">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
                                         </tr>
+                                    {% empty %}
                                         <tr>
-                                            <td>Example Product 2</td>
-                                            <td>SKU-002</td>
-                                            <td>$149.99</td>
-                                            <td>8</td>
-                                            <td><a href="#" class="btn btn-sm btn-info">View</a></td>
+                                            <td colspan="7" class="text-center">No categories found.</td>
                                         </tr>
+                                    {% endfor %}
                                     </tbody>
+
                                 </table>
                             </div>
+
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div>
+                                    <span>Showing {{ page_obj.start_index }} to {{ page_obj.end_index }} of {{ paginator.count }} entries</span>
+                                </div>
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination">
+                                        {% if page_obj.has_previous %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
+                                                   aria-label="Previous">
+                                                    <span aria-hidden="true">«</span>
+                                                </a>
+                                            </li>
+                                        {% else %}
+                                            <li class="page-item disabled">
+                                                <a class="page-link" href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">«</span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                        {% for num in page_obj.paginator.page_range %}
+                                            <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                                                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                            </li>
+                                        {% endfor %}
+                                        {% if page_obj.has_next %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{ page_obj.next_page_number }}"
+                                                   aria-label="Next">
+                                                    <span aria-hidden="true">»</span>
+                                                </a>
+                                            </li>
+                                        {% else %}
+                                            <li class="page-item disabled">
+                                                <a class="page-link" href="#" aria-label="Next">
+                                                    <span aria-hidden="true">»</span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="editCategoryFromView()">Edit Category</button>
-                </div>
             </div>
         </div>
     </div>
-    
-    <!-- Delete Confirmation Modal -->
-    <div class="modal fade" id="deleteCategoryModal" tabindex="-1" aria-labelledby="deleteCategoryModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteCategoryModalLabel">Confirm Deletion</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure you want to delete the category "<span id="deleteCategoryName">Category Name</span>"?</p>
-                    <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle me-2"></i>
-                        <span id="deleteWarningMessage">This category has 0 products. Deleting it will affect these products.</span>
+</div>
+
+<!-- Add Category Modal -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCategoryModalLabel">Add New Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'admin-category-add' %}" id="addCategoryForm"
+                      enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% if form.errors %}
+                        <div class="alert alert-danger">
+                            Please correct the errors below:
+                            <ul>
+                                {% for field in form %}
+                                    {% for error in field.errors %}
+                                        <li>{{ field.label }}: {{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="name" class="form-label">Category Name *</label>
+                            {{ form.name }}
+                            <div class="invalid-feedback">
+                                {% if form.name.errors %}
+                                    {{ form.name.errors|join:" " }}
+                                {% else %}
+                                    Category name is required
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="slug" class="form-label">Slug</label>
+                            {{ form.slug }}
+                            <small class="text-muted">Leave blank to auto-generate from name</small>
+                            {% if form.slug.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.slug.errors|join:" " }}
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="moveProductsCheck">
-                        <label class="form-check-label" for="moveProductsCheck">
-                            Move products to another category
-                        </label>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="parent" class="form-label">Parent Category</label>
+                            {{ form.parent }}
+                            {% if form.parent.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.parent.errors|join:" " }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="status" class="form-label">Status</label>
+                            {{ form.status }}
+                            {% if form.status.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.status.errors|join:" " }}
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
-                    <div class="mt-2 d-none" id="moveProductsSelect">
-                        <select class="form-select" id="moveToCategory">
-                            <option value="">Select Category</option>
-                            <option value="electronics">Electronics</option>
-                            <option value="clothing">Clothing</option>
-                            <option value="home">Home & Garden</option>
-                        </select>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        {{ form.description }}
+                        {% if form.description.errors %}
+                            <div class="invalid-feedback d-block">
+                                {{ form.description.errors|join:" " }}
+                            </div>
+                        {% endif %}
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
-                </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="image" class="form-label">Category Image</label>
+                            <div class="image-dropzone" id="categoryImageDropzone">
+                                <i class="fas fa-cloud-upload-alt fa-2x mb-2"></i>
+                                <p>Drag & drop your image here or click to browse</p>
+                                {{ form.image }}
+                            </div>
+                            <small class="text-muted">Recommended size: 200x200px. Max size: 2MB</small>
+                            {% if form.image.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.image.errors|join:" " }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Preview</label>
+                            <div class="text-center p-3 border rounded" id="imagePreview">
+                                {#                                <img src="{% static 'images/placeholder.png' %}" class="img-fluid" alt="Category Image Preview" id="imagePreviewImg">#}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">SEO Settings</label>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="meta_title" class="form-label">Meta Title</label>
+                                    {{ form.meta_title }}
+                                    {% if form.meta_title.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {{ form.meta_title.errors|join:" " }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="meta_description" class="form-label">Meta Description</label>
+                                    {{ form.meta_description }}
+                                    {% if form.meta_description.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {{ form.meta_description.errors|join:" " }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="meta_keywords" class="form-label">Meta Keywords</label>
+                                    {{ form.meta_keywords }}
+                                    {% if form.meta_keywords.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {{ form.meta_keywords.errors|join:" " }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" form="addCategoryForm" id="saveCategory">Save Category
+                </button>
             </div>
         </div>
     </div>
-    
-    <!-- Bulk Actions Modal -->
-    <div class="modal fade" id="bulkActionsModal" tabindex="-1" aria-labelledby="bulkActionsModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="bulkActionsModalLabel">Bulk Actions</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>You are about to perform a bulk action on <span id="selectedCount">0</span> categories.</p>
-                    <div id="bulkActionWarning" class="alert alert-warning d-none">
-                        <i class="fas fa-exclamation-triangle me-2"></i>
-                        <span id="bulkActionWarningMessage"></span>
+</div>
+
+<!-- Edit Category Modal -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCategoryModalLabel">
+                    {% if object %}Edit Category{% else %}Add New Category{% endif %}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="" id="addCategoryForm" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% if form.errors %}
+                        <div class="alert alert-danger">
+                            Please correct the errors below:
+                            <ul>
+                                {% for field in form %}
+                                    {% for error in field.errors %}
+                                        <li>{{ field.label }}: {{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="name" class="form-label">Category Name *</label>
+                            {{ form.name }}
+                            <div class="invalid-feedback">
+                                {% if form.name.errors %}
+                                    {{ form.name.errors|join:" " }}
+                                {% else %}
+                                    Category name is required
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="slug" class="form-label">Slug</label>
+                            {{ form.slug }}
+                            <small class="text-muted">Leave blank to auto-generate from name</small>
+                            {% if form.slug.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.slug.errors|join:" " }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="parent" class="form-label">Parent Category</label>
+                            {{ form.parent }}
+                            {% if form.parent.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.parent.errors|join:" " }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="status" class="form-label">Status</label>
+                            {{ form.status }}
+                            {% if form.status.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.status.errors|join:" " }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        {{ form.description }}
+                        {% if form.description.errors %}
+                            <div class="invalid-feedback d-block">
+                                {{ form.description.errors|join:" " }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="image" class="form-label">Category Image</label>
+                            <div class="image-dropzone" id="categoryImageDropzone">
+                                <i class="fas fa-cloud-upload-alt fa-2x mb-2"></i>
+                                <p>Drag & drop your image here or click to browse</p>
+                                {{ form.image }}
+                            </div>
+                            <small class="text-muted">Recommended size: 200x200px. Max size: 2MB</small>
+                            {% if form.image.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.image.errors|join:" " }}
+                                </div>
+                            {% endif %}
+                            {% if object.image %}
+                                <small>Current: <img src="{{ object.image.url }}" alt="Current Image"
+                                                     style="max-width: 50px;"></small>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Preview</label>
+                            <div class="text-center p-3 border rounded" id="imagePreview">
+                                {#                                <img src="{% if object.image %}{{ object.image.url }}{% else %}{% static 'images/placeholder.png' %}{% endif %}"#}
+                                class="img-fluid" alt="Category Image Preview" id="imagePreviewImg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">SEO Settings</label>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="meta_title" class="form-label">Meta Title</label>
+                                    {{ form.meta_title }}
+                                    {% if form.meta_title.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {{ form.meta_title.errors|join:" " }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="meta_description" class="form-label">Meta Description</label>
+                                    {{ form.meta_description }}
+                                    {% if form.meta_description.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {{ form.meta_description.errors|join:" " }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="meta_keywords" class="form-label">Meta Keywords</label>
+                                    {{ form.meta_keywords }}
+                                    {% if form.meta_keywords.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {{ form.meta_keywords.errors|join:" " }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" form="addCategoryForm" id="saveCategory">
+                    {% if object %}Update Category{% else %}Save Category{% endif %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- View Category Modal -->
+<div class="modal fade" id="viewCategoryModal" tabindex="-1" aria-labelledby="viewCategoryModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewCategoryModalLabel">Category Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <img src="/api/placeholder/200/200" class="img-fluid rounded mb-3" id="viewCategoryImage"
+                             alt="Category Image">
+                    </div>
+                    <div class="col-md-8">
+                        <h4 id="viewCategoryName">Category Name</h4>
+                        <p id="viewCategoryDescription">Category Description</p>
+
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <p><strong>Status:</strong> <span class="badge bg-success" id="viewCategoryStatus">Active</span>
+                                </p>
+                                <p><strong>Parent Category:</strong> <span id="viewCategoryParent">None</span></p>
+                                <p><strong>Products:</strong> <span id="viewCategoryProducts">0</span></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Created:</strong> <span id="viewCategoryCreated">Jan 1, 2023</span></p>
+                                <p><strong>Last Updated:</strong> <span id="viewCategoryUpdated">Jan 15, 2023</span></p>
+                                <p><strong>Slug:</strong> <span id="viewCategorySlug">category-slug</span></p>
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <h5>SEO Information</h5>
+                            <p><strong>Meta Title:</strong> <span id="viewMetaTitle">Category Meta Title</span></p>
+                            <p><strong>Meta Description:</strong> <span id="viewMetaDescription">Category meta description goes here...</span>
+                            </p>
+                            <p><strong>Meta Keywords:</strong> <span
+                                    id="viewMetaKeywords">keyword1, keyword2, keyword3</span></p>
+                        </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="confirmBulkAction">Confirm</button>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <h5>Related Products</h5>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm">
+                                <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>SKU</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody id="relatedProductsTable">
+                                <tr>
+                                    <td>Example Product 1</td>
+                                    <td>SKU-001</td>
+                                    <td>$99.99</td>
+                                    <td>15</td>
+                                    <td><a href="#" class="btn btn-sm btn-info">View</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Example Product 2</td>
+                                    <td>SKU-002</td>
+                                    <td>$149.99</td>
+                                    <td>8</td>
+                                    <td><a href="#" class="btn btn-sm btn-info">View</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    
-    <!-- Toast Notifications -->
-    <div class="toast-container">
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="successToast">
-            <div class="toast-header bg-success text-white">
-                <i class="fas fa-check-circle me-2"></i>
-                <strong class="me-auto">Success</strong>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body" id="successToastMessage">
-                Category has been successfully updated.
-            </div>
-        </div>
-        
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="errorToast">
-            <div class="toast-header bg-danger text-white">
-                <i class="fas fa-exclamation-circle me-2"></i>
-                <strong class="me-auto">Error</strong>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body" id="errorToastMessage">
-                An error occurred. Please try again.
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="editCategoryFromView()">Edit Category</button>
             </div>
         </div>
     </div>
-    
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Custom JS -->
-    <script>
-        // Document Ready
-        document.addEventListener('DOMContentLoaded', function() {
-            // Tree view toggles
-            document.querySelectorAll('.tree-toggle').forEach(element => {
-                element.addEventListener('click', function() {
-                    const icon = this.querySelector('i');
-                    if (icon.classList.contains('fa-caret-right')) {
-                        icon.classList.replace('fa-caret-right', 'fa-caret-down');
-                    } else {
-                        icon.classList.replace('fa-caret-down', 'fa-caret-right');
-                    }
-                });
+</div>
+
+
+<div class="modal fade" id="deleteCategoryModal" tabindex="-1" aria-labelledby="deleteCategoryModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteCategoryModalLabel">Confirm Deletion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete the category "<span id="deleteCategoryName">Category Name</span>"?
+                </p>
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <span id="deleteWarningMessage">This category has 0 products. Deleting it will affect these products.</span>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="moveProductsCheck">
+                    <label class="form-check-label" for="moveProductsCheck">
+                        Move products to another category
+                    </label>
+                </div>
+                <div class="mt-2 d-none" id="moveProductsSelect">
+                    <select class="form-select" id="moveToCategory">
+                        <option value="">Select Category</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="home">Home & Garden</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="bulkActionsModal" tabindex="-1" aria-labelledby="bulkActionsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="bulkActionsModalLabel">Bulk Actions</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>You are about to perform a bulk action on <span id="selectedCount">0</span> categories.</p>
+                <div id="bulkActionWarning" class="alert alert-warning d-none">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <span id="bulkActionWarningMessage"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirmBulkAction">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="toast-container">
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="successToast">
+        <div class="toast-header bg-success text-white">
+            <i class="fas fa-check-circle me-2"></i>
+            <strong class="me-auto">Success</strong>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="successToastMessage">
+            Category has been successfully updated.
+        </div>
+    </div>
+
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="errorToast">
+        <div class="toast-header bg-danger text-white">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            <strong class="me-auto">Error</strong>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="errorToastMessage">
+            An error occurred. Please try again.
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Select All Checkbox
+        document.getElementById('selectAll').addEventListener('change', function () {
+            document.querySelectorAll('.category-checkbox').forEach(checkbox => {
+                checkbox.checked = this.checked;
             });
-            
-            // Select All Checkbox
-            document.getElementById('selectAll').addEventListener('change', function() {
-                document.querySelectorAll('.category-checkbox').forEach(checkbox => {
-                    checkbox.checked = this.checked;
-                });
+        });
+
+        // Category Image Dropzone Click
+        const dropzone = document.getElementById('categoryImageDropzone');
+        if (dropzone) {
+            dropzone.addEventListener('click', function () {
+                document.getElementById('image').click();
             });
-            
-            // Show/Hide Move Products Select
-            document.getElementById('moveProductsCheck').addEventListener('change', function() {
-                document.getElementById('moveProductsSelect').classList.toggle('d-none', !this.checked);
-            });
-            
-            // Category Image Dropzone Click
-            document.getElementById('categoryImageDropzone').addEventListener('click', function() {
-                document.getElementById('categoryImage').click();
-            });
-            
-            // Category Image Preview
-            document.getElementById('categoryImage').addEventListener('change', function() {
+        }
+
+        // Category Image Preview
+        const imageInput = document.getElementById('image');
+        if (imageInput) {
+            imageInput.addEventListener('change', function () {
                 const file = this.files[0];
                 if (file) {
                     const reader = new FileReader();
-                    reader.onload = function(e) {
+                    reader.onload = function (e) {
                         document.querySelector('#imagePreview img').src = e.target.result;
                     };
                     reader.readAsDataURL(file);
                 }
             });
-            
-            // Auto-generate slug from category name
-            document.getElementById('categoryName').addEventListener('input', function() {
-                const slugField = document.getElementById('categorySlug');
+        }
+
+        // Auto-generate slug from category name
+        const nameField = document.getElementById('name');
+        if (nameField) {
+            nameField.addEventListener('input', function () {
+                const slugField = document.getElementById('slug');
                 if (!slugField.value) {
                     slugField.value = this.value
                         .toLowerCase()
@@ -1095,206 +1185,150 @@
                         .replace(/\s+/g, '-');
                 }
             });
-            
-            // Initialize tooltips and popovers
-            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-            
-            const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-            const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
-        });
-        
-        // Tree view expand/collapse all
-        document.getElementById('expandAllCategories').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelectorAll('.tree-view .collapse').forEach(item => {
-                const bsCollapse = new bootstrap.Collapse(item, { toggle: false });
-                bsCollapse.show();
-            });
-            document.querySelectorAll('.tree-toggle i').forEach(icon => {
-                icon.classList.replace('fa-caret-right', 'fa-caret-down');
-            });
-        });
-        
-        document.getElementById('collapseAllCategories').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelectorAll('.tree-view .collapse').forEach(item => {
-                const bsCollapse = new bootstrap.Collapse(item, { toggle: false });
-                bsCollapse.hide();
-            });
-            document.querySelectorAll('.tree-toggle i').forEach(icon => {
-                icon.classList.replace('fa-caret-down', 'fa-caret-right');
-            });
-        });
-        
-        // Category CRUD functions
-        function editCategory(id, name) {
-            document.getElementById('editCategoryId').value = id;
-            document.getElementById('editCategoryModalLabel').textContent = 'Edit Category: ' + name;
-            // In a real application, you would fetch category data from server here
-            
-            // Show the modal
-            const editModal = new bootstrap.Modal(document.getElementById('editCategoryModal'));
-            editModal.show();
         }
-        
-        function viewCategory(id) {
-            // In a real application, you would fetch category details from server here
-            
-            // Show the modal
-            const viewModal = new bootstrap.Modal(document.getElementById('viewCategoryModal'));
-            viewModal.show();
+
+        // Initialize tooltips and popovers
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
+    });
+
+    // CRUD Functions
+    function editCategory(url) {
+        fetch(url)
+            .then(response => response.text())
+            .then(html => {
+                const modalBody = document.querySelector('#addCategoryModal .modal-body');
+                modalBody.innerHTML = html.match(/<form[^>]*>[\s\S]*<\/form>/i)[0];
+                const modal = new bootstrap.Modal(document.getElementById('addCategoryModal'));
+                modal.show();
+
+                // Reattach event listeners
+                const imageInput = document.getElementById('image');
+                if (imageInput) {
+                    imageInput.addEventListener('change', function () {
+                        const file = this.files[0];
+                        if (file) {
+                            const reader = new FileReader();
+                            reader.onload = function (e) {
+                                document.querySelector('#imagePreview img').src = e.target.result;
+                            };
+                            reader.readAsDataURL(file);
+                        }
+                    });
+                }
+
+                const nameField = document.getElementById('name');
+                if (nameField) {
+                    nameField.addEventListener('input', function () {
+                        const slugField = document.getElementById('slug');
+                        if (!slugField.value) {
+                            slugField.value = this.value
+                                .toLowerCase()
+                                .replace(/[^\w\s-]/g, '')
+                                .replace(/\s+/g, '-');
+                        }
+                    });
+                }
+
+                // Handle form submission
+                const form = document.getElementById('addCategoryForm');
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const formData = new FormData(this);
+                    fetch(url, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {'X-Requested-With': 'XMLHttpRequest'}
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                modal.hide();
+                                window.location.reload(); // Refresh list
+                                showToast('successToast', 'Category updated successfully.');
+                            } else {
+                                console.error('Errors:', data.errors);
+                                // Optionally display errors in the modal
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    function viewCategory(slug) {
+        alert('View category: ' + slug); // Replace with a view modal or detail page
+    }
+
+    function deleteCategory(slug) {
+        if (confirm('Are you sure you want to delete ' + slug + '?')) {
+            // Placeholder for DELETE request
+            fetch(`/admin/delete-category/${slug}/`, {  // Add this URL in your Django setup
+                method: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.reload();
+                        showToast('successToast', 'Category deleted successfully.');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
         }
-        
-        function deleteCategory(id) {
-            // In a real application, you would fetch category details from server here
-            const categoryName = document.querySelector(`button[onclick="deleteCategory('${id}')"]`).closest('tr').querySelector('td:nth-child(3)').textContent;
-            document.getElementById('deleteCategoryName').textContent = categoryName;
-            
-            // Show the modal
-            const deleteModal = new bootstrap.Modal(document.getElementById('deleteCategoryModal'));
-            deleteModal.show();
+    }
+
+    // Bulk Actions (Placeholder)
+    document.getElementById('bulkActivate').addEventListener('click', function (e) {
+        e.preventDefault();
+        const selected = Array.from(document.querySelectorAll('.category-checkbox:checked')).map(cb => cb.value);
+        if (selected.length === 0) {
+            showToast('errorToast', 'Please select at least one category.');
+            return;
         }
-        
-        function editCategoryFromView() {
-            // Close view modal
-            bootstrap.Modal.getInstance(document.getElementById('viewCategoryModal')).hide();
-            
-            // Get category id and name (in a real app this would be retrieved from the viewCategoryModal data)
-            const id = 'example';
-            const name = document.getElementById('viewCategoryName').textContent;
-            
-            // Open edit modal
-            editCategory(id, name);
+        // Add AJAX POST to bulk activate endpoint
+        console.log('Activate:', selected);
+    });
+
+    document.getElementById('bulkDeactivate').addEventListener('click', function (e) {
+        e.preventDefault();
+        const selected = Array.from(document.querySelectorAll('.category-checkbox:checked')).map(cb => cb.value);
+        if (selected.length === 0) {
+            showToast('errorToast', 'Please select at least one category.');
+            return;
         }
-        
-        // Bulk Actions
-        document.getElementById('bulkActivate').addEventListener('click', function(e) {
-            e.preventDefault();
-            const selectedCount = document.querySelectorAll('.category-checkbox:checked').length;
-            if (selectedCount === 0) {
-                showToast('errorToast', 'Please select at least one category.');
-                return;
-            }
-            
-            document.getElementById('selectedCount').textContent = selectedCount;
-            document.getElementById('bulkActionsModalLabel').textContent = 'Activate Categories';
-            document.getElementById('bulkActionWarning').classList.add('d-none');
-            document.getElementById('confirmBulkAction').classList.replace('btn-danger', 'btn-success');
-            document.getElementById('confirmBulkAction').textContent = 'Activate';
-            
-            const bulkModal = new bootstrap.Modal(document.getElementById('bulkActionsModal'));
-            bulkModal.show();
-        });
-        
-        document.getElementById('bulkDeactivate').addEventListener('click', function(e) {
-            e.preventDefault();
-            const selectedCount = document.querySelectorAll('.category-checkbox:checked').length;
-            if (selectedCount === 0) {
-                showToast('errorToast', 'Please select at least one category.');
-                return;
-            }
-            
-            document.getElementById('selectedCount').textContent = selectedCount;
-            document.getElementById('bulkActionsModalLabel').textContent = 'Deactivate Categories';
-            document.getElementById('bulkActionWarning').classList.remove('d-none');
-            document.getElementById('bulkActionWarningMessage').textContent = 'Deactivating categories will hide them from the storefront.';
-            document.getElementById('confirmBulkAction').classList.replace('btn-danger', 'btn-warning');
-            document.getElementById('confirmBulkAction').textContent = 'Deactivate';
-            
-            const bulkModal = new bootstrap.Modal(document.getElementById('bulkActionsModal'));
-            bulkModal.show();
-        });
-        
-        document.getElementById('bulkDelete').addEventListener('click', function(e) {
-            e.preventDefault();
-            const selectedCount = document.querySelectorAll('.category-checkbox:checked').length;
-            if (selectedCount === 0) {
-                showToast('errorToast', 'Please select at least one category.');
-                return;
-            }
-            
-            document.getElementById('selectedCount').textContent = selectedCount;
-            document.getElementById('bulkActionsModalLabel').textContent = 'Delete Categories';
-            document.getElementById('bulkActionWarning').classList.remove('d-none');
-            document.getElementById('bulkActionWarningMessage').textContent = 'This action cannot be undone. Products associated with these categories will need to be reassigned.';
-            document.getElementById('confirmBulkAction').classList.replace('btn-warning', 'btn-danger');
-            document.getElementById('confirmBulkAction').textContent = 'Delete';
-            
-            const bulkModal = new bootstrap.Modal(document.getElementById('bulkActionsModal'));
-            bulkModal.show();
-        });
-        
-        // Save and Update Category
-        document.getElementById('saveCategory').addEventListener('click', function() {
-            // Form validation
-            const form = document.getElementById('addCategoryForm');
-            const name = document.getElementById('categoryName').value;
-            
-            if (!name) {
-                document.getElementById('categoryName').classList.add('is-invalid');
-                return;
-            }
-            
-            // In a real application, you would send form data to server here
-            
-            // Close the modal
-            bootstrap.Modal.getInstance(document.getElementById('addCategoryModal')).hide();
-            
-            // Show success toast
-            showToast('successToast', 'Category has been successfully created.');
-            
-            // Reset form
-            form.reset();
-        });
-        
-        document.getElementById('updateCategory').addEventListener('click', function() {
-            // In a real application, you would send form data to server here
-            
-            // Close the modal
-            bootstrap.Modal.getInstance(document.getElementById('editCategoryModal')).hide();
-            
-            // Show success toast
-            showToast('successToast', 'Category has been successfully updated.');
-        });
-        
-        document.getElementById('confirmDelete').addEventListener('click', function() {
-            // In a real application, you would send delete request to server here
-            
-            // Close the modal
-            bootstrap.Modal.getInstance(document.getElementById('deleteCategoryModal')).hide();
-            
-            // Show success toast
-            showToast('successToast', 'Category has been successfully deleted.');
-        });
-        
-        document.getElementById('confirmBulkAction').addEventListener('click', function() {
-            // In a real application, you would process the bulk action here
-            
-            // Close the modal
-            bootstrap.Modal.getInstance(document.getElementById('bulkActionsModal')).hide();
-            
-            // Show success toast
-            const action = document.getElementById('bulkActionsModalLabel').textContent.split(' ')[0].toLowerCase();
-            showToast('successToast', `Selected categories have been ${action}d successfully.`);
-        });
-        
-        // Show Toast function
-        function showToast(toastId, message) {
-            const toastEl = document.getElementById(toastId);
+        // Add AJAX POST to bulk deactivate endpoint
+        console.log('Deactivate:', selected);
+    });
+
+    document.getElementById('bulkDelete').addEventListener('click', function (e) {
+        e.preventDefault();
+        const selected = Array.from(document.querySelectorAll('.category-checkbox:checked')).map(cb => cb.value);
+        if (selected.length === 0) {
+            showToast('errorToast', 'Please select at least one category.');
+            return;
+        }
+        // Add AJAX POST to bulk delete endpoint
+        console.log('Delete:', selected);
+    });
+
+    // Show Toast
+    function showToast(toastId, message) {
+        const toastEl = document.getElementById(toastId);
+        if (toastEl) {
             const toast = new bootstrap.Toast(toastEl);
-            
             document.getElementById(`${toastId}Message`).textContent = message;
             toast.show();
+        } else {
+            console.log(message); // Fallback if toast element is missing
         }
-        
-        // Export to CSV
-        document.getElementById('exportCategoriesCSV').addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // In a real application, you would generate and download a CSV file here
-            
-            showToast('successToast', 'Categories exported to CSV successfully.');
-        });
-    </script>
-</body
+    }
+</script>
+{% endblock %}
+</body>

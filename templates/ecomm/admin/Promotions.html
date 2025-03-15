@@ -9,7 +9,8 @@
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <!-- Datepicker CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+          rel="stylesheet">
     <style>
         :root {
             --primary-color: #4e73df;
@@ -20,109 +21,84 @@
             --dark-color: #5a5c69;
             --light-color: #f8f9fc;
         }
-        
+
         body {
             background-color: #f8f9fc;
             font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         }
-        
-        .sidebar {
-            background: linear-gradient(180deg, var(--primary-color) 0%, #224abe 100%);
-            min-height: 100vh;
-            position: fixed;
-            z-index: 100;
-        }
-        
-        .sidebar .nav-link {
-            color: rgba(255, 255, 255, 0.8);
-            padding: 1rem 1.5rem;
-            font-weight: 500;
-            border-left: 4px solid transparent;
-        }
-        
-        .sidebar .nav-link:hover, .sidebar .nav-link.active {
-            color: #fff;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-left: 4px solid var(--accent-color);
-        }
-        
-        .sidebar .nav-link i {
-            margin-right: 0.5rem;
-            width: 1.25rem;
-            text-align: center;
-        }
-        
+
+
         .topbar {
             background-color: white;
             box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
         }
-        
+
         .content-wrapper {
             margin-left: 14rem;
             padding: 1.5rem;
         }
-        
+
         .card {
             box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
             border: none;
             border-radius: 0.5rem;
             margin-bottom: 1.5rem;
         }
-        
+
         .card-header {
             background-color: white;
             border-bottom: 1px solid #e3e6f0;
             font-weight: 700;
             padding: 1rem 1.25rem;
         }
-        
+
         .btn-primary {
             background-color: var(--primary-color);
             border-color: var(--primary-color);
         }
-        
+
         .btn-primary:hover {
             background-color: #2e59d9;
             border-color: #2e59d9;
         }
-        
+
         .btn-success {
             background-color: var(--success-color);
             border-color: var(--success-color);
         }
-        
+
         .status-badge {
             min-width: 80px;
         }
-        
+
         .table th, .table td {
             padding: 0.75rem 1rem;
             vertical-align: middle;
         }
-        
+
         .table-hover tbody tr:hover {
             background-color: rgba(78, 115, 223, 0.05);
         }
-        
+
         .form-control:focus, .btn:focus {
             box-shadow: 0 0 0 0.25rem rgba(78, 115, 223, 0.25);
         }
-        
+
         .promotion-card {
             transition: transform 0.2s ease;
             cursor: pointer;
         }
-        
+
         .promotion-card:hover {
             transform: translateY(-5px);
         }
-        
+
         .promotion-img {
             height: 120px;
             object-fit: cover;
             border-radius: 0.5rem 0.5rem 0 0;
         }
-        
+
         .coupon-tag {
             display: inline-block;
             padding: 0.25rem 0.5rem;
@@ -132,36 +108,36 @@
             margin-right: 0.25rem;
             margin-bottom: 0.25rem;
         }
-        
+
         .highlight-row {
             background-color: rgba(78, 115, 223, 0.05);
         }
-        
+
         .dropdown-menu {
             box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
             border: none;
         }
-        
+
         .action-icon {
             cursor: pointer;
             font-size: 1rem;
             color: var(--dark-color);
             margin-right: 0.5rem;
         }
-        
+
         .action-icon:hover {
             color: var(--primary-color);
         }
-        
+
         .modal-header, .modal-footer {
             background-color: var(--secondary-color);
         }
-        
+
         .custom-tooltip {
             position: relative;
             display: inline-block;
         }
-        
+
         .custom-tooltip .tooltip-text {
             visibility: hidden;
             width: 120px;
@@ -178,17 +154,17 @@
             opacity: 0;
             transition: opacity 0.3s;
         }
-        
+
         .custom-tooltip:hover .tooltip-text {
             visibility: visible;
             opacity: 1;
         }
-        
+
         .promotion-stats {
             font-size: 0.9rem;
             color: var(--dark-color);
         }
-        
+
         .date-badge {
             background-color: #f8f9fc;
             border: 1px solid #e3e6f0;
@@ -196,20 +172,20 @@
             padding: 0.25rem 0.5rem;
             font-size: 0.75rem;
         }
-        
+
         #newCouponForm .form-group, #editCouponForm .form-group {
             margin-bottom: 1rem;
         }
-        
+
         .progress {
             height: 0.5rem;
             border-radius: 0.25rem;
         }
-        
+
         .tab-container {
             margin-bottom: 1.5rem;
         }
-        
+
         .tab-container .nav-link {
             color: var(--dark-color);
             font-weight: 600;
@@ -217,17 +193,17 @@
             border: none;
             border-bottom: 2px solid transparent;
         }
-        
+
         .tab-container .nav-link.active {
             color: var(--primary-color);
             border-bottom: 2px solid var(--primary-color);
             background-color: transparent;
         }
-        
+
         .tab-container .nav-link:hover:not(.active) {
             border-bottom: 2px solid #e3e6f0;
         }
-        
+
         .coupon-code {
             font-family: monospace;
             font-weight: 600;
@@ -236,15 +212,15 @@
             border-radius: 0.25rem;
             border: 1px dashed #e3e6f0;
         }
-        
+
         .usage-chart {
             height: 200px;
         }
-        
+
         .filter-dropdown {
             min-width: 200px;
         }
-        
+
         .drag-container {
             background-color: #f8f9fc;
             border: 2px dashed #e3e6f0;
@@ -254,697 +230,631 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .drag-container:hover {
             background-color: #e3e6f0;
         }
     </style>
 </head>
 <body>
-    <!-- Page Wrapper -->
-    <div class="d-flex">
-        <!-- Sidebar -->
-        <div class="sidebar d-none d-md-block" style="width: 14rem;">
-            <div class="sidebar-brand p-4 text-center">
-                <h5 class="text-white mb-0">E-Commerce Admin</h5>
-            </div>
-            <hr class="sidebar-divider my-0 bg-white opacity-25">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-fw fa-tachometer-alt"></i> Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-fw fa-box"></i> Products</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-fw fa-folder"></i> Categories</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-fw fa-shopping-cart"></i> Orders</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-fw fa-users"></i> Users</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-fw fa-star"></i> Reviews</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#"><i class="fas fa-fw fa-tags"></i> Promotions</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-fw fa-cog"></i> Settings</a>
-                </li>
-            </ul>
-        </div>
-        <!-- End of Sidebar -->
+{% block content %}
+<!-- Page Wrapper -->
+<div class="d-flex">
+    <!-- Sidebar -->
+    {% include 'ecomm/admin/sidebar.html' %}
+    <!-- End of Sidebar -->
 
-        <!-- Content Wrapper -->
-        <div class="content-wrapper flex-grow-1">
-            <!-- Top Navigation -->
-            <nav class="navbar navbar-expand topbar mb-4 static-top">
-                <button class="btn btn-link d-md-none rounded-circle mr-3">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <div class="d-flex flex-row-reverse flex-grow-1">
-                    <div class="dropdown ms-2">
-                        <a class="btn btn-light dropdown-toggle" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="img-profile rounded-circle" src="/api/placeholder/32/32" alt="Admin" width="32" height="32">
-                            <span class="ms-2 d-none d-lg-inline text-gray-600">Admin User</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Settings</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout</a></li>
-                        </ul>
-                    </div>
-                    <div class="dropdown mx-2">
-                        <a class="btn btn-light position-relative" href="#">
-                            <i class="fas fa-bell fa-fw"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                3+
-                            </span>
-                        </a>
-                    </div>
-                    <div class="dropdown mx-2">
-                        <a class="btn btn-light position-relative" href="#">
-                            <i class="fas fa-envelope fa-fw"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                7
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </nav>
-            <!-- End of Top Navigation -->
-
-            <!-- Begin Page Content -->
-            <div class="container-fluid">
-                <!-- Page Heading -->
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h1 class="h3 text-gray-800">Promotions & Coupons</h1>
-                    <div>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newCouponModal">
-                            <i class="fas fa-plus-circle me-1"></i> New Coupon
-                        </button>
-                        <button type="button" class="btn btn-outline-primary ms-2" data-bs-toggle="modal" data-bs-target="#newPromotionModal">
-                            <i class="fas fa-bullhorn me-1"></i> New Promotion
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Filter Bar -->
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="col-md-3 mb-3 mb-md-0">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search..." id="searchInput">
-                                    <button class="btn btn-outline-secondary" type="button">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="d-flex flex-wrap justify-content-md-end">
-                                    <div class="dropdown me-2 mb-2 mb-md-0">
-                                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="statusFilter" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Status
-                                        </button>
-                                        <ul class="dropdown-menu filter-dropdown" aria-labelledby="statusFilter">
-                                            <li><a class="dropdown-item" href="#">All Statuses</a></li>
-                                            <li><a class="dropdown-item" href="#">Active</a></li>
-                                            <li><a class="dropdown-item" href="#">Scheduled</a></li>
-                                            <li><a class="dropdown-item" href="#">Ended</a></li>
-                                            <li><a class="dropdown-item" href="#">Paused</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="dropdown me-2 mb-2 mb-md-0">
-                                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="typeFilter" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Type
-                                        </button>
-                                        <ul class="dropdown-menu filter-dropdown" aria-labelledby="typeFilter">
-                                            <li><a class="dropdown-item" href="#">All Types</a></li>
-                                            <li><a class="dropdown-item" href="#">Percentage</a></li>
-                                            <li><a class="dropdown-item" href="#">Fixed Amount</a></li>
-                                            <li><a class="dropdown-item" href="#">Free Shipping</a></li>
-                                            <li><a class="dropdown-item" href="#">Buy X Get Y</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="dropdown me-2 mb-2 mb-md-0">
-                                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dateFilter" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Date Range
-                                        </button>
-                                        <div class="dropdown-menu p-3 filter-dropdown" aria-labelledby="dateFilter">
-                                            <div class="mb-3">
-                                                <label class="form-label">Start Date</label>
-                                                <input type="text" class="form-control datepicker" placeholder="MM/DD/YYYY">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">End Date</label>
-                                                <input type="text" class="form-control datepicker" placeholder="MM/DD/YYYY">
-                                            </div>
-                                            <div class="d-grid">
-                                                <button class="btn btn-primary btn-sm">Apply</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-outline-secondary mb-2 mb-md-0">
-                                        <i class="fas fa-filter me-1"></i> More Filters
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tabs Navigation -->
-                <div class="tab-container">
-                    <ul class="nav nav-tabs" id="promoTabs" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="coupons-tab" data-bs-toggle="tab" data-bs-target="#coupons" type="button" role="tab" aria-controls="coupons" aria-selected="true">
-                                <i class="fas fa-ticket-alt me-1"></i> Coupons
-                            </button>
+    <!-- Content Wrapper -->
+    <div class="content-wrapper flex-grow-1">
+        <!-- Top Navigation -->
+        <nav class="navbar navbar-expand topbar mb-4 static-top">
+            <button class="btn btn-link d-md-none rounded-circle mr-3">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="d-flex flex-row-reverse flex-grow-1">
+                <div class="dropdown ms-2">
+                    <a class="btn btn-light dropdown-toggle" href="#" role="button" id="profileDropdown"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <img class="img-profile rounded-circle" src="/api/placeholder/32/32" alt="Admin" width="32"
+                             height="32">
+                        <span class="ms-2 d-none d-lg-inline text-gray-600">Admin User</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Profile</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Settings</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="promotions-tab" data-bs-toggle="tab" data-bs-target="#promotions" type="button" role="tab" aria-controls="promotions" aria-selected="false">
-                                <i class="fas fa-bullhorn me-1"></i> Promotions
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="analytics-tab" data-bs-toggle="tab" data-bs-target="#analytics" type="button" role="tab" aria-controls="analytics" aria-selected="false">
-                                <i class="fas fa-chart-line me-1"></i> Analytics
-                            </button>
-                        </li>
+                        <li><a class="dropdown-item" href="#"><i
+                                class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout</a></li>
                     </ul>
                 </div>
+                <div class="dropdown mx-2">
+                    <a class="btn btn-light position-relative" href="#">
+                        <i class="fas fa-bell fa-fw"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                3+
+                            </span>
+                    </a>
+                </div>
+                <div class="dropdown mx-2">
+                    <a class="btn btn-light position-relative" href="#">
+                        <i class="fas fa-envelope fa-fw"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                7
+                            </span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!-- End of Top Navigation -->
 
-                <!-- Tab Content -->
-                <div class="tab-content" id="promoTabsContent">
-                    <!-- Coupons Tab -->
-                    <div class="tab-pane fade show active" id="coupons" role="tabpanel" aria-labelledby="coupons-tab">
-                        <div class="card">
-                            <div class="card-header bg-white py-3">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h6 class="m-0 font-weight-bold text-primary">All Coupons</h6>
-                                    <div>
-                                        <button class="btn btn-sm btn-outline-secondary me-2">
-                                            <i class="fas fa-download me-1"></i> Export
-                                        </button>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">
-                                                <i class="fas fa-th-large"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary active">
-                                                <i class="fas fa-list"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+            <!-- Page Heading -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="h3 text-gray-800">Promotions & Coupons</h1>
+                <div>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#newCouponModal">
+                        <i class="fas fa-plus-circle me-1"></i> New Coupon
+                    </button>
+                    <button type="button" class="btn btn-outline-primary ms-2" data-bs-toggle="modal"
+                            data-bs-target="#newPromotionModal">
+                        <i class="fas fa-bullhorn me-1"></i> New Promotion
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-3 mb-3 mb-md-0">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search..." id="searchInput">
+                                <button class="btn btn-outline-secondary" type="button">
+                                    <i class="fas fa-search"></i>
+                                </button>
                             </div>
-                            <div class="card-body p-0">
-                                <div class="table-responsive">
-                                    <table class="table table-hover mb-0">
-                                        <thead class="table-light">
-                                            <tr>
-                                                <th scope="col" class="ps-4">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="selectAllCoupons">
-                                                        <label class="form-check-label" for="selectAllCoupons"></label>
-                                                    </div>
-                                                </th>
-                                                <th scope="col">Code</th>
-                                                <th scope="col">Type</th>
-                                                <th scope="col">Value</th>
-                                                <th scope="col">Usage</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Period</th>
-                                                <th scope="col" class="text-end pe-4">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="highlight-row">
-                                                <td class="ps-4">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox">
-                                                        <label class="form-check-label"></label>
-                                                    </div>
-                                                </td>
-                                                <td><span class="coupon-code">SUMMER25</span></td>
-                                                <td>Percentage</td>
-                                                <td>25%</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="flex-grow-1 me-2" style="max-width: 100px;">
-                                                            <div class="progress">
-                                                                <div class="progress-bar bg-success" role="progressbar" style="width: 42%;" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>
-                                                        <small>42/100</small>
-                                                    </div>
-                                                </td>
-                                                <td><span class="badge bg-success status-badge">Active</span></td>
-                                                <td>
-                                                    <small class="text-muted">03/01/2025 - 03/31/2025</small>
-                                                </td>
-                                                <td class="text-end pe-4">
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownAction1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                            Actions
-                                                        </button>
-                                                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAction1">
-                                                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editCouponModal"><i class="fas fa-edit me-2 text-primary"></i>Edit</a></li>
-                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-chart-pie me-2 text-info"></i>View Stats</a></li>
-                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-pause-circle me-2 text-warning"></i>Pause</a></li>
-                                                            <li><hr class="dropdown-divider"></li>
-                                                            <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-trash-alt me-2"></i>Delete</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="ps-4">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox">
-                                                        <label class="form-check-label"></label>
-                                                    </div>
-                                                </td>
-                                                <td><span class="coupon-code">WELCOME15</span></td>
-                                                <td>Percentage</td>
-                                                <td>15%</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="flex-grow-1 me-2" style="max-width: 100px;">
-                                                            <div class="progress">
-                                                                <div class="progress-bar bg-success" role="progressbar" style="width: 78%;" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>
-                                                        <small>78/100</small>
-                                                    </div>
-                                                </td>
-                                                <td><span class="badge bg-success status-badge">Active</span></td>
-                                                <td>
-                                                    <small class="text-muted">02/15/2025 - 04/15/2025</small>
-                                                </td>
-                                                <td class="text-end pe-4">
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownAction2" data-bs-toggle="dropdown" aria-expanded="false">
-                                                            Actions
-                                                        </button>
-                                                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAction2">
-                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2 text-primary"></i>Edit</a></li>
-                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-chart-pie me-2 text-info"></i>View Stats</a></li>
-                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-pause-circle me-2 text-warning"></i>Pause</a></li>
-                                                            <li><hr class="dropdown-divider"></li>
-                                                            <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-trash-alt me-2"></i>Delete</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="ps-4">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox">
-                                                        <label class="form-check-label"></label>
-                                                    </div>
-                                                </td>
-                                                <td><span class="coupon-code">FREESHIP50</span></td>
-                                                <td>Free Shipping</td>
-                                                <td>Min $50</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="flex-grow-1 me-2" style="max-width: 100px;">
-                                                            <div class="progress">
-                                                                <div class="progress-bar bg-warning" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>
-                                                        <small>95/100</small>
-                                                    </div>
-                                                </td>
-                                                <td><span class="badge bg-success status-badge">Active</span></td>
-                                                <td>
-                                                    <small class="text-muted">03/05/2025 - 03/20/2025</small>
-                                                </td>
-                                                <td class="text-end pe-4">
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownAction3" data-bs-toggle="dropdown" aria-expanded="false">
-                                                            Actions
-                                                        </button>
-                                                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAction3">
-                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2 text-primary"></i>Edit</a></li>
-                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-chart-pie me-2 text-info"></i>View Stats</a></li>
-                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-pause-circle me-2 text-warning"></i>Pause</a></li>
-                                                            <li><hr class="dropdown-divider"></li>
-                                                            <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-trash-alt me-2"></i>Delete</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="ps-4">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox">
-                                                        <label class="form-check-label"></label>
-                                                    </div>
-                                                </td>
-                                                <td><span class="coupon-code">FLASH30</span></td>
-                                                <td>Percentage</td>
-                                                <td>30%</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="flex-grow-1 me-2" style="max-width: 100px;">
-                                                            <div class="progress">
-                                                                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>
-                                                        <small>100/100</small>
-                                                    </div>
-                                                </td>
-                                                <td><span class="badge bg-secondary status-badge">Ended</span></td>
-                                                <td>
-                                                    <small class="text-muted">03/01/2025 - 03/05/2025</small>
-                                                </td>
-                                                <td class="text-end pe-4">
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownAction4" data-bs-toggle="dropdown" aria-expanded="false">
-                                                            Actions
-                                                        </button>
-                                                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAction4">
-                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2 text-primary"></i>Edit</a></li>
-                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-chart-pie me-2 text-info"></i>View Stats</a></li>
-                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-play-circle me-2 text-success"></i>Reactivate</a></li>
-                                                            <li><hr class="dropdown-divider"></li>
-                                                            <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-trash-alt me-2"></i>Delete</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="ps-4">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox">
-                                                        <label class="form-check-label"></label>
-                                                    </div>
-                                                </td>
-                                                <td><span class="coupon-code">SPRING10</span></td>
-                                                <td>Fixed Amount</td>
-                                                <td>$10</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="flex-grow-1 me-2" style="max-width: 100px;">
-                                                            <div class="progress">
-                                                                <div class="progress-bar bg-info" role="progressbar" style="width: 5%;" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>
-                                                        <small>5/100</small>
-                                                    </div>
-                                                </td>
-                                                <td><span class="badge bg-warning status-badge">Scheduled</span></td>
-                                                <td>
-                                                    <small class="text-muted">04/01/2025 - 04/30/2025</small>
-                                                </td>
-                                                <td class="text-end pe-4">
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownAction5" data-bs-toggle="dropdown" aria-expanded="false">
-                                                            Actions
-                                                        </button>
-                                                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAction5">
-                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2 text-primary"></i>Edit</a></li>
-                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-calendar-alt me-2 text-warning"></i>Reschedule</a></li>
-                                                            <li><a class="dropdown-item" href="#"><i class="fas fa-ban me-2 text-danger"></i>Cancel</a></li>
-                                                            <li><hr class="dropdown-divider"></li>
-                                                            <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-trash-alt me-2"></i>Delete</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="card-footer bg-white py-3">
-                                <nav aria-label="Coupon pagination">
-                                    <ul class="pagination justify-content-center justify-content-md-end mb-0">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">Next</a>
-                                        </li>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="d-flex flex-wrap justify-content-md-end">
+                                <div class="dropdown me-2 mb-2 mb-md-0">
+                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                            id="statusFilter" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Status
+                                    </button>
+                                    <ul class="dropdown-menu filter-dropdown" aria-labelledby="statusFilter">
+                                        <li><a class="dropdown-item" href="#">All Statuses</a></li>
+                                        <li><a class="dropdown-item" href="#">Active</a></li>
+                                        <li><a class="dropdown-item" href="#">Scheduled</a></li>
+                                        <li><a class="dropdown-item" href="#">Ended</a></li>
+                                        <li><a class="dropdown-item" href="#">Paused</a></li>
                                     </ul>
-                                </nav>
+                                </div>
+                                <div class="dropdown me-2 mb-2 mb-md-0">
+                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                            id="typeFilter" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Type
+                                    </button>
+                                    <ul class="dropdown-menu filter-dropdown" aria-labelledby="typeFilter">
+                                        <li><a class="dropdown-item" href="#">All Types</a></li>
+                                        <li><a class="dropdown-item" href="#">Percentage</a></li>
+                                        <li><a class="dropdown-item" href="#">Fixed Amount</a></li>
+                                        <li><a class="dropdown-item" href="#">Free Shipping</a></li>
+                                        <li><a class="dropdown-item" href="#">Buy X Get Y</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown me-2 mb-2 mb-md-0">
+                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                            id="dateFilter" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Date Range
+                                    </button>
+                                    <div class="dropdown-menu p-3 filter-dropdown" aria-labelledby="dateFilter">
+                                        <div class="mb-3">
+                                            <label class="form-label">Start Date</label>
+                                            <input type="text" class="form-control datepicker" placeholder="MM/DD/YYYY">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">End Date</label>
+                                            <input type="text" class="form-control datepicker" placeholder="MM/DD/YYYY">
+                                        </div>
+                                        <div class="d-grid">
+                                            <button class="btn btn-primary btn-sm">Apply</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline-secondary mb-2 mb-md-0">
+                                    <i class="fas fa-filter me-1"></i> More Filters
+                                </button>
                             </div>
                         </div>
                     </div>
-            
-                    <!-- Promotions Tab -->
-                    <div class="tab-pane fade" id="promotions" role="tabpanel" aria-labelledby="promotions-tab">
-                        <div class="row">
-                            <div class="col-xl-4 col-md-6 mb-4">
-                                <div class="card promotion-card h-100">
-                                    <img src="/api/placeholder/800/300" class="promotion-img" alt="Summer Sale">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <h5 class="card-title mb-0">Summer Sale</h5>
-                                            <span class="badge bg-success status-badge">Active</span>
-                                        </div>
-                                        <p class="card-text">Up to 40% off on all summer collections.</p>
-                                        <div class="mb-3">
-                                            <span class="coupon-tag">Apparel</span>
-                                            <span class="coupon-tag">Footwear</span>
-                                            <span class="coupon-tag">Accessories</span>
-                                        </div>
-                                        <div class="promotion-stats mb-2">
-                                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                                <span>Impressions:</span>
-                                                <span>2,345</span>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                                <span>Clicks:</span>
-                                                <span>852</span>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <span>Conversion:</span>
-                                                <span>3.2%</span>
-                                            </div>
-                                        </div>
+                </div>
+            </div>
+
+            <!-- Tabs Navigation -->
+            <div class="tab-container">
+                <ul class="nav nav-tabs" id="promoTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="coupons-tab" data-bs-toggle="tab" data-bs-target="#coupons"
+                                type="button" role="tab" aria-controls="coupons" aria-selected="true">
+                            <i class="fas fa-ticket-alt me-1"></i> Coupons
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="promotions-tab" data-bs-toggle="tab" data-bs-target="#promotions"
+                                type="button" role="tab" aria-controls="promotions" aria-selected="false">
+                            <i class="fas fa-bullhorn me-1"></i> Promotions
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="analytics-tab" data-bs-toggle="tab" data-bs-target="#analytics"
+                                type="button" role="tab" aria-controls="analytics" aria-selected="false">
+                            <i class="fas fa-chart-line me-1"></i> Analytics
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content" id="promoTabsContent">
+                <!-- Coupons Tab -->
+                <div class="tab-pane fade show active" id="coupons" role="tabpanel" aria-labelledby="coupons-tab">
+                    <div class="card">
+                        <div class="card-header bg-white py-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6 class="m-0 font-weight-bold text-primary">All Coupons</h6>
+                                <div>
+                                    <button class="btn btn-sm btn-outline-secondary me-2">
+                                        <i class="fas fa-download me-1"></i> Export
+                                    </button>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                                            <i class="fas fa-th-large"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary active">
+                                            <i class="fas fa-list"></i>
+                                        </button>
                                     </div>
-                                    <div class="card-footer bg-white">
-                                        <div class="d-flex justify-content-between align-items-center">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead class="table-light">
+                                    <tr>
+                                        <th scope="col" class="ps-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="selectAllCoupons">
+                                                <label class="form-check-label" for="selectAllCoupons"></label>
+                                            </div>
+                                        </th>
+                                        <th scope="col">Code</th>
+                                        <th scope="col">Type</th>
+                                        <th scope="col">Value</th>
+                                        <th scope="col">Usage</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Period</th>
+                                        <th scope="col" class="text-end pe-4">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="highlight-row">
+                                        <td class="ps-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox">
+                                                <label class="form-check-label"></label>
+                                            </div>
+                                        </td>
+                                        <td><span class="coupon-code">SUMMER25</span></td>
+                                        <td>Percentage</td>
+                                        <td>25%</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-grow-1 me-2" style="max-width: 100px;">
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-success" role="progressbar"
+                                                             style="width: 42%;" aria-valuenow="42" aria-valuemin="0"
+                                                             aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                <small>42/100</small>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-success status-badge">Active</span></td>
+                                        <td>
                                             <small class="text-muted">03/01/2025 - 03/31/2025</small>
-                                            <div>
-                                                <a href="#" class="action-icon" data-bs-toggle="tooltip" title="Edit"><i class="fas fa-edit"></i></a>
-                                                <a href="#" class="action-icon" data-bs-toggle="tooltip" title="Stats"><i class="fas fa-chart-line"></i></a>
-                                                <a href="#" class="action-icon" data-bs-toggle="tooltip" title="Pause"><i class="fas fa-pause-circle"></i></a>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <div class="dropdown">
+                                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                                                        type="button" id="dropdownAction1" data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                    Actions
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end"
+                                                    aria-labelledby="dropdownAction1">
+                                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                           data-bs-target="#editCouponModal"><i
+                                                            class="fas fa-edit me-2 text-primary"></i>Edit</a></li>
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                            class="fas fa-chart-pie me-2 text-info"></i>View Stats</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                            class="fas fa-pause-circle me-2 text-warning"></i>Pause</a>
+                                                    </li>
+                                                    <li>
+                                                        <hr class="dropdown-divider">
+                                                    </li>
+                                                    <li><a class="dropdown-item text-danger" href="#"><i
+                                                            class="fas fa-trash-alt me-2"></i>Delete</a></li>
+                                                </ul>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6 mb-4">
-                                <div class="card promotion-card h-100">
-                                    <img src="/api/placeholder/800/300" class="promotion-img" alt="New Arrivals">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <h5 class="card-title mb-0">New Arrivals</h5>
-                                            <span class="badge bg-success status-badge">Active</span>
-                                        </div>
-                                        <p class="card-text">Check out our latest products with 15% off for first-time buyers.</p>
-                                        <div class="mb-3">
-                                            <span class="coupon-tag">Electronics</span>
-                                            <span class="coupon-tag">Home Goods</span>
-                                        </div>
-                                        <div class="promotion-stats mb-2">
-                                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                                <span>Impressions:</span>
-                                                <span>1,856</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox">
+                                                <label class="form-check-label"></label>
                                             </div>
-                                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                                <span>Clicks:</span>
-                                                <span>643</span>
+                                        </td>
+                                        <td><span class="coupon-code">WELCOME15</span></td>
+                                        <td>Percentage</td>
+                                        <td>15%</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-grow-1 me-2" style="max-width: 100px;">
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-success" role="progressbar"
+                                                             style="width: 78%;" aria-valuenow="78" aria-valuemin="0"
+                                                             aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                <small>78/100</small>
                                             </div>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <span>Conversion:</span>
-                                                <span>2.8%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer bg-white">
-                                        <div class="d-flex justify-content-between align-items-center">
+                                        </td>
+                                        <td><span class="badge bg-success status-badge">Active</span></td>
+                                        <td>
                                             <small class="text-muted">02/15/2025 - 04/15/2025</small>
-                                            <div>
-                                                <a href="#" class="action-icon" data-bs-toggle="tooltip" title="Edit"><i class="fas fa-edit"></i></a>
-                                                <a href="#" class="action-icon" data-bs-toggle="tooltip" title="Stats"><i class="fas fa-chart-line"></i></a>
-                                                <a href="#" class="action-icon" data-bs-toggle="tooltip" title="Pause"><i class="fas fa-pause-circle"></i></a>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <div class="dropdown">
+                                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                                                        type="button" id="dropdownAction2" data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                    Actions
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end"
+                                                    aria-labelledby="dropdownAction2">
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                            class="fas fa-edit me-2 text-primary"></i>Edit</a></li>
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                            class="fas fa-chart-pie me-2 text-info"></i>View Stats</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                            class="fas fa-pause-circle me-2 text-warning"></i>Pause</a>
+                                                    </li>
+                                                    <li>
+                                                        <hr class="dropdown-divider">
+                                                    </li>
+                                                    <li><a class="dropdown-item text-danger" href="#"><i
+                                                            class="fas fa-trash-alt me-2"></i>Delete</a></li>
+                                                </ul>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox">
+                                                <label class="form-check-label"></label>
+                                            </div>
+                                        </td>
+                                        <td><span class="coupon-code">FREESHIP50</span></td>
+                                        <td>Free Shipping</td>
+                                        <td>Min $50</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-grow-1 me-2" style="max-width: 100px;">
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-warning" role="progressbar"
+                                                             style="width: 95%;" aria-valuenow="95" aria-valuemin="0"
+                                                             aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                <small>95/100</small>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-success status-badge">Active</span></td>
+                                        <td>
+                                            <small class="text-muted">03/05/2025 - 03/20/2025</small>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <div class="dropdown">
+                                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                                                        type="button" id="dropdownAction3" data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                    Actions
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end"
+                                                    aria-labelledby="dropdownAction3">
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                            class="fas fa-edit me-2 text-primary"></i>Edit</a></li>
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                            class="fas fa-chart-pie me-2 text-info"></i>View Stats</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                            class="fas fa-pause-circle me-2 text-warning"></i>Pause</a>
+                                                    </li>
+                                                    <li>
+                                                        <hr class="dropdown-divider">
+                                                    </li>
+                                                    <li><a class="dropdown-item text-danger" href="#"><i
+                                                            class="fas fa-trash-alt me-2"></i>Delete</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox">
+                                                <label class="form-check-label"></label>
+                                            </div>
+                                        </td>
+                                        <td><span class="coupon-code">FLASH30</span></td>
+                                        <td>Percentage</td>
+                                        <td>30%</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-grow-1 me-2" style="max-width: 100px;">
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                             style="width: 100%;" aria-valuenow="100" aria-valuemin="0"
+                                                             aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                <small>100/100</small>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-secondary status-badge">Ended</span></td>
+                                        <td>
+                                            <small class="text-muted">03/01/2025 - 03/05/2025</small>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <div class="dropdown">
+                                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                                                        type="button" id="dropdownAction4" data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                    Actions
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end"
+                                                    aria-labelledby="dropdownAction4">
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                            class="fas fa-edit me-2 text-primary"></i>Edit</a></li>
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                            class="fas fa-chart-pie me-2 text-info"></i>View Stats</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                            class="fas fa-play-circle me-2 text-success"></i>Reactivate</a>
+                                                    </li>
+                                                    <li>
+                                                        <hr class="dropdown-divider">
+                                                    </li>
+                                                    <li><a class="dropdown-item text-danger" href="#"><i
+                                                            class="fas fa-trash-alt me-2"></i>Delete</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox">
+                                                <label class="form-check-label"></label>
+                                            </div>
+                                        </td>
+                                        <td><span class="coupon-code">SPRING10</span></td>
+                                        <td>Fixed Amount</td>
+                                        <td>$10</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-grow-1 me-2" style="max-width: 100px;">
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-info" role="progressbar"
+                                                             style="width: 5%;" aria-valuenow="5" aria-valuemin="0"
+                                                             aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                <small>5/100</small>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-warning status-badge">Scheduled</span></td>
+                                        <td>
+                                            <small class="text-muted">04/01/2025 - 04/30/2025</small>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <div class="dropdown">
+                                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                                                        type="button" id="dropdownAction5" data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                    Actions
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end"
+                                                    aria-labelledby="dropdownAction5">
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                            class="fas fa-edit me-2 text-primary"></i>Edit</a></li>
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                            class="fas fa-calendar-alt me-2 text-warning"></i>Reschedule</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                            class="fas fa-ban me-2 text-danger"></i>Cancel</a></li>
+                                                    <li>
+                                                        <hr class="dropdown-divider">
+                                                    </li>
+                                                    <li><a class="dropdown-item text-danger" href="#"><i
+                                                            class="fas fa-trash-alt me-2"></i>Delete</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="col-xl-4 col-md-6 mb-4">
-                                <div class="card promotion-card h-100">
-                                    <img src="/api/placeholder/800/300" class="promotion-img" alt="Flash Sale">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <h5 class="card-title mb-0">Flash Sale</h5>
-                                            <span class="badge bg-secondary status-badge">Ended</span>
-                                        </div>
-                                        <p class="card-text">Limited-time offer: 30% off on select items for 24 hours only!</p>
-                                        <div class="mb-3">
-                                            <span class="coupon-tag">All Categories</span>
-                                        </div>
-                                        <div class="promotion-stats mb-2">
-                                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                                <span>Impressions:</span>
-                                                <span>3,521</span>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                                <span>Clicks:</span>
-                                                <span>1,245</span>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <span>Conversion:</span>
-                                                <span>4.5%</span>
-                                            </div>
-                                        </div>
+                        </div>
+                        <div class="card-footer bg-white py-3">
+                            <nav aria-label="Coupon pagination">
+                                <ul class="pagination justify-content-center justify-content-md-end mb-0">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Promotions Tab -->
+                <div class="tab-pane fade" id="promotions" role="tabpanel" aria-labelledby="promotions-tab">
+                    <div class="row">
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card promotion-card h-100">
+                                <img src="/api/placeholder/800/300" class="promotion-img" alt="Summer Sale">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">Summer Sale</h5>
+                                        <span class="badge bg-success status-badge">Active</span>
                                     </div>
-                                    <div class="card-footer bg-white">
+                                    <p class="card-text">Up to 40% off on all summer collections.</p>
+                                    <div class="mb-3">
+                                        <span class="coupon-tag">Apparel</span>
+                                        <span class="coupon-tag">Footwear</span>
+                                        <span class="coupon-tag">Accessories</span>
+                                    </div>
+                                    <div class="promotion-stats mb-2">
+                                        <div class="d-flex justify-content-between align-items-center mb-1">
+                                            <span>Impressions:</span>
+                                            <span>2,345</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mb-1">
+                                            <span>Clicks:</span>
+                                            <span>852</span>
+                                        </div>
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <small class="text-muted">03/01/2025 - 03/02/2025</small>
-                                            <div>
-                                                <a href="#" class="action-icon" data-bs-toggle="tooltip" title="Edit"><i class="fas fa-edit"></i></a>
-                                                <a href="#" class="action-icon" data-bs-toggle="tooltip" title="Stats"><i class="fas fa-chart-line"></i></a>
-                                                <a href="#" class="action-icon" data-bs-toggle="tooltip" title="Reactivate"><i class="fas fa-play-circle"></i></a>
-                                            </div>
+                                            <span>Conversion:</span>
+                                            <span>3.2%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">03/01/2025 - 03/31/2025</small>
+                                        <div>
+                                            <a href="#" class="action-icon" data-bs-toggle="tooltip" title="Edit"><i
+                                                    class="fas fa-edit"></i></a>
+                                            <a href="#" class="action-icon" data-bs-toggle="tooltip" title="Stats"><i
+                                                    class="fas fa-chart-line"></i></a>
+                                            <a href="#" class="action-icon" data-bs-toggle="tooltip" title="Pause"><i
+                                                    class="fas fa-pause-circle"></i></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-            
-                    <!-- Analytics Tab -->
-                    <div class="tab-pane fade" id="analytics" role="tabpanel" aria-labelledby="analytics-tab">
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-primary shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    Total Active Coupons</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-ticket-alt fa-2x text-gray-300"></i>
-                                            </div>
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card promotion-card h-100">
+                                <img src="/api/placeholder/800/300" class="promotion-img" alt="New Arrivals">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">New Arrivals</h5>
+                                        <span class="badge bg-success status-badge">Active</span>
+                                    </div>
+                                    <p class="card-text">Check out our latest products with 15% off for first-time
+                                        buyers.</p>
+                                    <div class="mb-3">
+                                        <span class="coupon-tag">Electronics</span>
+                                        <span class="coupon-tag">Home Goods</span>
+                                    </div>
+                                    <div class="promotion-stats mb-2">
+                                        <div class="d-flex justify-content-between align-items-center mb-1">
+                                            <span>Impressions:</span>
+                                            <span>1,856</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mb-1">
+                                            <span>Clicks:</span>
+                                            <span>643</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span>Conversion:</span>
+                                            <span>2.8%</span>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Coupon Redemption Rate</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">24.3%</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-percent fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-info shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                    Revenue Generated</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">$24,568</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-warning shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                    Average Order Value</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">$128.53</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-shopping-cart fa-2x text-gray-300"></i>
-                                            </div>
+                                <div class="card-footer bg-white">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">02/15/2025 - 04/15/2025</small>
+                                        <div>
+                                            <a href="#" class="action-icon" data-bs-toggle="tooltip" title="Edit"><i
+                                                    class="fas fa-edit"></i></a>
+                                            <a href="#" class="action-icon" data-bs-toggle="tooltip" title="Stats"><i
+                                                    class="fas fa-chart-line"></i></a>
+                                            <a href="#" class="action-icon" data-bs-toggle="tooltip" title="Pause"><i
+                                                    class="fas fa-pause-circle"></i></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-            
-                        <div class="row">
-                            <div class="col-xl-8 col-lg-7">
-                                <div class="card shadow mb-4">
-                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Coupon Redemption Overview</h6>
-                                        <div class="dropdown no-arrow">
-                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-end shadow animated--fade-in"
-                                                aria-labelledby="dropdownMenuLink">
-                                                <div class="dropdown-header">Time Range:</div>
-                                                <a class="dropdown-item" href="#">Last 7 Days</a>
-                                                <a class="dropdown-item" href="#">Last 30 Days</a>
-                                                <a class="dropdown-item" href="#">Last 3 Months</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">Export Data</a>
-                                            </div>
-                                        </div>
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card promotion-card h-100">
+                                <img src="/api/placeholder/800/300" class="promotion-img" alt="Flash Sale">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">Flash Sale</h5>
+                                        <span class="badge bg-secondary status-badge">Ended</span>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="chart-area">
-                                            <canvas id="myAreaChart" class="usage-chart"></canvas>
+                                    <p class="card-text">Limited-time offer: 30% off on select items for 24 hours
+                                        only!</p>
+                                    <div class="mb-3">
+                                        <span class="coupon-tag">All Categories</span>
+                                    </div>
+                                    <div class="promotion-stats mb-2">
+                                        <div class="d-flex justify-content-between align-items-center mb-1">
+                                            <span>Impressions:</span>
+                                            <span>3,521</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mb-1">
+                                            <span>Clicks:</span>
+                                            <span>1,245</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span>Conversion:</span>
+                                            <span>4.5%</span>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-            
-                            <div class="col-xl-4 col-lg-5">
-                                <div class="card shadow mb-4">
-                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Top Performing Coupons</h6>
-                                        <div class="dropdown no-arrow">
-                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink2"
-                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-end shadow animated--fade-in"
-                                                aria-labelledby="dropdownMenuLink2">
-                                                <div class="dropdown-header">View Options:</div>
-                                                <a class="dropdown-item" href="#">By Usage</a>
-                                                <a class="dropdown-item" href="#">By Revenue</a>
-                                                <a class="dropdown-item" href="#">By Conversion Rate</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="chart-pie">
-                                            <canvas id="myPieChart" class="usage-chart"></canvas>
+                                <div class="card-footer bg-white">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">03/01/2025 - 03/02/2025</small>
+                                        <div>
+                                            <a href="#" class="action-icon" data-bs-toggle="tooltip" title="Edit"><i
+                                                    class="fas fa-edit"></i></a>
+                                            <a href="#" class="action-icon" data-bs-toggle="tooltip" title="Stats"><i
+                                                    class="fas fa-chart-line"></i></a>
+                                            <a href="#" class="action-icon" data-bs-toggle="tooltip" title="Reactivate"><i
+                                                    class="fas fa-play-circle"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -952,430 +862,582 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Add Coupon Modal -->
-            <div class="modal fade" id="newCouponModal" tabindex="-1" aria-labelledby="newCouponModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="newCouponModalLabel">Create New Coupon</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                <!-- Analytics Tab -->
+                <div class="tab-pane fade" id="analytics" role="tabpanel" aria-labelledby="analytics-tab">
+                    <div class="row">
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Total Active Coupons
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-ticket-alt fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="modal-body">
-                            <form id="newCouponForm">
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Coupon Redemption Rate
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">24.3%</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-percent fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                Revenue Generated
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$24,568</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Average Order Value
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$128.53</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-shopping-cart fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Coupon Redemption Overview</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                           data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end shadow animated--fade-in"
+                                             aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Time Range:</div>
+                                            <a class="dropdown-item" href="#">Last 7 Days</a>
+                                            <a class="dropdown-item" href="#">Last 30 Days</a>
+                                            <a class="dropdown-item" href="#">Last 3 Months</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Export Data</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-area">
+                                        <canvas id="myAreaChart" class="usage-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Top Performing Coupons</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink2"
+                                           data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end shadow animated--fade-in"
+                                             aria-labelledby="dropdownMenuLink2">
+                                            <div class="dropdown-header">View Options:</div>
+                                            <a class="dropdown-item" href="#">By Usage</a>
+                                            <a class="dropdown-item" href="#">By Revenue</a>
+                                            <a class="dropdown-item" href="#">By Conversion Rate</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-pie">
+                                        <canvas id="myPieChart" class="usage-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Coupon Modal -->
+        <div class="modal fade" id="newCouponModal" tabindex="-1" aria-labelledby="newCouponModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="newCouponModalLabel">Create New Coupon</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="newCouponForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="couponCode" class="form-label">Coupon Code</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="couponCode"
+                                                   placeholder="Enter or generate code">
+                                            <button class="btn btn-outline-secondary" type="button">Generate</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="discountType" class="form-label">Discount Type</label>
+                                        <select class="form-select" id="discountType">
+                                            <option value="percentage">Percentage Discount</option>
+                                            <option value="fixed">Fixed Amount</option>
+                                            <option value="shipping">Free Shipping</option>
+                                            <option value="bogo">Buy X Get Y</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="discountValue" class="form-label">Discount Value</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">%</span>
+                                            <input type="number" class="form-control" id="discountValue"
+                                                   placeholder="e.g. 10">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="maxUses" class="form-label">Maximum Uses</label>
+                                        <input type="number" class="form-control" id="maxUses"
+                                               placeholder="Leave blank for unlimited">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="startDate" class="form-label">Start Date</label>
+                                        <input type="text" class="form-control datepicker" id="startDate"
+                                               placeholder="MM/DD/YYYY">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="endDate" class="form-label">End Date</label>
+                                        <input type="text" class="form-control datepicker" id="endDate"
+                                               placeholder="MM/DD/YYYY">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="minimumPurchase" class="form-label">Minimum Purchase</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control" id="minimumPurchase" placeholder="0.00">
+                                </div>
+                                <small class="form-text text-muted">Leave blank for no minimum</small>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label class="form-label">Apply To</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="applyTo" id="entireOrder"
+                                           checked>
+                                    <label class="form-check-label" for="entireOrder">
+                                        Entire Order
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="applyTo" id="specificProducts">
+                                    <label class="form-check-label" for="specificProducts">
+                                        Specific Products
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="applyTo" id="specificCategories">
+                                    <label class="form-check-label" for="specificCategories">
+                                        Specific Categories
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="couponDescription" class="form-label">Description (Optional)</label>
+                                        <textarea class="form-control" id="couponDescription" rows="2"
+                                                  placeholder="Internal notes about this coupon"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary">Create Coupon</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Coupon Modal -->
+        <div class="modal fade" id="editCouponModal" tabindex="-1" aria-labelledby="editCouponModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editCouponModalLabel">Edit Coupon - SUMMER25</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form contents similar to Add Coupon Modal, but with values pre-filled -->
+                        <form id="editCouponForm">
+                            <!-- Form contents similar to Add Coupon with pre-filled values -->
+                            <!-- Just showing a few fields as example -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="editCouponCode" class="form-label">Coupon Code</label>
+                                        <input type="text" class="form-control" id="editCouponCode" value="SUMMER25"
+                                               disabled>
+                                        <small class="form-text text-muted">Coupon codes cannot be modified after
+                                            creation</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="editDiscountType" class="form-label">Discount Type</label>
+                                        <select class="form-select" id="editDiscountType">
+                                            <option value="percentage" selected>Percentage Discount</option>
+                                            <option value="fixed">Fixed Amount</option>
+                                            <option value="shipping">Free Shipping</option>
+                                            <option value="bogo">Buy X Get Y</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="editDiscountValue" class="form-label">Discount Value</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">%</span>
+                                            <input type="number" class="form-control" id="editDiscountValue" value="25">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="editMaxUses" class="form-label">Maximum Uses</label>
+                                        <input type="number" class="form-control" id="editMaxUses" value="100">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- More form fields would go here -->
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Promotion Modal -->
+        <div class="modal fade" id="newPromotionModal" tabindex="-1" aria-labelledby="newPromotionModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="newPromotionModalLabel">Create New Promotion</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="newPromotionForm">
+                            <div class="form-group">
+                                <label for="promotionTitle" class="form-label">Promotion Title</label>
+                                <input type="text" class="form-control" id="promotionTitle"
+                                       placeholder="Enter promotion title">
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="promotionDescription" class="form-label">Description</label>
+                                <textarea class="form-control" id="promotionDescription" rows="3"
+                                          placeholder="Describe your promotion"></textarea>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label class="form-label">Promotion Banner</label>
+                                <div class="drag-container">
+                                    <i class="fas fa-cloud-upload-alt fa-3x mb-3 text-muted"></i>
+                                    <p class="mb-1">Drag & drop your image here</p>
+                                    <p class="text-muted small">or</p>
+                                    <button type="button" class="btn btn-sm btn-outline-primary">Browse Files</button>
+                                    <small class="d-block text-muted mt-2">Recommended size: 800x300px. Max file size:
+                                        5MB</small>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="promotionStartDate" class="form-label">Start Date</label>
+                                        <input type="text" class="form-control datepicker" id="promotionStartDate"
+                                               placeholder="MM/DD/YYYY">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="promotionEndDate" class="form-label">End Date</label>
+                                        <input type="text" class="form-control datepicker" id="promotionEndDate"
+                                               placeholder="MM/DD/YYYY">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label class="form-label">Associated Coupons</label>
+                                <select class="form-select" id="associatedCoupons" multiple>
+                                    <option value="SUMMER25">SUMMER25 - 25% Off</option>
+                                    <option value="WELCOME10">WELCOME10 - $10 Off</option>
+                                    <option value="FREESHIP">FREESHIP - Free Shipping</option>
+                                    <option value="SPRING10">SPRING10 - $10 Off</option>
+                                </select>
+                                <small class="form-text text-muted">Hold Ctrl/Cmd to select multiple coupons</small>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label class="form-label">Product Categories</label>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="couponCode" class="form-label">Coupon Code</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" id="couponCode" placeholder="Enter or generate code">
-                                                <button class="btn btn-outline-secondary" type="button">Generate</button>
-                                            </div>
+                                    <div class="col-md-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="category1">
+                                            <label class="form-check-label" for="category1">Apparel</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="category2">
+                                            <label class="form-check-label" for="category2">Footwear</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="discountType" class="form-label">Discount Type</label>
-                                            <select class="form-select" id="discountType">
-                                                <option value="percentage">Percentage Discount</option>
-                                                <option value="fixed">Fixed Amount</option>
-                                                <option value="shipping">Free Shipping</option>
-                                                <option value="bogo">Buy X Get Y</option>
-                                            </select>
+                                    <div class="col-md-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="category3">
+                                            <label class="form-check-label" for="category3">Electronics</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="category4">
+                                            <label class="form-check-label" for="category4">Home Goods</label>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="discountValue" class="form-label">Discount Value</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text">%</span>
-                                                <input type="number" class="form-control" id="discountValue" placeholder="e.g. 10">
-                                            </div>
+                                    <div class="col-md-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="category5">
+                                            <label class="form-check-label" for="category5">Accessories</label>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="maxUses" class="form-label">Maximum Uses</label>
-                                            <input type="number" class="form-control" id="maxUses" placeholder="Leave blank for unlimited">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="category6">
+                                            <label class="form-check-label" for="category6">All Categories</label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="startDate" class="form-label">Start Date</label>
-                                            <input type="text" class="form-control datepicker" id="startDate" placeholder="MM/DD/YYYY">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="endDate" class="form-label">End Date</label>
-                                            <input type="text" class="form-control datepicker" id="endDate" placeholder="MM/DD/YYYY">
-                                        </div>
-                                    </div>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label class="form-label">Promotion Type</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="promotionType" id="typeSale"
+                                           checked>
+                                    <label class="form-check-label" for="typeSale">
+                                        Sale
+                                    </label>
                                 </div>
-                                <div class="form-group mt-3">
-                                    <label for="minimumPurchase" class="form-label">Minimum Purchase</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">$</span>
-                                        <input type="number" class="form-control" id="minimumPurchase" placeholder="0.00">
-                                    </div>
-                                    <small class="form-text text-muted">Leave blank for no minimum</small>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="promotionType"
+                                           id="typeNewArrivals">
+                                    <label class="form-check-label" for="typeNewArrivals">
+                                        New Arrivals
+                                    </label>
                                 </div>
-                                <div class="form-group mt-3">
-                                    <label class="form-label">Apply To</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="applyTo" id="entireOrder" checked>
-                                        <label class="form-check-label" for="entireOrder">
-                                            Entire Order
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="applyTo" id="specificProducts">
-                                        <label class="form-check-label" for="specificProducts">
-                                            Specific Products
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="applyTo" id="specificCategories">
-                                        <label class="form-check-label" for="specificCategories">
-                                            Specific Categories
-                                        </label>
-                                    </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="promotionType"
+                                           id="typeFlashSale">
+                                    <label class="form-check-label" for="typeFlashSale">
+                                        Flash Sale
+                                    </label>
                                 </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="couponDescription" class="form-label">Description (Optional)</label>
-                                            <textarea class="form-control" id="couponDescription" rows="2" placeholder="Internal notes about this coupon"></textarea>
-                                        </div>
-                                    </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="promotionType"
+                                           id="typeSpecialOffer">
+                                    <label class="form-check-label" for="typeSpecialOffer">
+                                        Special Offer
+                                    </label>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary">Create Coupon</button>
-                        </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary">Create Promotion</button>
                     </div>
                 </div>
             </div>
-            
-            <!-- Edit Coupon Modal -->
-            <div class="modal fade" id="editCouponModal" tabindex="-1" aria-labelledby="editCouponModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="editCouponModalLabel">Edit Coupon - SUMMER25</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Form contents similar to Add Coupon Modal, but with values pre-filled -->
-                            <form id="editCouponForm">
-                                <!-- Form contents similar to Add Coupon with pre-filled values -->
-                                <!-- Just showing a few fields as example -->
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="editCouponCode" class="form-label">Coupon Code</label>
-                                            <input type="text" class="form-control" id="editCouponCode" value="SUMMER25" disabled>
-                                            <small class="form-text text-muted">Coupon codes cannot be modified after creation</small>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="editDiscountType" class="form-label">Discount Type</label>
-                                            <select class="form-select" id="editDiscountType">
-                                                <option value="percentage" selected>Percentage Discount</option>
-                                                <option value="fixed">Fixed Amount</option>
-                                                <option value="shipping">Free Shipping</option>
-                                                <option value="bogo">Buy X Get Y</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="editDiscountValue" class="form-label">Discount Value</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text">%</span>
-                                                <input type="number" class="form-control" id="editDiscountValue" value="25">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="editMaxUses" class="form-label">Maximum Uses</label>
-                                            <input type="number" class="form-control" id="editMaxUses" value="100">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- More form fields would go here -->
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary">Save Changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- New Promotion Modal -->
-            <div class="modal fade" id="newPromotionModal" tabindex="-1" aria-labelledby="newPromotionModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="newPromotionModalLabel">Create New Promotion</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="newPromotionForm">
-                                <div class="form-group">
-                                    <label for="promotionTitle" class="form-label">Promotion Title</label>
-                                    <input type="text" class="form-control" id="promotionTitle" placeholder="Enter promotion title">
-                                </div>
-                                <div class="form-group mt-3">
-                                    <label for="promotionDescription" class="form-label">Description</label>
-                                    <textarea class="form-control" id="promotionDescription" rows="3" placeholder="Describe your promotion"></textarea>
-                                </div>
-                                <div class="form-group mt-3">
-                                    <label class="form-label">Promotion Banner</label>
-                                    <div class="drag-container">
-                                        <i class="fas fa-cloud-upload-alt fa-3x mb-3 text-muted"></i>
-                                        <p class="mb-1">Drag & drop your image here</p>
-                                        <p class="text-muted small">or</p>
-                                        <button type="button" class="btn btn-sm btn-outline-primary">Browse Files</button>
-                                        <small class="d-block text-muted mt-2">Recommended size: 800x300px. Max file size: 5MB</small>
-                                    </div>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="promotionStartDate" class="form-label">Start Date</label>
-                                            <input type="text" class="form-control datepicker" id="promotionStartDate" placeholder="MM/DD/YYYY">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="promotionEndDate" class="form-label">End Date</label>
-                                            <input type="text" class="form-control datepicker" id="promotionEndDate" placeholder="MM/DD/YYYY">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group mt-3">
-                                    <label class="form-label">Associated Coupons</label>
-                                    <select class="form-select" id="associatedCoupons" multiple>
-                                        <option value="SUMMER25">SUMMER25 - 25% Off</option>
-                                        <option value="WELCOME10">WELCOME10 - $10 Off</option>
-                                        <option value="FREESHIP">FREESHIP - Free Shipping</option>
-                                        <option value="SPRING10">SPRING10 - $10 Off</option>
-                                    </select>
-                                    <small class="form-text text-muted">Hold Ctrl/Cmd to select multiple coupons</small>
-                                </div>
-                                <div class="form-group mt-3">
-                                    <label class="form-label">Product Categories</label>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="category1">
-                                                <label class="form-check-label" for="category1">Apparel</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="category2">
-                                                <label class="form-check-label" for="category2">Footwear</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="category3">
-                                                <label class="form-check-label" for="category3">Electronics</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="category4">
-                                                <label class="form-check-label" for="category4">Home Goods</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="category5">
-                                                <label class="form-check-label" for="category5">Accessories</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="category6">
-                                                <label class="form-check-label" for="category6">All Categories</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group mt-3">
-                                    <label class="form-label">Promotion Type</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="promotionType" id="typeSale" checked>
-                                        <label class="form-check-label" for="typeSale">
-                                            Sale
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="promotionType" id="typeNewArrivals">
-                                        <label class="form-check-label" for="typeNewArrivals">
-                                            New Arrivals
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="promotionType" id="typeFlashSale">
-                                        <label class="form-check-label" for="typeFlashSale">
-                                            Flash Sale
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="promotionType" id="typeSpecialOffer">
-                                        <label class="form-check-label" for="typeSpecialOffer">
-                                            Special Offer
-                                        </label>
-                                    </div>
-                                </div>
-                                </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-primary">Create Promotion</button>
-                                </div>
-                                </div>
-                                </div>
-                                </div>
-                                
-                                <!-- JavaScript for Charts -->
-                                <script>
-                                    document.addEventListener('DOMContentLoaded', function() {
-                                        // Area Chart
-                                        var ctx = document.getElementById('myAreaChart');
-                                        if (ctx) {
-                                            var myLineChart = new Chart(ctx, {
-                                                type: 'line',
-                                                data: {
-                                                    labels: ["Mar 1", "Mar 2", "Mar 3", "Mar 4", "Mar 5", "Mar 6", "Mar 7", "Mar 8", "Mar 9", "Mar 10", "Mar 11", "Mar 12"],
-                                                    datasets: [{
-                                                        label: "Coupon Redemptions",
-                                                        lineTension: 0.3,
-                                                        backgroundColor: "rgba(78, 115, 223, 0.05)",
-                                                        borderColor: "rgba(78, 115, 223, 1)",
-                                                        pointRadius: 3,
-                                                        pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                                                        pointBorderColor: "rgba(78, 115, 223, 1)",
-                                                        pointHoverRadius: 3,
-                                                        pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                                                        pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                                                        pointHitRadius: 10,
-                                                        pointBorderWidth: 2,
-                                                        data: [12, 19, 25, 20, 35, 40, 45, 38, 42, 50, 55, 60],
-                                                    }],
-                                                },
-                                                options: {
-                                                    maintainAspectRatio: false,
-                                                    layout: {
-                                                        padding: {
-                                                            left: 10,
-                                                            right: 25,
-                                                            top: 25,
-                                                            bottom: 0
-                                                        }
-                                                    },
-                                                    scales: {
-                                                        xAxes: [{
-                                                            time: {
-                                                                unit: 'date'
-                                                            },
-                                                            gridLines: {
-                                                                display: false,
-                                                                drawBorder: false
-                                                            },
-                                                            ticks: {
-                                                                maxTicksLimit: 7
-                                                            }
-                                                        }],
-                                                        yAxes: [{
-                                                            ticks: {
-                                                                maxTicksLimit: 5,
-                                                                padding: 10,
-                                                            },
-                                                            gridLines: {
-                                                                color: "rgb(234, 236, 244)",
-                                                                zeroLineColor: "rgb(234, 236, 244)",
-                                                                drawBorder: false,
-                                                                borderDash: [2],
-                                                                zeroLineBorderDash: [2]
-                                                            }
-                                                        }],
-                                                    },
-                                                    legend: {
-                                                        display: false
-                                                    },
-                                                    tooltips: {
-                                                        backgroundColor: "rgb(255,255,255)",
-                                                        bodyFontColor: "#858796",
-                                                        titleMarginBottom: 10,
-                                                        titleFontColor: '#6e707e',
-                                                        titleFontSize: 14,
-                                                        borderColor: '#dddfeb',
-                                                        borderWidth: 1,
-                                                        xPadding: 15,
-                                                        yPadding: 15,
-                                                        displayColors: false,
-                                                        intersect: false,
-                                                        mode: 'index',
-                                                        caretPadding: 10,
-                                                    }
-                                                }
-                                            });
-                                        }
-                                
-                                        // Pie Chart
-                                        var ctx2 = document.getElementById("myPieChart");
-                                        if (ctx2) {
-                                            var myPieChart = new Chart(ctx2, {
-                                                type: 'doughnut',
-                                                data: {
-                                                    labels: ["SUMMER25", "WELCOME10", "FREESHIP", "Others"],
-                                                    datasets: [{
-                                                        data: [35, 25, 20, 20],
-                                                        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e'],
-                                                        hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#e9ad2f'],
-                                                        hoverBorderColor: "rgba(234, 236, 244, 1)",
-                                                    }],
-                                                },
-                                                options: {
-                                                    maintainAspectRatio: false,
-                                                    tooltips: {
-                                                        backgroundColor: "rgb(255,255,255)",
-                                                        bodyFontColor: "#858796",
-                                                        borderColor: '#dddfeb',
-                                                        borderWidth: 1,
-                                                        xPadding: 15,
-                                                        yPadding: 15,
-                                                        displayColors: false,
-                                                        caretPadding: 10,
-                                                    },
-                                                    legend: {
-                                                        display: true,
-                                                        position: 'bottom'
-                                                    },
-                                                    cutoutPercentage: 70,
-                                                },
-                                            });
-                                        }
-                                    });
-                                
-                                    // Initialize tooltips
-                                    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-                                    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-                                        return new bootstrap.Tooltip(tooltipTriggerEl)
-                                    });
-                                </script>
-                                
-                                </body>
-                                </html>
+        </div>
+
+        <!-- JavaScript for Charts -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Area Chart
+                var ctx = document.getElementById('myAreaChart');
+                if (ctx) {
+                    var myLineChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: ["Mar 1", "Mar 2", "Mar 3", "Mar 4", "Mar 5", "Mar 6", "Mar 7", "Mar 8", "Mar 9", "Mar 10", "Mar 11", "Mar 12"],
+                            datasets: [{
+                                label: "Coupon Redemptions",
+                                lineTension: 0.3,
+                                backgroundColor: "rgba(78, 115, 223, 0.05)",
+                                borderColor: "rgba(78, 115, 223, 1)",
+                                pointRadius: 3,
+                                pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                                pointBorderColor: "rgba(78, 115, 223, 1)",
+                                pointHoverRadius: 3,
+                                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                                pointHitRadius: 10,
+                                pointBorderWidth: 2,
+                                data: [12, 19, 25, 20, 35, 40, 45, 38, 42, 50, 55, 60],
+                            }],
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            layout: {
+                                padding: {
+                                    left: 10,
+                                    right: 25,
+                                    top: 25,
+                                    bottom: 0
+                                }
+                            },
+                            scales: {
+                                xAxes: [{
+                                    time: {
+                                        unit: 'date'
+                                    },
+                                    gridLines: {
+                                        display: false,
+                                        drawBorder: false
+                                    },
+                                    ticks: {
+                                        maxTicksLimit: 7
+                                    }
+                                }],
+                                yAxes: [{
+                                    ticks: {
+                                        maxTicksLimit: 5,
+                                        padding: 10,
+                                    },
+                                    gridLines: {
+                                        color: "rgb(234, 236, 244)",
+                                        zeroLineColor: "rgb(234, 236, 244)",
+                                        drawBorder: false,
+                                        borderDash: [2],
+                                        zeroLineBorderDash: [2]
+                                    }
+                                }],
+                            },
+                            legend: {
+                                display: false
+                            },
+                            tooltips: {
+                                backgroundColor: "rgb(255,255,255)",
+                                bodyFontColor: "#858796",
+                                titleMarginBottom: 10,
+                                titleFontColor: '#6e707e',
+                                titleFontSize: 14,
+                                borderColor: '#dddfeb',
+                                borderWidth: 1,
+                                xPadding: 15,
+                                yPadding: 15,
+                                displayColors: false,
+                                intersect: false,
+                                mode: 'index',
+                                caretPadding: 10,
+                            }
+                        }
+                    });
+                }
+
+                // Pie Chart
+                var ctx2 = document.getElementById("myPieChart");
+                if (ctx2) {
+                    var myPieChart = new Chart(ctx2, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ["SUMMER25", "WELCOME10", "FREESHIP", "Others"],
+                            datasets: [{
+                                data: [35, 25, 20, 20],
+                                backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e'],
+                                hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#e9ad2f'],
+                                hoverBorderColor: "rgba(234, 236, 244, 1)",
+                            }],
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            tooltips: {
+                                backgroundColor: "rgb(255,255,255)",
+                                bodyFontColor: "#858796",
+                                borderColor: '#dddfeb',
+                                borderWidth: 1,
+                                xPadding: 15,
+                                yPadding: 15,
+                                displayColors: false,
+                                caretPadding: 10,
+                            },
+                            legend: {
+                                display: true,
+                                position: 'bottom'
+                            },
+                            cutoutPercentage: 70,
+                        },
+                    });
+                }
+            });
+
+            // Initialize tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            });
+        </script>
+                                {% endblock %}
+</body>
+</html>

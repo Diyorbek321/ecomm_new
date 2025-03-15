@@ -1,917 +1,848 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E-commerce Admin - Product Management</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #4361ee;
-      --primary-light: #4895ef;
-      --dark: #212529;
-      --secondary: #6c757d;
-      --success: #198754;
-      --info: #0dcaf0;
-      --warning: #ffc107;
-      --danger: #dc3545;
-      --light: #f8f9fa;
-      --dark-blue: #1e3a8a;
-    }
-    
-    body {
-      background-color: #f5f7fa;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
-    .sidebar {
-      background: linear-gradient(180deg, var(--dark-blue) 0%, var(--primary) 100%);
-      min-height: 100vh;
-      color: white;
-      box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-    }
-    
-    .sidebar .nav-link {
-      color: rgba(255,255,255,0.85);
-      padding: 12px 20px;
-      margin: 8px 0;
-      border-radius: 8px;
-      transition: all 0.3s;
-    }
-    
-    .sidebar .nav-link:hover {
-      background-color: rgba(255,255,255,0.15);
-      color: white;
-    }
-    
-    .sidebar .nav-link.active {
-      background-color: rgba(255,255,255,0.2);
-      color: white;
-      font-weight: 500;
-    }
-    
-    .sidebar-logo {
-      padding: 20px;
-      font-size: 24px;
-      font-weight: 700;
-      color: white;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    
-    .content-area {
-      padding: 20px;
-    }
-    
-    .header {
-      background-color: white;
-      border-radius: 10px;
-      padding: 15px 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      margin-bottom: 20px;
-    }
-    
-    .search-box {
-      position: relative;
-      width: 100%;
-      max-width: 300px;
-    }
-    
-    .search-box input {
-      padding-left: 40px;
-      background-color: #f5f7fa;
-      border: 1px solid #e2e8f0;
-    }
-    
-    .search-box i {
-      position: absolute;
-      left: 12px;
-      top: 10px;
-      color: var(--secondary);
-    }
-    
-    .btn-custom-primary {
-      background-color: var(--primary);
-      color: white;
-      border: none;
-      transition: all 0.2s;
-    }
-    
-    .btn-custom-primary:hover {
-      background-color: var(--primary-light);
-      color: white;
-    }
-    
-    .card {
-      border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      margin-bottom: 20px;
-      border: none;
-    }
-    
-    .card-header {
-      background-color: white;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-      padding: 15px 20px;
-      font-weight: 600;
-      border-radius: 10px 10px 0 0 !important;
-    }
-    
-    .product-card {
-      display: flex;
-      padding: 15px;
-      border-bottom: 1px solid #f0f0f0;
-      transition: all 0.2s;
-    }
-    
-    .product-card:hover {
-      background-color: #f9fafb;
-    }
-    
-    .product-image {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    
-    .status-badge {
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 500;
-    }
-    
-    .avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-    
-    .notification-badge {
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background-color: var(--danger);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      font-weight: bold;
-    }
-    
-    .action-btn {
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 8px;
-      transition: all 0.2s;
-    }
-    
-    .modal-content {
-      border-radius: 15px;
-      border: none;
-    }
-    
-    .modal-header {
-      background-color: var(--primary);
-      color: white;
-      border-radius: 15px 15px 0 0;
-    }
-    
-    .modal-footer {
-      border-top: none;
-    }
-    
-    .form-control, .form-select {
-      padding: 12px 15px;
-      border-radius: 8px;
-      border: 1px solid #e2e8f0;
-    }
-    
-    .table th {
-      font-weight: 600;
-      color: var(--secondary);
-    }
-    
-    .table td {
-      vertical-align: middle;
-    }
-    
-    .product-name {
-      color: var(--dark);
-      font-weight: 600;
-      font-size: 16px;
-      margin-bottom: 3px;
-    }
-    
-    .product-category {
-      color: var(--secondary);
-      font-size: 13px;
-    }
-    
-    .product-price {
-      font-weight: 600;
-      color: var(--primary);
-    }
-    
-    .product-inventory {
-      font-size: 14px;
-    }
-    
-    .text-low-stock {
-      color: var(--warning);
-    }
-    
-    .text-out-stock {
-      color: var(--danger);
-    }
-    
-    .inventory-badge {
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 500;
-    }
-    
-    .image-upload-container {
-      border: 2px dashed #e2e8f0;
-      padding: 20px;
-      text-align: center;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    
-    .image-upload-container:hover {
-      border-color: var(--primary);
-    }
-    
-    .pagination .page-item .page-link {
-      color: var(--primary);
-      border: none;
-      margin: 0 5px;
-      border-radius: 5px;
-    }
-    
-    .pagination .page-item.active .page-link {
-      background-color: var(--primary);
-      color: white;
-    }
-    
-    .dropdown-menu {
-      border: none;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-      border-radius: 10px;
-    }
-    
-    .dropdown-item {
-      padding: 8px 20px;
-    }
-    
-    .dropdown-item:hover {
-      background-color: #f5f7fa;
-    }
-    
-    .dropdown-item.danger:hover {
-      background-color: #ffebee;
-      color: var(--danger);
-    }
-    
-    .alert-custom {
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    }
-    
-    .profile-menu img {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-right: 10px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Admin - Product Management</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-light: #4895ef;
+            --dark: #212529;
+            --secondary: #6c757d;
+            --success: #198754;
+            --info: #0dcaf0;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --light: #f8f9fa;
+            --dark-blue: #1e3a8a;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+
+        .content-area {
+            padding: 20px;
+        }
+
+        .header {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .search-box input {
+            padding-left: 40px;
+            background-color: #f5f7fa;
+            border: 1px solid #e2e8f0;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 12px;
+            top: 10px;
+            color: var(--secondary);
+        }
+
+        .btn-custom-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-custom-primary:hover {
+            background-color: var(--primary-light);
+            color: white;
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            border: none;
+        }
+
+        .card-header {
+            background-color: white;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 15px 20px;
+            font-weight: 600;
+            border-radius: 10px 10px 0 0 !important;
+        }
+
+        .product-card {
+            display: flex;
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.2s;
+        }
+
+        .product-card:hover {
+            background-color: #f9fafb;
+        }
+
+        .product-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--danger);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .action-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .modal-content {
+            border-radius: 15px;
+            border: none;
+        }
+
+        .modal-header {
+            background-color: var(--primary);
+            color: white;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .modal-footer {
+            border-top: none;
+        }
+
+        .form-control, .form-select {
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .table th {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        .table td {
+            vertical-align: middle;
+        }
+
+        .product-name {
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 3px;
+        }
+
+        .product-category {
+            color: var(--secondary);
+            font-size: 13px;
+        }
+
+        .product-price {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .product-inventory {
+            font-size: 14px;
+        }
+
+        .text-low-stock {
+            color: var(--warning);
+        }
+
+        .text-out-stock {
+            color: var(--danger);
+        }
+
+        .inventory-badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .image-upload-container {
+            border: 2px dashed #e2e8f0;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .image-upload-container:hover {
+            border-color: var(--primary);
+        }
+
+        .pagination .page-item .page-link {
+            color: var(--primary);
+            border: none;
+            margin: 0 5px;
+            border-radius: 5px;
+        }
+
+        .pagination .page-item.active .page-link {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .dropdown-item {
+            padding: 8px 20px;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f5f7fa;
+        }
+
+        .dropdown-item.danger:hover {
+            background-color: #ffebee;
+            color: var(--danger);
+        }
+
+        .alert-custom {
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .profile-menu img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body>
-  <div class="container-fluid">
-    <div class="row">
-      <!-- Sidebar -->
-      <div class="col-lg-2 col-md-3 p-0 sidebar">
-        <div class="sidebar-logo">
-          <i class="fas fa-shopping-cart"></i>
-          <span>E-Shop Admin</span>
-        </div>
-        <div class="px-3">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="fas fa-tachometer-alt me-3"></i>Dashboard
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#">
-                <i class="fas fa-box me-3"></i>Products
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="fas fa-list me-3"></i>Categories
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="fas fa-shopping-bag me-3"></i>Orders
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="fas fa-users me-3"></i>Customers
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="fas fa-star me-3"></i>Reviews
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="fas fa-percent me-3"></i>Promotions
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="fas fa-cog me-3"></i>Settings
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      
-      <!-- Main Content -->
-      <div class="col-lg-10 col-md-9 content-area">
-        <!-- Header -->
-        <div class="header d-flex justify-content-between align-items-center">
-          <div class="search-box">
-            <i class="fas fa-search"></i>
-            <input type="text" class="form-control" placeholder="Search products...">
-          </div>
-          
-          <div class="d-flex align-items-center">
-            <div class="position-relative me-4">
-              <button class="btn btn-light position-relative" type="button">
-                <i class="fas fa-bell"></i>
-                <span class="notification-badge">3</span>
-              </button>
-            </div>
-            
-            <div class="dropdown profile-menu">
-              <button class="btn d-flex align-items-center" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="/api/placeholder/100/100" alt="Admin">
-                <span class="d-none d-md-inline-block">Admin User</span>
-                <i class="fas fa-chevron-down ms-2"></i>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profile</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Settings</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item danger" href="#"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Content -->
-        <div class="row mb-4">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-body p-4">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                  <h4 class="mb-0">Product Management</h4>
-                  <button class="btn btn-custom-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
-                    <i class="fas fa-plus me-2"></i>Add New Product
-                  </button>
-                </div>
-                
-                <div class="row mb-4">
-                  <div class="col-md-3 mb-3 mb-md-0">
-                    <select class="form-select" id="categoryFilter">
-                      <option value="">All Categories</option>
-                      <option value="Electronics">Electronics</option>
-                      <option value="Clothing">Clothing</option>
-                      <option value="Accessories">Accessories</option>
-                      <option value="Home & Kitchen">Home & Kitchen</option>
-                    </select>
-                  </div>
-                  <div class="col-md-3 mb-3 mb-md-0">
-                    <select class="form-select" id="statusFilter">
-                      <option value="">All Status</option>
-                      <option value="Active">Active</option>
-                      <option value="Draft">Draft</option>
-                      <option value="Out of Stock">Out of Stock</option>
-                    </select>
-                  </div>
-                  <div class="col-md-3 mb-3 mb-md-0">
-                    <select class="form-select" id="sortBy">
-                      <option value="newest">Newest First</option>
-                      <option value="oldest">Oldest First</option>
-                      <option value="price_high">Price: High to Low</option>
-                      <option value="price_low">Price: Low to High</option>
-                      <option value="name_asc">Name: A to Z</option>
-                      <option value="name_desc">Name: Z to A</option>
-                    </select>
-                  </div>
-                  <div class="col-md-3">
-                    <button class="btn btn-outline-secondary w-100" id="resetFilters">
-                      <i class="fas fa-sync-alt me-2"></i>Reset Filters
-                    </button>
-                  </div>
-                </div>
-                
-                <div class="table-responsive">
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th width="50">ID</th>
-                        <th width="300">Product</th>
-                        <th>Category</th>
-                        <th>Price</th>
-                        <th>Inventory</th>
-                        <th>Status</th>
-                        <th>Created</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody id="productTableBody">
-                      <!-- Products will be loaded here -->
-                    </tbody>
-                  </table>
-                </div>
-                
-                <div class="d-flex justify-content-between align-items-center mt-4">
-                  <div>
-                    <span class="text-muted">Showing 1-10 of 45 products</span>
-                  </div>
-                  <nav aria-label="Product pagination">
-                    <ul class="pagination">
-                      <li class="page-item disabled">
-                        <a class="page-link" href="#" aria-label="Previous">
-                          <i class="fas fa-chevron-left"></i>
-                        </a>
-                      </li>
-                      <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                          <i class="fas fa-chevron-right"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Quick Stats -->
+{% block content %}
+    <div class="container-fluid">
         <div class="row">
-          <div class="col-md-6 col-lg-3 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <div>
-                    <h6 class="text-muted mb-1">Total Products</h6>
-                    <h3 class="mb-0">1,245</h3>
-                    <span class="text-success"><i class="fas fa-arrow-up me-1"></i>12.5%</span>
-                  </div>
-                  <div class="bg-primary bg-opacity-10 p-3 rounded-circle">
-                    <i class="fas fa-box fa-2x text-primary"></i>
-                  </div>
+            <!-- Sidebar -->
+            {% include 'ecomm/admin/sidebar.html' %}
+
+            <!-- Main Content -->
+            <div class="col-lg-10 col-md-9 content-area">
+                <!-- Header -->
+                <div class="header d-flex justify-content-between align-items-center">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" class="form-control" placeholder="Search products...">
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                        <div class="position-relative me-4">
+                            <button class="btn btn-light position-relative" type="button">
+                                <i class="fas fa-bell"></i>
+                                <span class="notification-badge">3</span>
+                            </button>
+                        </div>
+
+                        <div class="dropdown profile-menu">
+                            <button class="btn d-flex align-items-center" type="button" id="profileDropdown"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="/api/placeholder/100/100" alt="Admin">
+                                <span class="d-none d-md-inline-block">Admin User</span>
+                                <i class="fas fa-chevron-down ms-2"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profile</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Settings</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item danger" href="#"><i class="fas fa-sign-out-alt me-2"></i>Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-md-6 col-lg-3 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <div>
-                    <h6 class="text-muted mb-1">Low Stock Items</h6>
-                    <h3 class="mb-0">28</h3>
-                    <span class="text-warning"><i class="fas fa-arrow-up me-1"></i>8.4%</span>
-                  </div>
-                  <div class="bg-warning bg-opacity-10 p-3 rounded-circle">
-                    <i class="fas fa-exclamation-triangle fa-2x text-warning"></i>
-                  </div>
+
+                <!-- Content -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h4 class="mb-0">Product Management</h4>
+                                    <button class="btn btn-custom-primary" data-bs-toggle="modal"
+                                            data-bs-target="#addProductModal">
+                                        <i class="fas fa-plus me-2"></i>Add New Product
+                                    </button>
+                                </div>
+
+                                <div class="row mb-4">
+                                    <div class="col-md-3 mb-3 mb-md-0">
+                                        <select class="form-select" id="categoryFilter">
+                                            <option value="">All Categories</option>
+                                            <option value="Electronics">Electronics</option>
+                                            <option value="Clothing">Clothing</option>
+                                            <option value="Accessories">Accessories</option>
+                                            <option value="Home & Kitchen">Home & Kitchen</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mb-3 mb-md-0">
+                                        <select class="form-select" id="statusFilter">
+                                            <option value="">All Status</option>
+                                            <option value="Active">Active</option>
+                                            <option value="Draft">Draft</option>
+                                            <option value="Out of Stock">Out of Stock</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mb-3 mb-md-0">
+                                        <select class="form-select" id="sortBy">
+                                            <option value="newest">Newest First</option>
+                                            <option value="oldest">Oldest First</option>
+                                            <option value="price_high">Price: High to Low</option>
+                                            <option value="price_low">Price: Low to High</option>
+                                            <option value="name_asc">Name: A to Z</option>
+                                            <option value="name_desc">Name: Z to A</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button class="btn btn-outline-secondary w-100" id="resetFilters">
+                                            <i class="fas fa-sync-alt me-2"></i>Reset Filters
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th width="50">ID</th>
+                                            <th width="300">Product</th>
+                                            <th>Category</th>
+                                            <th>Price</th>
+                                            <th>Inventory</th>
+                                            <th>Status</th>
+                                            <th>Created</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="productTableBody">
+                                        <!-- Products will be loaded here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center mt-4">
+                                    <div>
+                                        <span class="text-muted">Showing 1-10 of 45 products</span>
+                                    </div>
+                                    <nav aria-label="Product pagination">
+                                        <ul class="pagination">
+                                            <li class="page-item disabled">
+                                                <a class="page-link" href="#" aria-label="Previous">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                </a>
+                                            </li>
+                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Next">
+                                                    <i class="fas fa-chevron-right"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-md-6 col-lg-3 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <div>
-                    <h6 class="text-muted mb-1">Out of Stock</h6>
-                    <h3 class="mb-0">15</h3>
-                    <span class="text-danger"><i class="fas fa-arrow-down me-1"></i>2.8%</span>
-                  </div>
-                  <div class="bg-danger bg-opacity-10 p-3 rounded-circle">
-                    <i class="fas fa-times-circle fa-2x text-danger"></i>
-                  </div>
+
+                <!-- Quick Stats -->
+                <div class="row">
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-muted mb-1">Total Products</h6>
+                                        <h3 class="mb-0">1,245</h3>
+                                        <span class="text-success"><i class="fas fa-arrow-up me-1"></i>12.5%</span>
+                                    </div>
+                                    <div class="bg-primary bg-opacity-10 p-3 rounded-circle">
+                                        <i class="fas fa-box fa-2x text-primary"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-muted mb-1">Low Stock Items</h6>
+                                        <h3 class="mb-0">28</h3>
+                                        <span class="text-warning"><i class="fas fa-arrow-up me-1"></i>8.4%</span>
+                                    </div>
+                                    <div class="bg-warning bg-opacity-10 p-3 rounded-circle">
+                                        <i class="fas fa-exclamation-triangle fa-2x text-warning"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-muted mb-1">Out of Stock</h6>
+                                        <h3 class="mb-0">15</h3>
+                                        <span class="text-danger"><i class="fas fa-arrow-down me-1"></i>2.8%</span>
+                                    </div>
+                                    <div class="bg-danger bg-opacity-10 p-3 rounded-circle">
+                                        <i class="fas fa-times-circle fa-2x text-danger"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-muted mb-1">Categories</h6>
+                                        <h3 class="mb-0">18</h3>
+                                        <span class="text-success"><i class="fas fa-arrow-up me-1"></i>5.3%</span>
+                                    </div>
+                                    <div class="bg-success bg-opacity-10 p-3 rounded-circle">
+                                        <i class="fas fa-list fa-2x text-success"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-          
-          <div class="col-md-6 col-lg-3 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <div>
-                    <h6 class="text-muted mb-1">Categories</h6>
-                    <h3 class="mb-0">18</h3>
-                    <span class="text-success"><i class="fas fa-arrow-up me-1"></i>5.3%</span>
-                  </div>
-                  <div class="bg-success bg-opacity-10 p-3 rounded-circle">
-                    <i class="fas fa-list fa-2x text-success"></i>
-                  </div>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addProductModalLabel">Add New Product</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                 </div>
-              </div>
+                <div class="modal-body">
+                    <form id="addProductForm">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Product Name</label>
+                                <input type="text" class="form-control" placeholder="Enter product name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">SKU</label>
+                                <input type="text" class="form-control" placeholder="SKU-12345">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Category</label>
+                                <select class="form-select">
+                                    <option value="">Select Category</option>
+                                    <option value="Electronics">Electronics</option>
+                                    <option value="Clothing">Clothing</option>
+                                    <option value="Accessories">Accessories</option>
+                                    <option value="Home & Kitchen">Home & Kitchen</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Price ($)</label>
+                                <input type="number" class="form-control" placeholder="0.00" step="0.01" min="0"
+                                       required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Discount Price ($)</label>
+                                <input type="number" class="form-control" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" rows="3" placeholder="Enter product description"></textarea>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Inventory</label>
+                                <input type="number" class="form-control" placeholder="0" min="0" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Weight (kg)</label>
+                                <input type="number" class="form-control" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Status</label>
+                                <select class="form-select">
+                                    <option value="Active">Active</option>
+                                    <option value="Draft">Draft</option>
+                                    <option value="Out of Stock">Out of Stock</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Product Images</label>
+                            <div class="image-upload-container p-4">
+                                <i class="fas fa-cloud-upload-alt fa-3x mb-3 text-muted"></i>
+                                <h5>Drag & Drop Images Here</h5>
+                                <p class="text-muted">or click to browse files</p>
+                                <input type="file" id="productImages" style="display: none;" multiple>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Tags</label>
+                            <input type="text" class="form-control" placeholder="Type tags separated by commas">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">SEO Meta Title</label>
+                            <input type="text" class="form-control" placeholder="SEO Meta Title">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">SEO Meta Description</label>
+                            <textarea class="form-control" rows="2" placeholder="SEO Meta Description"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-custom-primary">Add Product</button>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-  
-  <!-- Add Product Modal -->
-  <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addProductModalLabel">Add New Product</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+
+    <!-- Edit Product Modal -->
+    <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProductForm">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Product Name</label>
+                                <input type="text" class="form-control" placeholder="Enter product name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">SKU</label>
+                                <input type="text" class="form-control" placeholder="SKU-12345">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Category</label>
+                                <select class="form-select">
+                                    <option value="">Select Category</option>
+                                    <option value="Electronics">Electronics</option>
+                                    <option value="Clothing">Clothing</option>
+                                    <option value="Accessories">Accessories</option>
+                                    <option value="Home & Kitchen">Home & Kitchen</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Price ($)</label>
+                                <input type="number" class="form-control" placeholder="0.00" step="0.01" min="0"
+                                       required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Discount Price ($)</label>
+                                <input type="number" class="form-control" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" rows="3" placeholder="Enter product description"></textarea>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Inventory</label>
+                                <input type="number" class="form-control" placeholder="0" min="0" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Weight (kg)</label>
+                                <input type="number" class="form-control" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Status</label>
+                                <select class="form-select">
+                                    <option value="Active">Active</option>
+                                    <option value="Draft">Draft</option>
+                                    <option value="Out of Stock">Out of Stock</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Product Images</label>
+                            <div class="image-upload-container p-4">
+                                <i class="fas fa-cloud-upload-alt fa-3x mb-3 text-muted"></i>
+                                <h5>Drag & Drop Images Here</h5>
+                                <p class="text-muted">or click to browse files</p>
+                                <input type="file" id="productImages" style="display: none;" multiple>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Tags</label>
+                            <input type="text" class="form-control" placeholder="Type tags separated by commas">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">SEO Meta Title</label>
+                            <input type="text" class="form-control" placeholder="SEO Meta Title">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">SEO Meta Description</label>
+                            <textarea class="form-control" rows="2" placeholder="SEO Meta Description"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-custom-primary">Save Changes</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <form id="addProductForm">
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <label class="form-label">Product Name</label>
-                <input type="text" class="form-control" placeholder="Enter product name" required>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">SKU</label>
-                <input type="text" class="form-control" placeholder="SKU-12345">
-              </div>
-            </div>
-            
-            <div class="row mb-3">
-              <div class="col-md-4">
-                <label class="form-label">Category</label>
-                <select class="form-select">
-                  <option value="">Select Category</option>
-                  <option value="Electronics">Electronics</option>
-                  <option value="Clothing">Clothing</option>
-                  <option value="Accessories">Accessories</option>
-                  <option value="Home & Kitchen">Home & Kitchen</option>
-                </select>
-              </div>
-              <div class="col-md-4">
-                <label class="form-label">Price ($)</label>
-                <input type="number" class="form-control" placeholder="0.00" step="0.01" min="0" required>
-              </div>
-              <div class="col-md-4">
-                <label class="form-label">Discount Price ($)</label>
-                <input type="number" class="form-control" placeholder="0.00" step="0.01" min="0">
-              </div>
-            </div>
-            
-            <div class="mb-3">
-              <label class="form-label">Description</label>
-              <textarea class="form-control" rows="3" placeholder="Enter product description"></textarea>
-            </div>
-            
-            <div class="row mb-3">
-              <div class="col-md-4">
-                <label class="form-label">Inventory</label>
-                <input type="number" class="form-control" placeholder="0" min="0" required>
-              </div>
-              <div class="col-md-4">
-                <label class="form-label">Weight (kg)</label>
-                <input type="number" class="form-control" placeholder="0.00" step="0.01" min="0">
-              </div>
-              <div class="col-md-4">
-                <label class="form-label">Status</label>
-                <select class="form-select">
-                  <option value="Active">Active</option>
-                  <option value="Draft">Draft</option>
-                  <option value="Out of Stock">Out of Stock</option>
-                </select>
-              </div>
-            </div>
-            
-            <div class="mb-3">
-              <label class="form-label">Product Images</label>
-              <div class="image-upload-container p-4">
-                <i class="fas fa-cloud-upload-alt fa-3x mb-3 text-muted"></i>
-                <h5>Drag & Drop Images Here</h5>
-                <p class="text-muted">or click to browse files</p>
-                <input type="file" id="productImages" style="display: none;" multiple>
-              </div>
-            </div>
-            
-            <div class="mb-3">
-              <label class="form-label">Tags</label>
-              <input type="text" class="form-control" placeholder="Type tags separated by commas">
-            </div>
-            
-            <div class="mb-3">
-              <label class="form-label">SEO Meta Title</label>
-              <input type="text" class="form-control" placeholder="SEO Meta Title">
-            </div>
-            
-            <div class="mb-3">
-              <label class="form-label">SEO Meta Description</label>
-              <textarea class="form-control" rows="2" placeholder="SEO Meta Description"></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-custom-primary">Add Product</button>
-        </div>
-      </div>
     </div>
-  </div>
-  
-  <!-- Edit Product Modal -->
-  <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">Delete Product</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete "<span id="deleteProductName">Product Name</span>"? This action
+                        cannot be undone.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <form id="editProductForm">
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <label class="form-label">Product Name</label>
-                <input type="text" class="form-control" placeholder="Enter product name" required>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">SKU</label>
-                <input type="text" class="form-control" placeholder="SKU-12345">
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <div class="col-md-4">
-                <label class="form-label">Category</label>
-                <select class="form-select">
-                  <option value="">Select Category</option>
-                  <option value="Electronics">Electronics</option>
-                  <option value="Clothing">Clothing</option>
-                  <option value="Accessories">Accessories</option>
-                  <option value="Home & Kitchen">Home & Kitchen</option>
-                </select>
-              </div>
-              <div class="col-md-4">
-                <label class="form-label">Price ($)</label>
-                <input type="number" class="form-control" placeholder="0.00" step="0.01" min="0" required>
-              </div>
-              <div class="col-md-4">
-                <label class="form-label">Discount Price ($)</label>
-                <input type="number" class="form-control" placeholder="0.00" step="0.01" min="0">
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label">Description</label>
-              <textarea class="form-control" rows="3" placeholder="Enter product description"></textarea>
-            </div>
-
-            <div class="row mb-3">
-              <div class="col-md-4">
-                <label class="form-label">Inventory</label>
-                <input type="number" class="form-control" placeholder="0" min="0" required>
-              </div>
-              <div class="col-md-4">
-                <label class="form-label">Weight (kg)</label>
-                <input type="number" class="form-control" placeholder="0.00" step="0.01" min="0">
-              </div>
-              <div class="col-md-4">
-                <label class="form-label">Status</label>
-                <select class="form-select">
-                  <option value="Active">Active</option>
-                  <option value="Draft">Draft</option>
-                  <option value="Out of Stock">Out of Stock</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label">Product Images</label>
-              <div class="image-upload-container p-4">
-                <i class="fas fa-cloud-upload-alt fa-3x mb-3 text-muted"></i>
-                <h5>Drag & Drop Images Here</h5>
-                <p class="text-muted">or click to browse files</p>
-                <input type="file" id="productImages" style="display: none;" multiple>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label">Tags</label>
-              <input type="text" class="form-control" placeholder="Type tags separated by commas">
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label">SEO Meta Title</label>
-              <input type="text" class="form-control" placeholder="SEO Meta Title">
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label">SEO Meta Description</label>
-              <textarea class="form-control" rows="2" placeholder="SEO Meta Description"></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-custom-primary">Save Changes</button>
-        </div>
-      </div>
     </div>
-  </div>
-  
-  <!-- Delete Confirmation Modal -->
-  <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header bg-danger text-white">
-          <h5 class="modal-title">Delete Product</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>Are you sure you want to delete "<span id="deleteProductName">Product Name</span>"? This action cannot be undone.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Success Toast -->
-  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-    <div id="successToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-header bg-success text-white">
-        <i class="fas fa-check-circle me-2"></i>
-        <strong class="me-auto">Success</strong>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-      <div class="toast-body">
-        Operation completed successfully!
-      </div>
-    </div>
-  </div>
-  
-  <!-- JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // Sample product data
-    const products = [
-      {
-        id: 1,
-        name: "Wireless Bluetooth Headphones",
-        image: "/api/placeholder/400/400",
-        category: "Electronics",
-        price: 89.99,
-        inventory: 45,
-        status: "Active",
-        created: "Mar 02, 2025"
-      },
-      {
-        id: 2,
-        name: "Premium Cotton T-Shirt",
-        image: "/api/placeholder/400/400",
-        category: "Clothing",
-        price: 24.99,
-        inventory: 120,
-        status: "Active",
-        created: "Mar 05, 2025"
-      },
-      {
-        id: 3,
-        name: "Stainless Steel Water Bottle",
-        image: "/api/placeholder/400/400",
-        category: "Accessories",
-        price: 19.99,
-        inventory: 78,
-        status: "Active",
-        created: "Feb 28, 2025"
-      },
-      {
-        id: 4,
-        name: "Smart Watch Series 5",
-        image: "/api/placeholder/400/400",
-        category: "Electronics",
-        price: 199.99,
-        inventory: 12,
-        status: "Low Stock",
-        created: "Feb 20, 2025"
-      },
-      {
-        id: 5,
-        name: "Chef's Kitchen Knife Set",
-        image: "/api/placeholder/400/400",
-        category: "Home & Kitchen",
-        price: 129.99,
-        inventory: 23,
-        status: "Active",
-        created: "Feb 15, 2025"
-      },
-      {
-        id: 6,
-        name: "Leather Wallet",
-        image: "/api/placeholder/400/400",
-        category: "Accessories",
-        price: 49.99,
-        inventory: 0,
-        status: "Out of Stock",
-        created: "Feb 10, 2025"
-      },
-      {
-        id: 7,
-        name: "Smartphone Stand",
-        image: "/api/placeholder/400/400",
-        category: "Electronics",
-        price: 15.99,
-        inventory: 95,
-        status: "Active",
-        created: "Feb 8, 2025"
-      },
-      {
-        id: 8,
-        name: "Wireless Charging Pad",
-        image: "/api/placeholder/400/400",
-        category: "Electronics",
-        price: 29.99,
-        inventory: 8,
-        status: "Low Stock",
-        created: "Feb 5, 2025"
-      },
-      {
-    id: 9,
-    name: "Decorative Throw Pillows",
-    image: "/api/placeholder/400/400",
-    category: "Home & Kitchen",
-    price: 34.99,
-    inventory: 67,
-    status: "Active",
-    created: "Feb 3, 2025"
-  },
-  {
-    id: 10,
-    name: "Fitness Tracker",
-    image: "/api/placeholder/400/400",
-    category: "Electronics",
-    price: 59.99,
-    inventory: 2,
-    status: "Low Stock",
-    created: "Jan 28, 2025"
-  }
-];
 
-// Function to render products
-function renderProducts() {
-  const tableBody = document.getElementById('productTableBody');
-  tableBody.innerHTML = '';
-  
-  products.forEach(product => {
-    const statusClass = product.status === 'Active' ? 'success' : 
-                        product.status === 'Low Stock' ? 'warning' : 'danger';
-    
-    const inventoryClass = product.inventory > 20 ? '' : 
-                          product.inventory > 0 ? 'text-low-stock' : 'text-out-stock';
-    
-    const row = document.createElement('tr');
-    row.innerHTML = `
+    <!-- Success Toast -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="successToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-success text-white">
+                <i class="fas fa-check-circle me-2"></i>
+                <strong class="me-auto">Success</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Operation completed successfully!
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Sample product data
+        const products = [
+            {
+                id: 1,
+                name: "Wireless Bluetooth Headphones",
+                image: "/api/placeholder/400/400",
+                category: "Electronics",
+                price: 89.99,
+                inventory: 45,
+                status: "Active",
+                created: "Mar 02, 2025"
+            },
+            {
+                id: 2,
+                name: "Premium Cotton T-Shirt",
+                image: "/api/placeholder/400/400",
+                category: "Clothing",
+                price: 24.99,
+                inventory: 120,
+                status: "Active",
+                created: "Mar 05, 2025"
+            },
+            {
+                id: 3,
+                name: "Stainless Steel Water Bottle",
+                image: "/api/placeholder/400/400",
+                category: "Accessories",
+                price: 19.99,
+                inventory: 78,
+                status: "Active",
+                created: "Feb 28, 2025"
+            },
+            {
+                id: 4,
+                name: "Smart Watch Series 5",
+                image: "/api/placeholder/400/400",
+                category: "Electronics",
+                price: 199.99,
+                inventory: 12,
+                status: "Low Stock",
+                created: "Feb 20, 2025"
+            },
+            {
+                id: 5,
+                name: "Chef's Kitchen Knife Set",
+                image: "/api/placeholder/400/400",
+                category: "Home & Kitchen",
+                price: 129.99,
+                inventory: 23,
+                status: "Active",
+                created: "Feb 15, 2025"
+            },
+            {
+                id: 6,
+                name: "Leather Wallet",
+                image: "/api/placeholder/400/400",
+                category: "Accessories",
+                price: 49.99,
+                inventory: 0,
+                status: "Out of Stock",
+                created: "Feb 10, 2025"
+            },
+            {
+                id: 7,
+                name: "Smartphone Stand",
+                image: "/api/placeholder/400/400",
+                category: "Electronics",
+                price: 15.99,
+                inventory: 95,
+                status: "Active",
+                created: "Feb 8, 2025"
+            },
+            {
+                id: 8,
+                name: "Wireless Charging Pad",
+                image: "/api/placeholder/400/400",
+                category: "Electronics",
+                price: 29.99,
+                inventory: 8,
+                status: "Low Stock",
+                created: "Feb 5, 2025"
+            },
+            {
+                id: 9,
+                name: "Decorative Throw Pillows",
+                image: "/api/placeholder/400/400",
+                category: "Home & Kitchen",
+                price: 34.99,
+                inventory: 67,
+                status: "Active",
+                created: "Feb 3, 2025"
+            },
+            {
+                id: 10,
+                name: "Fitness Tracker",
+                image: "/api/placeholder/400/400",
+                category: "Electronics",
+                price: 59.99,
+                inventory: 2,
+                status: "Low Stock",
+                created: "Jan 28, 2025"
+            }
+        ];
+
+        // Function to render products
+        function renderProducts() {
+            const tableBody = document.getElementById('productTableBody');
+            tableBody.innerHTML = '';
+
+            products.forEach(product => {
+                const statusClass = product.status === 'Active' ? 'success' :
+                    product.status === 'Low Stock' ? 'warning' : 'danger';
+
+                const inventoryClass = product.inventory > 20 ? '' :
+                    product.inventory > 0 ? 'text-low-stock' : 'text-out-stock';
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
       <td>${product.id}</td>
       <td>
         <div class="d-flex align-items-center">
@@ -942,148 +873,149 @@ function renderProducts() {
         </div>
       </td>
     `;
-    tableBody.appendChild(row);
-  });
-}
+                tableBody.appendChild(row);
+            });
+        }
 
-// Initialize the product table
-document.addEventListener('DOMContentLoaded', function() {
-  renderProducts();
-  
-  // Image upload functionality
-  const imageUploadContainer = document.querySelector('.image-upload-container');
-  const fileInput = document.getElementById('productImages');
-  
-  imageUploadContainer.addEventListener('click', function() {
-    fileInput.click();
-  });
-  
-  // Reset filters button
-  document.getElementById('resetFilters').addEventListener('click', function() {
-    document.getElementById('categoryFilter').value = '';
-    document.getElementById('statusFilter').value = '';
-    document.getElementById('sortBy').value = 'newest';
-    renderProducts();
-  });
-  
-  // Filter change event handlers
-  document.getElementById('categoryFilter').addEventListener('change', filterProducts);
-  document.getElementById('statusFilter').addEventListener('change', filterProducts);
-  document.getElementById('sortBy').addEventListener('change', filterProducts);
-});
+        // Initialize the product table
+        document.addEventListener('DOMContentLoaded', function () {
+            renderProducts();
 
-// Filter products based on selection
-function filterProducts() {
-  const categoryFilter = document.getElementById('categoryFilter').value;
-  const statusFilter = document.getElementById('statusFilter').value;
-  const sortBy = document.getElementById('sortBy').value;
-  
-  // First filter by category and status
-  let filteredProducts = [...products];
-  
-  if (categoryFilter) {
-    filteredProducts = filteredProducts.filter(product => product.category === categoryFilter);
-  }
-  
-  if (statusFilter) {
-    filteredProducts = filteredProducts.filter(product => product.status === statusFilter);
-  }
-  
-  // Then sort the filtered results
-  switch(sortBy) {
-    case 'newest':
-      // Assuming newer products have higher IDs
-      filteredProducts.sort((a, b) => b.id - a.id);
-      break;
-    case 'oldest':
-      filteredProducts.sort((a, b) => a.id - b.id);
-      break;
-    case 'price_high':
-      filteredProducts.sort((a, b) => b.price - a.price);
-      break;
-    case 'price_low':
-      filteredProducts.sort((a, b) => a.price - b.price);
-      break;
-    case 'name_asc':
-      filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
-      break;
-    case 'name_desc':
-      filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
-      break;
-  }
-  
-  // Replace products array with filtered results for rendering
-  products.splice(0, products.length, ...filteredProducts);
-  renderProducts();
-}
+            // Image upload functionality
+            const imageUploadContainer = document.querySelector('.image-upload-container');
+            const fileInput = document.getElementById('productImages');
 
-// Edit product function
-function editProduct(productId) {
-  const product = products.find(p => p.id === productId);
-  if (!product) return;
-  
-  // We would populate the edit form here
-  const editModal = new bootstrap.Modal(document.getElementById('editProductModal'));
-  editModal.show();
-  
-  // TODO: Populate the form fields with product data
-}
+            imageUploadContainer.addEventListener('click', function () {
+                fileInput.click();
+            });
 
-// Delete product function
-function showDeleteModal(productId, productName) {
-  document.getElementById('deleteProductName').textContent = productName;
-  
-  const deleteModal = new bootstrap.Modal(document.getElementById('deleteProductModal'));
-  deleteModal.show();
-  
-  // Set up the confirm delete button
-  document.getElementById('confirmDelete').onclick = function() {
-    deleteProduct(productId);
-    deleteModal.hide();
-  };
-}
+            // Reset filters button
+            document.getElementById('resetFilters').addEventListener('click', function () {
+                document.getElementById('categoryFilter').value = '';
+                document.getElementById('statusFilter').value = '';
+                document.getElementById('sortBy').value = 'newest';
+                renderProducts();
+            });
 
-function deleteProduct(productId) {
-  // Remove the product from the array
-  const index = products.findIndex(p => p.id === productId);
-  if (index !== -1) {
-    products.splice(index, 1);
-    renderProducts();
-    
-    // Show success toast
-    const toast = new bootstrap.Toast(document.getElementById('successToast'));
-    document.querySelector('.toast-body').textContent = 'Product deleted successfully!';
-    toast.show();
-  }
-}
+            // Filter change event handlers
+            document.getElementById('categoryFilter').addEventListener('change', filterProducts);
+            document.getElementById('statusFilter').addEventListener('change', filterProducts);
+            document.getElementById('sortBy').addEventListener('change', filterProducts);
+        });
 
-// Function to show success toast
-function showSuccessToast(message) {
-  const toastElement = document.getElementById('successToast');
-  document.querySelector('.toast-body').textContent = message;
-  const toast = new bootstrap.Toast(toastElement);
-  toast.show();
-}
+        // Filter products based on selection
+        function filterProducts() {
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            const statusFilter = document.getElementById('statusFilter').value;
+            const sortBy = document.getElementById('sortBy').value;
 
-// Add product form submission
-document.getElementById('addProductForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  // In a real app, we would collect form data and add the product
-  // Here we'll just show a success message
-  const addModal = bootstrap.Modal.getInstance(document.getElementById('addProductModal'));
-  addModal.hide();
-  
-  showSuccessToast('Product added successfully!');
-  // In practice, we would also add the new product to the array and re-render
-});
+            // First filter by category and status
+            let filteredProducts = [...products];
 
-// Set up the image upload preview
-document.getElementById('productImages').addEventListener('change', function(e) {
-  // In a real app, we would handle the file upload preview
-  if (e.target.files.length > 0) {
-    showSuccessToast('Images uploaded successfully!');
-  }
-});
-</script>
+            if (categoryFilter) {
+                filteredProducts = filteredProducts.filter(product => product.category === categoryFilter);
+            }
+
+            if (statusFilter) {
+                filteredProducts = filteredProducts.filter(product => product.status === statusFilter);
+            }
+
+            // Then sort the filtered results
+            switch (sortBy) {
+                case 'newest':
+                    // Assuming newer products have higher IDs
+                    filteredProducts.sort((a, b) => b.id - a.id);
+                    break;
+                case 'oldest':
+                    filteredProducts.sort((a, b) => a.id - b.id);
+                    break;
+                case 'price_high':
+                    filteredProducts.sort((a, b) => b.price - a.price);
+                    break;
+                case 'price_low':
+                    filteredProducts.sort((a, b) => a.price - b.price);
+                    break;
+                case 'name_asc':
+                    filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case 'name_desc':
+                    filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
+                    break;
+            }
+
+            // Replace products array with filtered results for rendering
+            products.splice(0, products.length, ...filteredProducts);
+            renderProducts();
+        }
+
+        // Edit product function
+        function editProduct(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            // We would populate the edit form here
+            const editModal = new bootstrap.Modal(document.getElementById('editProductModal'));
+            editModal.show();
+
+            // TODO: Populate the form fields with product data
+        }
+
+        // Delete product function
+        function showDeleteModal(productId, productName) {
+            document.getElementById('deleteProductName').textContent = productName;
+
+            const deleteModal = new bootstrap.Modal(document.getElementById('deleteProductModal'));
+            deleteModal.show();
+
+            // Set up the confirm delete button
+            document.getElementById('confirmDelete').onclick = function () {
+                deleteProduct(productId);
+                deleteModal.hide();
+            };
+        }
+
+        function deleteProduct(productId) {
+            // Remove the product from the array
+            const index = products.findIndex(p => p.id === productId);
+            if (index !== -1) {
+                products.splice(index, 1);
+                renderProducts();
+
+                // Show success toast
+                const toast = new bootstrap.Toast(document.getElementById('successToast'));
+                document.querySelector('.toast-body').textContent = 'Product deleted successfully!';
+                toast.show();
+            }
+        }
+
+        // Function to show success toast
+        function showSuccessToast(message) {
+            const toastElement = document.getElementById('successToast');
+            document.querySelector('.toast-body').textContent = message;
+            const toast = new bootstrap.Toast(toastElement);
+            toast.show();
+        }
+
+        // Add product form submission
+        document.getElementById('addProductForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            // In a real app, we would collect form data and add the product
+            // Here we'll just show a success message
+            const addModal = bootstrap.Modal.getInstance(document.getElementById('addProductModal'));
+            addModal.hide();
+
+            showSuccessToast('Product added successfully!');
+            // In practice, we would also add the new product to the array and re-render
+        });
+
+        // Set up the image upload preview
+        document.getElementById('productImages').addEventListener('change', function (e) {
+            // In a real app, we would handle the file upload preview
+            if (e.target.files.length > 0) {
+                showSuccessToast('Images uploaded successfully!');
+            }
+        });
+    </script>
+{% endblock %}
 </body>
 </html>

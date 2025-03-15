@@ -18,6 +18,7 @@
     </content>
     <orderEntry type="jdk" jdkName="Python 3.10 (ecomm_new)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="bootstrap-datepicker" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />

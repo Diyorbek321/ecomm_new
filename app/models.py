@@ -1,7 +1,75 @@
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.utils.text import slugify
+
 
 # Create your models here.
+class Category(models.Model):
+    # Status choices
+    STATUS_CHOICES = (
+        ('active', 'Active'),
+        ('inactive', 'Inactive'),
+    )
+
+    # Basic Fields
+    name = models.CharField(max_length=100, unique=True)
+    slug = models.SlugField(
+        max_length=100,
+        unique=True,
+        blank=True,
+        help_text="Auto-generated from name if left blank"
+    )
+    parent = models.ForeignKey(
+        'self',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='subcategories',
+        help_text="Parent category, if any"
+    )
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default='active'
+    )
+    description = models.TextField(blank=True, null=True)
+
+    # Image
+    image = models.ImageField(
+        upload_to='categories/',
+        blank=True,
+        null=True,
+        help_text="Recommended size: 200x200px, Max size: 2MB"
+    )
+
+    # SEO Fields
+    meta_title = models.CharField(max_length=200, blank=True, null=True)
+    meta_description = models.TextField(blank=True, null=True)
+    meta_keywords = models.CharField(
+        max_length=200,
+        blank=True,
+        null=True,
+        help_text="Comma-separated keywords"
+    )
+
+    # Timestamps
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        """Auto-generate slug from name if not provided."""
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
+
+
 class Product(models.Model):
     # Status choices for inventory status
     STATUS_CHOICES = (
@@ -13,7 +81,7 @@ class Product(models.Model):
     # Basic Fields
     name = models.CharField(max_length=200)
     sku = models.CharField(max_length=50, unique=True, help_text="Stock Keeping Unit")
-    # category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='products')
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='products')
     price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0)])
     discount_price = models.DecimalField(
         max_digits=10,
@@ -61,6 +129,7 @@ class Product(models.Model):
     def final_price(self):
         """Return the discount price if available, otherwise the regular price."""
         return self.discount_price if self.discount_price is not None else self.price
+
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
