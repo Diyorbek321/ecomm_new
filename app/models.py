@@ -33,7 +33,7 @@ class Category(models.Model):
         default='active'
     )
     description = models.TextField(blank=True, null=True)
-
+    image = models.ImageField(upload_to='categories/')
     # SEO Fields
     meta_title = models.CharField(max_length=200, blank=True, null=True)
     meta_description = models.TextField(blank=True, null=True)
@@ -60,13 +60,7 @@ class Category(models.Model):
         verbose_name = "Category"
         verbose_name_plural = "Categories"
 
-class CategoryImage(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='categories/')
-    is_primary = models.BooleanField(default=False)
 
-    def __str__(self):
-        return f"Image for {self.category.name}"
 
 class Product(models.Model):
     STATUS_CHOICES = (
@@ -82,6 +76,7 @@ class Product(models.Model):
     discount_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     description = models.TextField(blank=True)
     inventory = models.PositiveIntegerField(default=0)
+    image = models.ImageField(upload_to='products/', null=True, blank=True)
     weight = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Active')
     tags = models.CharField(max_length=255, blank=True)
@@ -92,10 +87,3 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-class ProductImage(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='products/')
-    is_primary = models.BooleanField(default=False)
-
-    def __str__(self):
-        return f"Image for {self.product.name}"

@@ -1,5 +1,5 @@
 from django import forms
-from app.models import Category, Product, ProductImage, CategoryImage
+from app.models import Category, Product
 
 
 class CategoryForm(forms.ModelForm):
@@ -7,7 +7,7 @@ class CategoryForm(forms.ModelForm):
         model = Category
         fields = [
             'name', 'slug', 'parent', 'status', 'description',
-             'meta_title', 'meta_description', 'meta_keywords'
+             'meta_title', 'meta_description', 'meta_keywords','image'
         ]
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'id': 'name'}),
@@ -18,6 +18,7 @@ class CategoryForm(forms.ModelForm):
             'meta_title': forms.TextInput(attrs={'class': 'form-control', 'id': 'meta_title'}),
             'meta_description': forms.Textarea(attrs={'class': 'form-control', 'id': 'meta_description', 'rows': '2'}),
             'meta_keywords': forms.TextInput(attrs={'class': 'form-control', 'id': 'meta_keywords'}),
+            'image': forms.FileInput(attrs={'class': 'form-control'}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -33,32 +34,12 @@ class ProductForm(forms.ModelForm):
         fields = [
             'name', 'sku', 'category', 'price', 'discount_price',
             'description', 'inventory', 'weight', 'status', 'tags',
-            'seo_title', 'seo_description'
+            'seo_title', 'seo_description', 'image'
         ]
         widgets = {
             'description': forms.Textarea(attrs={'rows': 3, 'placeholder': 'Enter product description'}),
             'tags': forms.TextInput(attrs={'placeholder': 'Type tags separated by commas'}),
             'seo_description': forms.Textarea(attrs={'rows': 2, 'placeholder': 'SEO Meta Description'}),
+            'image': forms.FileInput(attrs={'class': 'form-control'}),
         }
 
-
-class CategoryImageForm(forms.ModelForm):
-    image = forms.ImageField(
-        required=False,
-        widget=forms.FileInput(attrs={
-            'class': 'd-none',
-            'id': 'image',
-            'accept': 'image/*'
-        })
-    )
-
-    class Meta:
-        model = CategoryImage
-        fields = ['image']
-
-class ProductImageForm(forms.ModelForm):
-    image = forms.ImageField(required=False)
-
-    class Meta:
-        model = ProductImage
-        fields = ['image']

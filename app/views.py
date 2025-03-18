@@ -1,12 +1,13 @@
 from zipfile import error
 
 from django.contrib import messages
+from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView, FormView, UpdateView, ListView
-from app.models import Category, Product, ProductImage, CategoryImage
-from app.forms import CategoryForm, ProductForm, ProductImageForm, CategoryImageForm
+from django.views.generic import TemplateView, CreateView, FormView, UpdateView, ListView, DetailView
+from app.models import Category, Product
+from app.forms import CategoryForm, ProductForm
 import logging
 
 
@@ -18,23 +19,60 @@ class UserDashboard(ListView):
     model = Category
     context_object_name = 'categories'
     template_name = 'ecomm/index.html'
+    paginate_by = 10
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['products'] = Product.objects.all()
+
+        # Get the paginated products
+        products = Product.objects.all()
+        paginator = Paginator(products, self.paginate_by)
+        page_number = self.request.GET.get('page', 1)
+        page_obj = paginator.get_page(page_number)
+
+        context['products'] = page_obj
+        context['is_paginated'] = True
+        context['page_obj'] = page_obj
+
         return context
 
 
-class CategoryView(TemplateView):
+class CategoryView(ListView):
+    model = Product
     template_name = 'ecomm/productlisting.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        category_id = self.request.GET.get('id')
+        if category_id:
+            return Product.objects.filter(category__id=category_id)
+        return Product.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        category_id = self.request.GET.get('id')
+        if category_id:
+            context['category'] = Category.objects.get(id=category_id)
+        return context
 
 
 class Contact(TemplateView):
     template_name = 'ecomm/contact.html'
 
 
-class ProductDetail(TemplateView):
+class ProductDetailView(DetailView):
+    model = Product
     template_name = 'ecomm/productdetail.html'
+    context_object_name = 'product'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Get related products (same category)
+        related_products = Product.objects.filter(
+            category=self.object.category
+        ).exclude(id=self.object.id)[:4]  # Limit to 4 related products
+        context['related_products'] = related_products
+        return context
 
 
 class Cart(TemplateView):
@@ -110,12 +148,12 @@ class AdminCategoryUpdate(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.POST:
-            context['image_form'] = CategoryImageForm(self.request.POST, self.request.FILES)
+            context['image_form'] = CategoryForm(self.request.POST, self.request.FILES)
         else:
             # Check if the category has an existing primary image
             category = self.get_object()
-            existing_image = CategoryImage.objects.filter(category=category, is_primary=True).first()
-            context['image_form'] = CategoryImageForm(instance=existing_image)
+            existing_image = Category.objects.filter(category=category, is_primary=True).first()
+            context['image_form'] = Category(instance=existing_image)
             context['existing_image'] = existing_image
         return context
 
@@ -129,7 +167,7 @@ class AdminCategoryUpdate(UpdateView):
         # Now handle the image form if it has data
         if 'image' in self.request.FILES:
             # Check if there's an existing primary image
-            existing_image = CategoryImage.objects.filter(category=self.object, is_primary=True).first()
+            existing_image = Category.objects.filter(category=self.object, is_primary=True).first()
 
             if existing_image:
                 # Update existing image
@@ -137,7 +175,7 @@ class AdminCategoryUpdate(UpdateView):
                 existing_image.save()
             else:
                 # Create new image
-                category_image = CategoryImage(
+                category_image = Category(
                     category=self.object,
                     image=self.request.FILES['image'],
                     is_primary=True
@@ -171,35 +209,25 @@ class AdminProduct(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['product_form'] = ProductForm()
-        context['image_form'] = ProductImageForm()
+        # Remove the image_form since we're no longer using it
         context['products'] = Product.objects.all()
         return context
 
     def post(self, request, *args, **kwargs):
-        product_form = ProductForm(request.POST)
-        image_form = ProductImageForm(request.POST, request.FILES)
+        # Pass request.FILES to the ProductForm to handle the image upload
+        product_form = ProductForm(request.POST, request.FILES)
 
         if product_form.is_valid():
-            # Save product
+            # Save product (image will be saved automatically as part of the form)
             product = product_form.save()
-
-            # Handle single image upload
-            if 'image' in request.FILES:
-                ProductImage.objects.create(
-                    product=product,
-                    image=request.FILES['image'],
-                    is_primary=True
-                )
-
             messages.success(request, 'Product successfully added!')
             return redirect('admin-product')
         else:
             messages.error(request, 'Error adding product. Please check the form.')
 
-        # If forms are invalid, render the page again
+        # If form is invalid, render the page again
         context = self.get_context_data()
         context['product_form'] = product_form
-        context['image_form'] = image_form
         return render(request, self.template_name, context)
 
 
