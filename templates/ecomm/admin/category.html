@@ -201,90 +201,91 @@
 </head>
 <body>
 {% block content %}
-<!-- Main Container -->
-<div class="d-flex" id="wrapper">
-    <!-- Sidebar -->
-   {% include 'ecomm/admin/sidebar.html' %}
+    <!-- Main Container -->
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        {% include 'ecomm/admin/sidebar.html' %}
 
-    <!-- Page Content -->
-    <div id="content">
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand topbar mb-4 static-top">
-            <div class="container-fluid">
-                <button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <h1 class="h3 mb-0 text-gray-800">Category Management</h1>
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="me-2 d-none d-lg-inline text-gray-600 small">Admin User</span>
-                            <img class="img-profile rounded-circle" src="/api/placeholder/32/32" alt="Admin Profile">
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end shadow animated--grow-in"
-                             aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>
-                                Profile
+        <!-- Page Content -->
+        <div id="content">
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand topbar mb-4 static-top">
+                <div class="container-fluid">
+                    <button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <h1 class="h3 mb-0 text-gray-800">Category Management</h1>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="me-2 d-none d-lg-inline text-gray-600 small">Admin User</span>
+                                <img class="img-profile rounded-circle" src="/api/placeholder/32/32"
+                                     alt="Admin Profile">
                             </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>
-                                Settings
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>
-                                Logout
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-            <div class="row">
-                <!-- Category Tree View -->
-                <div class="col-md-4">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Category Hierarchy</h6>
-                            <div class="dropdown no-arrow">
-                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                   data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            <div class="dropdown-menu dropdown-menu-end shadow animated--grow-in"
+                                 aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>
+                                    Profile
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-end shadow animated--fade-in"
-                                     aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="#" id="expandAllCategories">Expand All</a>
-                                    <a class="dropdown-item" href="#" id="collapseAllCategories">Collapse All</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" id="exportCategoriesCSV">Export to CSV</a>
-                                </div>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>
+                                    Logout
+                                </a>
                             </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group mb-3">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="categorySearch"
-                                           placeholder="Search categories...">
-                                    <button class="btn btn-primary" type="button" id="searchCategoryBtn">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
-                            <ul class="tree-view" id="categoryTree">
-                                <li>
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Category Tree View -->
+                    <div class="col-md-4">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Category Hierarchy</h6>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                       data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end shadow animated--fade-in"
+                                         aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="#" id="expandAllCategories">Expand All</a>
+                                        <a class="dropdown-item" href="#" id="collapseAllCategories">Collapse All</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#" id="exportCategoriesCSV">Export to CSV</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group mb-3">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="categorySearch"
+                                               placeholder="Search categories...">
+                                        <button class="btn btn-primary" type="button" id="searchCategoryBtn">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <ul class="tree-view" id="categoryTree">
+                                    <li>
                                         <span class="tree-toggle" data-bs-toggle="collapse"
                                               data-bs-target="#electronics">
                                             <i class="fas fa-caret-right"></i>
                                         </span>
-                                    <span class="fw-bold">Electronics</span>
-                                    <span class="badge bg-info rounded-pill ms-2">42</span>
-                                    <span class="float-end">
+                                        <span class="fw-bold">Electronics</span>
+                                        <span class="badge bg-info rounded-pill ms-2">42</span>
+                                        <span class="float-end">
                                             <button class="btn btn-sm btn-outline-primary me-1"
                                                     onclick="editCategory('electronics', 'Electronics')">
                                                 <i class="fas fa-edit"></i>
@@ -295,15 +296,15 @@
                                             </button>
                                         </span>
 
-                                    <ul class="collapse" id="electronics">
-                                        <li>
+                                        <ul class="collapse" id="electronics">
+                                            <li>
                                                 <span class="tree-toggle" data-bs-toggle="collapse"
                                                       data-bs-target="#smartphones">
                                                     <i class="fas fa-caret-right"></i>
                                                 </span>
-                                            <span>Smartphones</span>
-                                            <span class="badge bg-info rounded-pill ms-2">15</span>
-                                            <span class="float-end">
+                                                <span>Smartphones</span>
+                                                <span class="badge bg-info rounded-pill ms-2">15</span>
+                                                <span class="float-end">
                                                     <button class="btn btn-sm btn-outline-primary me-1"
                                                             onclick="editCategory('smartphones', 'Smartphones')">
                                                         <i class="fas fa-edit"></i>
@@ -314,11 +315,11 @@
                                                     </button>
                                                 </span>
 
-                                            <ul class="collapse" id="smartphones">
-                                                <li>
-                                                    <span class="ms-3">Android</span>
-                                                    <span class="badge bg-info rounded-pill ms-2">8</span>
-                                                    <span class="float-end">
+                                                <ul class="collapse" id="smartphones">
+                                                    <li>
+                                                        <span class="ms-3">Android</span>
+                                                        <span class="badge bg-info rounded-pill ms-2">8</span>
+                                                        <span class="float-end">
                                                             <button class="btn btn-sm btn-outline-primary me-1"
                                                                     onclick="editCategory('android', 'Android')">
                                                                 <i class="fas fa-edit"></i>
@@ -328,11 +329,11 @@
                                                                 <i class="fas fa-trash"></i>
                                                             </button>
                                                         </span>
-                                                </li>
-                                                <li>
-                                                    <span class="ms-3">iOS</span>
-                                                    <span class="badge bg-info rounded-pill ms-2">7</span>
-                                                    <span class="float-end">
+                                                    </li>
+                                                    <li>
+                                                        <span class="ms-3">iOS</span>
+                                                        <span class="badge bg-info rounded-pill ms-2">7</span>
+                                                        <span class="float-end">
                                                             <button class="btn btn-sm btn-outline-primary me-1"
                                                                     onclick="editCategory('ios', 'iOS')">
                                                                 <i class="fas fa-edit"></i>
@@ -342,17 +343,17 @@
                                                                 <i class="fas fa-trash"></i>
                                                             </button>
                                                         </span>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
                                                 <span class="tree-toggle" data-bs-toggle="collapse"
                                                       data-bs-target="#laptops">
                                                     <i class="fas fa-caret-right"></i>
                                                 </span>
-                                            <span>Laptops</span>
-                                            <span class="badge bg-info rounded-pill ms-2">12</span>
-                                            <span class="float-end">
+                                                <span>Laptops</span>
+                                                <span class="badge bg-info rounded-pill ms-2">12</span>
+                                                <span class="float-end">
                                                     <button class="btn btn-sm btn-outline-primary me-1"
                                                             onclick="editCategory('laptops', 'Laptops')">
                                                         <i class="fas fa-edit"></i>
@@ -363,11 +364,11 @@
                                                     </button>
                                                 </span>
 
-                                            <ul class="collapse" id="laptops">
-                                                <li>
-                                                    <span class="ms-3">Gaming</span>
-                                                    <span class="badge bg-info rounded-pill ms-2">5</span>
-                                                    <span class="float-end">
+                                                <ul class="collapse" id="laptops">
+                                                    <li>
+                                                        <span class="ms-3">Gaming</span>
+                                                        <span class="badge bg-info rounded-pill ms-2">5</span>
+                                                        <span class="float-end">
                                                             <button class="btn btn-sm btn-outline-primary me-1"
                                                                     onclick="editCategory('gaming', 'Gaming')">
                                                                 <i class="fas fa-edit"></i>
@@ -377,11 +378,11 @@
                                                                 <i class="fas fa-trash"></i>
                                                             </button>
                                                         </span>
-                                                </li>
-                                                <li>
-                                                    <span class="ms-3">Business</span>
-                                                    <span class="badge bg-info rounded-pill ms-2">7</span>
-                                                    <span class="float-end">
+                                                    </li>
+                                                    <li>
+                                                        <span class="ms-3">Business</span>
+                                                        <span class="badge bg-info rounded-pill ms-2">7</span>
+                                                        <span class="float-end">
                                                             <button class="btn btn-sm btn-outline-primary me-1"
                                                                     onclick="editCategory('business', 'Business')">
                                                                 <i class="fas fa-edit"></i>
@@ -391,18 +392,18 @@
                                                                 <i class="fas fa-trash"></i>
                                                             </button>
                                                         </span>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="mt-2">
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="mt-2">
                                         <span class="tree-toggle" data-bs-toggle="collapse" data-bs-target="#clothing">
                                             <i class="fas fa-caret-right"></i>
                                         </span>
-                                    <span class="fw-bold">Clothing</span>
-                                    <span class="badge bg-info rounded-pill ms-2">35</span>
-                                    <span class="float-end">
+                                        <span class="fw-bold">Clothing</span>
+                                        <span class="badge bg-info rounded-pill ms-2">35</span>
+                                        <span class="float-end">
                                             <button class="btn btn-sm btn-outline-primary me-1"
                                                     onclick="editCategory('clothing', 'Clothing')">
                                                 <i class="fas fa-edit"></i>
@@ -413,11 +414,11 @@
                                             </button>
                                         </span>
 
-                                    <ul class="collapse" id="clothing">
-                                        <li>
-                                            <span>Men</span>
-                                            <span class="badge bg-info rounded-pill ms-2">18</span>
-                                            <span class="float-end">
+                                        <ul class="collapse" id="clothing">
+                                            <li>
+                                                <span>Men</span>
+                                                <span class="badge bg-info rounded-pill ms-2">18</span>
+                                                <span class="float-end">
                                                     <button class="btn btn-sm btn-outline-primary me-1"
                                                             onclick="editCategory('men', 'Men')">
                                                         <i class="fas fa-edit"></i>
@@ -427,11 +428,11 @@
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </span>
-                                        </li>
-                                        <li>
-                                            <span>Women</span>
-                                            <span class="badge bg-info rounded-pill ms-2">17</span>
-                                            <span class="float-end">
+                                            </li>
+                                            <li>
+                                                <span>Women</span>
+                                                <span class="badge bg-info rounded-pill ms-2">17</span>
+                                                <span class="float-end">
                                                     <button class="btn btn-sm btn-outline-primary me-1"
                                                             onclick="editCategory('women', 'Women')">
                                                         <i class="fas fa-edit"></i>
@@ -441,16 +442,16 @@
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </span>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="mt-2">
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="mt-2">
                                         <span class="tree-toggle" data-bs-toggle="collapse" data-bs-target="#home">
                                             <i class="fas fa-caret-right"></i>
                                         </span>
-                                    <span class="fw-bold">Home & Garden</span>
-                                    <span class="badge bg-info rounded-pill ms-2">28</span>
-                                    <span class="float-end">
+                                        <span class="fw-bold">Home & Garden</span>
+                                        <span class="badge bg-info rounded-pill ms-2">28</span>
+                                        <span class="float-end">
                                             <button class="btn btn-sm btn-outline-primary me-1"
                                                     onclick="editCategory('home', 'Home & Garden')">
                                                 <i class="fas fa-edit"></i>
@@ -461,11 +462,11 @@
                                             </button>
                                         </span>
 
-                                    <ul class="collapse" id="home">
-                                        <li>
-                                            <span>Furniture</span>
-                                            <span class="badge bg-info rounded-pill ms-2">12</span>
-                                            <span class="float-end">
+                                        <ul class="collapse" id="home">
+                                            <li>
+                                                <span>Furniture</span>
+                                                <span class="badge bg-info rounded-pill ms-2">12</span>
+                                                <span class="float-end">
                                                     <button class="btn btn-sm btn-outline-primary me-1"
                                                             onclick="editCategory('furniture', 'Furniture')">
                                                         <i class="fas fa-edit"></i>
@@ -475,11 +476,11 @@
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </span>
-                                        </li>
-                                        <li>
-                                            <span>Garden</span>
-                                            <span class="badge bg-info rounded-pill ms-2">16</span>
-                                            <span class="float-end">
+                                            </li>
+                                            <li>
+                                                <span>Garden</span>
+                                                <span class="badge bg-info rounded-pill ms-2">16</span>
+                                                <span class="float-end">
                                                     <button class="btn btn-sm btn-outline-primary me-1"
                                                             onclick="editCategory('garden', 'Garden')">
                                                         <i class="fas fa-edit"></i>
@@ -489,170 +490,172 @@
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </span>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
 
-                            <div class="text-center mt-3">
-                                <button class="btn btn-success" data-bs-toggle="modal"
-                                        data-bs-target="#addCategoryModal">
-                                    <i class="fas fa-plus me-1"></i> Add Category
-                                </button>
+                                <div class="text-center mt-3">
+                                    <button class="btn btn-success" data-bs-toggle="modal"
+                                            data-bs-target="#addCategoryModal">
+                                        <i class="fas fa-plus me-1"></i> Add Category
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Category List -->
-                <div class="col-md-8">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">All Categories</h6>
-                            <div class="dropdown no-arrow">
-                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                   data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end shadow animated--fade-in"
-                                     aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="#" id="bulkActivate">Bulk Activate</a>
-                                    <a class="dropdown-item" href="#" id="bulkDeactivate">Bulk Deactivate</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" id="bulkDelete">Bulk Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="categoryTableSearch"
-                                               placeholder="Search categories...">
-                                        <button class="btn btn-primary" type="button">
-                                            <i class="fas fa-search"></i>
-                                        </button>
+                    <!-- Category List -->
+                    <div class="col-md-8">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">All Categories</h6>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                       data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end shadow animated--fade-in"
+                                         aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="#" id="bulkActivate">Bulk Activate</a>
+                                        <a class="dropdown-item" href="#" id="bulkDeactivate">Bulk Deactivate</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#" id="bulkDelete">Bulk Delete</a>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <select class="form-select" id="statusFilter">
-                                        <option value="all">All Status</option>
-                                        <option value="active">Active</option>
-                                        <option value="inactive">Inactive</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <select class="form-select" id="sortFilter">
-                                        <option value="name_asc">Name (A-Z)</option>
-                                        <option value="name_desc">Name (Z-A)</option>
-                                        <option value="products_desc">Most Products</option>
-                                        <option value="products_asc">Least Products</option>
-                                    </select>
-                                </div>
                             </div>
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="categoryTableSearch"
+                                                   placeholder="Search categories...">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select class="form-select" id="statusFilter">
+                                            <option value="all">All Status</option>
+                                            <option value="active">Active</option>
+                                            <option value="inactive">Inactive</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select class="form-select" id="sortFilter">
+                                            <option value="name_asc">Name (A-Z)</option>
+                                            <option value="name_desc">Name (Z-A)</option>
+                                            <option value="products_desc">Most Products</option>
+                                            <option value="products_asc">Least Products</option>
+                                        </select>
+                                    </div>
+                                </div>
 
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover" id="categoryTable" width="100%"
-                                       cellspacing="0">
-                                    <thead>
-                                    <tr>
-                                        <th width="30px">
-                                            <input type="checkbox" id="selectAll">
-                                        </th>
-                                        <th width="50px"></th>
-                                        <th>Category Name</th>
-                                        <th>Parent</th>
-                                        <th>Products</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                    </thead>
-
-                                    <tbody>
-                                    {% for category in categories %}
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover" id="categoryTable" width="100%"
+                                           cellspacing="0">
+                                        <thead>
                                         <tr>
-                                            <td><input type="checkbox" class="category-checkbox"
-                                                       value="{{ category.pk }}"></td>
-                                            <td>
-                                                {# <img src="{% if category.image %}{{ category.image.url }}{% else %}{% static 'images/placeholder.png' %}{% endif %}" #}
-                                                {#      class="cat-img-preview" alt="{{ category.name }}" style="width: 40px; height: 40px;"> #}
-                                            </td>
-                                            <td>{{ category.name }}</td>
-                                            <td>{{ category.parent.name|default:"None" }}</td>
-                                            <td>{{ category.products.count }}</td>
-                                            <!-- Assumes related_name='products' -->
-                                            <td>
+                                            <th width="30px">
+                                                <input type="checkbox" id="selectAll">
+                                            </th>
+                                            <th width="50px"></th>
+                                            <th>Category Name</th>
+                                            <th>Parent</th>
+                                            <th>Products</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        {% for category in categories %}
+                                            <tr>
+                                                <td><input type="checkbox" class="category-checkbox"
+                                                           value="{{ category.pk }}"></td>
+                                                <td>
+                                                    {# <img src="{% if category.image %}{{ category.image.url }}{% else %}{% static 'images/placeholder.png' %}{% endif %}" #}
+                                                    {#      class="cat-img-preview" alt="{{ category.name }}" style="width: 40px; height: 40px;"> #}
+                                                </td>
+                                                <td>{{ category.name }}</td>
+                                                <td>{{ category.parent.name|default:"None" }}</td>
+                                                <td>{{ category.products.count }}</td>
+                                                <!-- Assumes related_name='products' -->
+                                                <td>
                 <span class="badge {% if category.status == 'active' %}bg-success{% else %}bg-danger{% endif %}">
                     {{ category.status|capfirst }}
                 </span>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#addCategoryModal"
-                                                        onclick="openEditModal('{% url 'admin-category-update' category.pk %}')">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-info"
-                                                        onclick="viewCategory('{{ category.slug }}')">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger"
-                                                        onclick="deleteCategory('{{ category.slug }}')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    {% empty %}
-                                        <tr>
-                                            <td colspan="7" class="text-center">No categories found.</td>
-                                        </tr>
-                                    {% endfor %}
-                                    </tbody>
-
-                                </table>
-                            </div>
-
-                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                <div>
-                                    <span>Showing {{ page_obj.start_index }} to {{ page_obj.end_index }} of {{ paginator.count }} entries</span>
-                                </div>
-                                <nav aria-label="Page navigation">
-                                    <ul class="pagination">
-                                        {% if page_obj.has_previous %}
-                                            <li class="page-item">
-                                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
-                                                   aria-label="Previous">
-                                                    <span aria-hidden="true">«</span>
-                                                </a>
-                                            </li>
-                                        {% else %}
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="#" aria-label="Previous">
-                                                    <span aria-hidden="true">«</span>
-                                                </a>
-                                            </li>
-                                        {% endif %}
-                                        {% for num in page_obj.paginator.page_range %}
-                                            <li class="page-item {% if page_obj.number == num %}active{% endif %}">
-                                                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-                                            </li>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                                            data-bs-target="#addCategoryModal"
+                                                            onclick="openEditModal('{% url 'admin-category-update' category.pk %}')">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-info"
+                                                            onclick="viewCategory('{{ category.slug }}')">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-danger"
+                                                            onclick="deleteCategory('{{ category.slug }}')">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        {% empty %}
+                                            <tr>
+                                                <td colspan="7" class="text-center">No categories found.</td>
+                                            </tr>
                                         {% endfor %}
-                                        {% if page_obj.has_next %}
-                                            <li class="page-item">
-                                                <a class="page-link" href="?page={{ page_obj.next_page_number }}"
-                                                   aria-label="Next">
-                                                    <span aria-hidden="true">»</span>
-                                                </a>
-                                            </li>
-                                        {% else %}
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="#" aria-label="Next">
-                                                    <span aria-hidden="true">»</span>
-                                                </a>
-                                            </li>
-                                        {% endif %}
-                                    </ul>
-                                </nav>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <div>
+                                        <span>Showing {{ page_obj.start_index }} to {{ page_obj.end_index }} of {{ paginator.count }} entries</span>
+                                    </div>
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination">
+                                            {% if page_obj.has_previous %}
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                       href="?page={{ page_obj.previous_page_number }}"
+                                                       aria-label="Previous">
+                                                        <span aria-hidden="true">«</span>
+                                                    </a>
+                                                </li>
+                                            {% else %}
+                                                <li class="page-item disabled">
+                                                    <a class="page-link" href="#" aria-label="Previous">
+                                                        <span aria-hidden="true">«</span>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                            {% for num in page_obj.paginator.page_range %}
+                                                <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                                                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                                </li>
+                                            {% endfor %}
+                                            {% if page_obj.has_next %}
+                                                <li class="page-item">
+                                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}"
+                                                       aria-label="Next">
+                                                        <span aria-hidden="true">»</span>
+                                                    </a>
+                                                </li>
+                                            {% else %}
+                                                <li class="page-item disabled">
+                                                    <a class="page-link" href="#" aria-label="Next">
+                                                        <span aria-hidden="true">»</span>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -660,99 +663,99 @@
             </div>
         </div>
     </div>
-</div>
 
-<!-- Add Category Modal -->
-<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addCategoryModalLabel">Add New Category</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="POST" action="{% url 'admin-category-add' %}" id="addCategoryForm"
-                      enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {% if form.errors %}
-                        <div class="alert alert-danger">
-                            Please correct the errors below:
-                            <ul>
-                                {% for field in form %}
-                                    {% for error in field.errors %}
-                                        <li>{{ field.label }}: {{ error }}</li>
+    <!-- Add Category Modal -->
+    <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCategoryModalLabel">Add New Category</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{% url 'admin-category-add' %}" id="addCategoryForm"
+                          enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                Please correct the errors below:
+                                <ul>
+                                    {% for field in form %}
+                                        {% for error in field.errors %}
+                                            <li>{{ field.label }}: {{ error }}</li>
+                                        {% endfor %}
                                     {% endfor %}
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    {% endif %}
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="name" class="form-label">Category Name *</label>
-                            {{ form.name }}
-                            <div class="invalid-feedback">
-                                {% if form.name.errors %}
-                                    {{ form.name.errors|join:" " }}
-                                {% else %}
-                                    Category name is required
+                                </ul>
+                            </div>
+                        {% endif %}
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">Category Name *</label>
+                                {{ form.name }}
+                                <div class="invalid-feedback">
+                                    {% if form.name.errors %}
+                                        {{ form.name.errors|join:" " }}
+                                    {% else %}
+                                        Category name is required
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="slug" class="form-label">Slug</label>
+                                {{ form.slug }}
+                                <small class="text-muted">Leave blank to auto-generate from name</small>
+                                {% if form.slug.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.slug.errors|join:" " }}
+                                    </div>
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="slug" class="form-label">Slug</label>
-                            {{ form.slug }}
-                            <small class="text-muted">Leave blank to auto-generate from name</small>
-                            {% if form.slug.errors %}
-                                <div class="invalid-feedback d-block">
-                                    {{ form.slug.errors|join:" " }}
-                                </div>
-                            {% endif %}
-                        </div>
-                    </div>
 
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="parent" class="form-label">Parent Category</label>
-                            {{ form.parent }}
-                            {% if form.parent.errors %}
-                                <div class="invalid-feedback d-block">
-                                    {{ form.parent.errors|join:" " }}
-                                </div>
-                            {% endif %}
-                        </div>
-                        <div class="col-md-6">
-                            <label for="status" class="form-label">Status</label>
-                            {{ form.status }}
-                            {% if form.status.errors %}
-                                <div class="invalid-feedback d-block">
-                                    {{ form.status.errors|join:" " }}
-                                </div>
-                            {% endif %}
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Description</label>
-                        {{ form.description }}
-                        {% if form.description.errors %}
-                            <div class="invalid-feedback d-block">
-                                {{ form.description.errors|join:" " }}
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="parent" class="form-label">Parent Category</label>
+                                {{ form.parent }}
+                                {% if form.parent.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.parent.errors|join:" " }}
+                                    </div>
+                                {% endif %}
                             </div>
-                        {% endif %}
-                    </div>
+                            <div class="col-md-6">
+                                <label for="status" class="form-label">Status</label>
+                                {{ form.status }}
+                                {% if form.status.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.status.errors|join:" " }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
 
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="image" class="form-label">Category Image</label>
-                            <div class="image-dropzone" id="categoryImageDropzone">
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            {{ form.description }}
+                            {% if form.description.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.description.errors|join:" " }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="image" class="form-label">Category Image</label>
+                                <div class="image-dropzone" id="categoryImageDropzone">
                                 <i class="fas fa-cloud-upload-alt fa-2x mb-2"></i>
                                 <p>Drag & drop your image here or click to browse</p>
-                                {{ form.image }}
+                                {{ image_form.image }}  <!-- Change form.image to image_form.image -->
                             </div>
                             <small class="text-muted">Recommended size: 200x200px. Max size: 2MB</small>
-                            {% if form.image.errors %}
+                            {% if image_form.image.errors %}<!-- Change form.image.errors to image_form.image.errors -->
                                 <div class="invalid-feedback d-block">
-                                    {{ form.image.errors|join:" " }}
+                                    {{ image_form.image.errors|join:" " }}
                                 </div>
                             {% endif %}
                         </div>
@@ -762,42 +765,42 @@
                                 {#                                <img src="{% static 'images/placeholder.png' %}" class="img-fluid" alt="Category Image Preview" id="imagePreviewImg">#}
                             </div>
                         </div>
-                    </div>
+                </div>
 
-                    <div class="mb-3">
-                        <label class="form-label">SEO Settings</label>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="mb-3">
-                                    <label for="meta_title" class="form-label">Meta Title</label>
-                                    {{ form.meta_title }}
-                                    {% if form.meta_title.errors %}
-                                        <div class="invalid-feedback d-block">
-                                            {{ form.meta_title.errors|join:" " }}
-                                        </div>
-                                    {% endif %}
-                                </div>
-                                <div class="mb-3">
-                                    <label for="meta_description" class="form-label">Meta Description</label>
-                                    {{ form.meta_description }}
-                                    {% if form.meta_description.errors %}
-                                        <div class="invalid-feedback d-block">
-                                            {{ form.meta_description.errors|join:" " }}
-                                        </div>
-                                    {% endif %}
-                                </div>
-                                <div class="mb-3">
-                                    <label for="meta_keywords" class="form-label">Meta Keywords</label>
-                                    {{ form.meta_keywords }}
-                                    {% if form.meta_keywords.errors %}
-                                        <div class="invalid-feedback d-block">
-                                            {{ form.meta_keywords.errors|join:" " }}
-                                        </div>
-                                    {% endif %}
-                                </div>
+                <div class="mb-3">
+                    <label class="form-label">SEO Settings</label>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="meta_title" class="form-label">Meta Title</label>
+                                {{ form.meta_title }}
+                                {% if form.meta_title.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.meta_title.errors|join:" " }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="mb-3">
+                                <label for="meta_description" class="form-label">Meta Description</label>
+                                {{ form.meta_description }}
+                                {% if form.meta_description.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.meta_description.errors|join:" " }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="mb-3">
+                                <label for="meta_keywords" class="form-label">Meta Keywords</label>
+                                {{ form.meta_keywords }}
+                                {% if form.meta_keywords.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.meta_keywords.errors|join:" " }}
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
+                </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -807,528 +810,534 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
 
-<!-- Edit Category Modal -->
-<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addCategoryModalLabel">
-                    {% if object %}Edit Category{% else %}Add New Category{% endif %}
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="POST" action="" id="addCategoryForm" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {% if form.errors %}
-                        <div class="alert alert-danger">
-                            Please correct the errors below:
-                            <ul>
-                                {% for field in form %}
-                                    {% for error in field.errors %}
-                                        <li>{{ field.label }}: {{ error }}</li>
+    <!-- Edit Category Modal -->
+    <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCategoryModalLabel">
+                        {% if object %}Edit Category{% else %}Add New Category{% endif %}
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="" id="addCategoryForm" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                Please correct the errors below:
+                                <ul>
+                                    {% for field in form %}
+                                        {% for error in field.errors %}
+                                            <li>{{ field.label }}: {{ error }}</li>
+                                        {% endfor %}
                                     {% endfor %}
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    {% endif %}
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="name" class="form-label">Category Name *</label>
-                            {{ form.name }}
-                            <div class="invalid-feedback">
-                                {% if form.name.errors %}
-                                    {{ form.name.errors|join:" " }}
-                                {% else %}
-                                    Category name is required
+                                </ul>
+                            </div>
+                        {% endif %}
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">Category Name *</label>
+                                {{ form.name }}
+                                <div class="invalid-feedback">
+                                    {% if form.name.errors %}
+                                        {{ form.name.errors|join:" " }}
+                                    {% else %}
+                                        Category name is required
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="slug" class="form-label">Slug</label>
+                                {{ form.slug }}
+                                <small class="text-muted">Leave blank to auto-generate from name</small>
+                                {% if form.slug.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.slug.errors|join:" " }}
+                                    </div>
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="slug" class="form-label">Slug</label>
-                            {{ form.slug }}
-                            <small class="text-muted">Leave blank to auto-generate from name</small>
-                            {% if form.slug.errors %}
-                                <div class="invalid-feedback d-block">
-                                    {{ form.slug.errors|join:" " }}
-                                </div>
-                            {% endif %}
-                        </div>
-                    </div>
 
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="parent" class="form-label">Parent Category</label>
-                            {{ form.parent }}
-                            {% if form.parent.errors %}
-                                <div class="invalid-feedback d-block">
-                                    {{ form.parent.errors|join:" " }}
-                                </div>
-                            {% endif %}
-                        </div>
-                        <div class="col-md-6">
-                            <label for="status" class="form-label">Status</label>
-                            {{ form.status }}
-                            {% if form.status.errors %}
-                                <div class="invalid-feedback d-block">
-                                    {{ form.status.errors|join:" " }}
-                                </div>
-                            {% endif %}
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Description</label>
-                        {{ form.description }}
-                        {% if form.description.errors %}
-                            <div class="invalid-feedback d-block">
-                                {{ form.description.errors|join:" " }}
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="parent" class="form-label">Parent Category</label>
+                                {{ form.parent }}
+                                {% if form.parent.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.parent.errors|join:" " }}
+                                    </div>
+                                {% endif %}
                             </div>
-                        {% endif %}
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="image" class="form-label">Category Image</label>
-                            <div class="image-dropzone" id="categoryImageDropzone">
-                                <i class="fas fa-cloud-upload-alt fa-2x mb-2"></i>
-                                <p>Drag & drop your image here or click to browse</p>
-                                {{ form.image }}
-                            </div>
-                            <small class="text-muted">Recommended size: 200x200px. Max size: 2MB</small>
-                            {% if form.image.errors %}
-                                <div class="invalid-feedback d-block">
-                                    {{ form.image.errors|join:" " }}
-                                </div>
-                            {% endif %}
-                            {% if object.image %}
-                                <small>Current: <img src="{{ object.image.url }}" alt="Current Image"
-                                                     style="max-width: 50px;"></small>
-                            {% endif %}
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Preview</label>
-                            <div class="text-center p-3 border rounded" id="imagePreview">
-                                {#                                <img src="{% if object.image %}{{ object.image.url }}{% else %}{% static 'images/placeholder.png' %}{% endif %}"#}
-                                class="img-fluid" alt="Category Image Preview" id="imagePreviewImg">
+                            <div class="col-md-6">
+                                <label for="status" class="form-label">Status</label>
+                                {{ form.status }}
+                                {% if form.status.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.status.errors|join:" " }}
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
-                    </div>
 
-                    <div class="mb-3">
-                        <label class="form-label">SEO Settings</label>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="mb-3">
-                                    <label for="meta_title" class="form-label">Meta Title</label>
-                                    {{ form.meta_title }}
-                                    {% if form.meta_title.errors %}
-                                        <div class="invalid-feedback d-block">
-                                            {{ form.meta_title.errors|join:" " }}
-                                        </div>
-                                    {% endif %}
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            {{ form.description }}
+                            {% if form.description.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.description.errors|join:" " }}
                                 </div>
-                                <div class="mb-3">
-                                    <label for="meta_description" class="form-label">Meta Description</label>
-                                    {{ form.meta_description }}
-                                    {% if form.meta_description.errors %}
-                                        <div class="invalid-feedback d-block">
-                                            {{ form.meta_description.errors|join:" " }}
-                                        </div>
-                                    {% endif %}
+                            {% endif %}
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="image" class="form-label">Category Image</label>
+                                <div class="image-dropzone" id="categoryImageDropzone">
+                                    <i class="fas fa-cloud-upload-alt fa-2x mb-2"></i>
+                                    <p>Drag & drop your image here or click to browse</p>
+                                    {{ form.image }}
                                 </div>
-                                <div class="mb-3">
-                                    <label for="meta_keywords" class="form-label">Meta Keywords</label>
-                                    {{ form.meta_keywords }}
-                                    {% if form.meta_keywords.errors %}
-                                        <div class="invalid-feedback d-block">
-                                            {{ form.meta_keywords.errors|join:" " }}
-                                        </div>
-                                    {% endif %}
+                                <small class="text-muted">Recommended size: 200x200px. Max size: 2MB</small>
+                                {% if form.image.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.image.errors|join:" " }}
+                                    </div>
+                                {% endif %}
+                                {% if object.image %}
+                                    <small>Current: <img src="{{ object.image.url }}" alt="Current Image"
+                                                         style="max-width: 50px;"></small>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Preview</label>
+                                <div class="text-center p-3 border rounded" id="imagePreview">
+                                    {#                                <img src="{% if object.image %}{{ object.image.url }}{% else %}{% static 'images/placeholder.png' %}{% endif %}"#}
+                                    class="img-fluid" alt="Category Image Preview" id="imagePreviewImg">
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary" form="addCategoryForm" id="saveCategory">
-                    {% if object %}Update Category{% else %}Save Category{% endif %}
-                </button>
+
+                        <div class="mb-3">
+                            <label class="form-label">SEO Settings</label>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="meta_title" class="form-label">Meta Title</label>
+                                        {{ form.meta_title }}
+                                        {% if form.meta_title.errors %}
+                                            <div class="invalid-feedback d-block">
+                                                {{ form.meta_title.errors|join:" " }}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="meta_description" class="form-label">Meta Description</label>
+                                        {{ form.meta_description }}
+                                        {% if form.meta_description.errors %}
+                                            <div class="invalid-feedback d-block">
+                                                {{ form.meta_description.errors|join:" " }}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="meta_keywords" class="form-label">Meta Keywords</label>
+                                        {{ form.meta_keywords }}
+                                        {% if form.meta_keywords.errors %}
+                                            <div class="invalid-feedback d-block">
+                                                {{ form.meta_keywords.errors|join:" " }}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" form="addCategoryForm" id="saveCategory">
+                        {% if object %}Update Category{% else %}Save Category{% endif %}
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- View Category Modal -->
-<div class="modal fade" id="viewCategoryModal" tabindex="-1" aria-labelledby="viewCategoryModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="viewCategoryModalLabel">Category Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-4 text-center">
-                        <img src="/api/placeholder/200/200" class="img-fluid rounded mb-3" id="viewCategoryImage"
-                             alt="Category Image">
-                    </div>
-                    <div class="col-md-8">
-                        <h4 id="viewCategoryName">Category Name</h4>
-                        <p id="viewCategoryDescription">Category Description</p>
+    <!-- View Category Modal -->
+    <div class="modal fade" id="viewCategoryModal" tabindex="-1" aria-labelledby="viewCategoryModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewCategoryModalLabel">Category Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <img src="/api/placeholder/200/200" class="img-fluid rounded mb-3" id="viewCategoryImage"
+                                 alt="Category Image">
+                        </div>
+                        <div class="col-md-8">
+                            <h4 id="viewCategoryName">Category Name</h4>
+                            <p id="viewCategoryDescription">Category Description</p>
 
-                        <div class="row mt-3">
-                            <div class="col-md-6">
-                                <p><strong>Status:</strong> <span class="badge bg-success" id="viewCategoryStatus">Active</span>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <p><strong>Status:</strong> <span class="badge bg-success" id="viewCategoryStatus">Active</span>
+                                    </p>
+                                    <p><strong>Parent Category:</strong> <span id="viewCategoryParent">None</span></p>
+                                    <p><strong>Products:</strong> <span id="viewCategoryProducts">0</span></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Created:</strong> <span id="viewCategoryCreated">Jan 1, 2023</span></p>
+                                    <p><strong>Last Updated:</strong> <span id="viewCategoryUpdated">Jan 15, 2023</span>
+                                    </p>
+                                    <p><strong>Slug:</strong> <span id="viewCategorySlug">category-slug</span></p>
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                <h5>SEO Information</h5>
+                                <p><strong>Meta Title:</strong> <span id="viewMetaTitle">Category Meta Title</span></p>
+                                <p><strong>Meta Description:</strong> <span id="viewMetaDescription">Category meta description goes here...</span>
                                 </p>
-                                <p><strong>Parent Category:</strong> <span id="viewCategoryParent">None</span></p>
-                                <p><strong>Products:</strong> <span id="viewCategoryProducts">0</span></p>
-                            </div>
-                            <div class="col-md-6">
-                                <p><strong>Created:</strong> <span id="viewCategoryCreated">Jan 1, 2023</span></p>
-                                <p><strong>Last Updated:</strong> <span id="viewCategoryUpdated">Jan 15, 2023</span></p>
-                                <p><strong>Slug:</strong> <span id="viewCategorySlug">category-slug</span></p>
+                                <p><strong>Meta Keywords:</strong> <span
+                                        id="viewMetaKeywords">keyword1, keyword2, keyword3</span></p>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="mt-3">
-                            <h5>SEO Information</h5>
-                            <p><strong>Meta Title:</strong> <span id="viewMetaTitle">Category Meta Title</span></p>
-                            <p><strong>Meta Description:</strong> <span id="viewMetaDescription">Category meta description goes here...</span>
-                            </p>
-                            <p><strong>Meta Keywords:</strong> <span
-                                    id="viewMetaKeywords">keyword1, keyword2, keyword3</span></p>
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <h5>Related Products</h5>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-sm">
+                                    <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>SKU</th>
+                                        <th>Price</th>
+                                        <th>Stock</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="relatedProductsTable">
+                                    <tr>
+                                        <td>Example Product 1</td>
+                                        <td>SKU-001</td>
+                                        <td>$99.99</td>
+                                        <td>15</td>
+                                        <td><a href="#" class="btn btn-sm btn-info">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Example Product 2</td>
+                                        <td>SKU-002</td>
+                                        <td>$149.99</td>
+                                        <td>8</td>
+                                        <td><a href="#" class="btn btn-sm btn-info">View</a></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="editCategoryFromView()">Edit Category
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                <div class="row mt-4">
-                    <div class="col-12">
-                        <h5>Related Products</h5>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-sm">
-                                <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>SKU</th>
-                                    <th>Price</th>
-                                    <th>Stock</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody id="relatedProductsTable">
-                                <tr>
-                                    <td>Example Product 1</td>
-                                    <td>SKU-001</td>
-                                    <td>$99.99</td>
-                                    <td>15</td>
-                                    <td><a href="#" class="btn btn-sm btn-info">View</a></td>
-                                </tr>
-                                <tr>
-                                    <td>Example Product 2</td>
-                                    <td>SKU-002</td>
-                                    <td>$149.99</td>
-                                    <td>8</td>
-                                    <td><a href="#" class="btn btn-sm btn-info">View</a></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
+
+    <div class="modal fade" id="deleteCategoryModal" tabindex="-1" aria-labelledby="deleteCategoryModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteCategoryModalLabel">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete the category "<span id="deleteCategoryName">Category Name</span>"?
+                    </p>
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <span id="deleteWarningMessage">This category has 0 products. Deleting it will affect these products.</span>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="moveProductsCheck">
+                        <label class="form-check-label" for="moveProductsCheck">
+                            Move products to another category
+                        </label>
+                    </div>
+                    <div class="mt-2 d-none" id="moveProductsSelect">
+                        <select class="form-select" id="moveToCategory">
+                            <option value="">Select Category</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="home">Home & Garden</option>
+                        </select>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="editCategoryFromView()">Edit Category</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal fade" id="deleteCategoryModal" tabindex="-1" aria-labelledby="deleteCategoryModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteCategoryModalLabel">Confirm Deletion</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to delete the category "<span id="deleteCategoryName">Category Name</span>"?
-                </p>
-                <div class="alert alert-warning">
-                    <i class="fas fa-exclamation-triangle me-2"></i>
-                    <span id="deleteWarningMessage">This category has 0 products. Deleting it will affect these products.</span>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="moveProductsCheck">
-                    <label class="form-check-label" for="moveProductsCheck">
-                        Move products to another category
-                    </label>
-                </div>
-                <div class="mt-2 d-none" id="moveProductsSelect">
-                    <select class="form-select" id="moveToCategory">
-                        <option value="">Select Category</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="clothing">Clothing</option>
-                        <option value="home">Home & Garden</option>
-                    </select>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
-            </div>
         </div>
     </div>
-</div>
 
 
-<div class="modal fade" id="bulkActionsModal" tabindex="-1" aria-labelledby="bulkActionsModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="bulkActionsModalLabel">Bulk Actions</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>You are about to perform a bulk action on <span id="selectedCount">0</span> categories.</p>
-                <div id="bulkActionWarning" class="alert alert-warning d-none">
-                    <i class="fas fa-exclamation-triangle me-2"></i>
-                    <span id="bulkActionWarningMessage"></span>
+    <div class="modal fade" id="bulkActionsModal" tabindex="-1" aria-labelledby="bulkActionsModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bulkActionsModalLabel">Bulk Actions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>You are about to perform a bulk action on <span id="selectedCount">0</span> categories.</p>
+                    <div id="bulkActionWarning" class="alert alert-warning d-none">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <span id="bulkActionWarningMessage"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="confirmBulkAction">Confirm</button>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="confirmBulkAction">Confirm</button>
+        </div>
+    </div>
+
+
+    <div class="toast-container">
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="successToast">
+            <div class="toast-header bg-success text-white">
+                <i class="fas fa-check-circle me-2"></i>
+                <strong class="me-auto">Success</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="successToastMessage">
+                Category has been successfully updated.
+            </div>
+        </div>
+
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="errorToast">
+            <div class="toast-header bg-danger text-white">
+                <i class="fas fa-exclamation-circle me-2"></i>
+                <strong class="me-auto">Error</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="errorToastMessage">
+                An error occurred. Please try again.
             </div>
         </div>
     </div>
-</div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 
-<div class="toast-container">
-    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="successToast">
-        <div class="toast-header bg-success text-white">
-            <i class="fas fa-check-circle me-2"></i>
-            <strong class="me-auto">Success</strong>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body" id="successToastMessage">
-            Category has been successfully updated.
-        </div>
-    </div>
-
-    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="errorToast">
-        <div class="toast-header bg-danger text-white">
-            <i class="fas fa-exclamation-circle me-2"></i>
-            <strong class="me-auto">Error</strong>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body" id="errorToastMessage">
-            An error occurred. Please try again.
-        </div>
-    </div>
-</div>
-
-<!-- Bootstrap JS and dependencies -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Select All Checkbox
-        document.getElementById('selectAll').addEventListener('change', function () {
-            document.querySelectorAll('.category-checkbox').forEach(checkbox => {
-                checkbox.checked = this.checked;
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Select All Checkbox
+            document.getElementById('selectAll').addEventListener('change', function () {
+                document.querySelectorAll('.category-checkbox').forEach(checkbox => {
+                    checkbox.checked = this.checked;
+                });
             });
+
+            // Category Image Dropzone Click
+            const dropzone = document.getElementById('categoryImageDropzone');
+            if (dropzone) {
+                dropzone.addEventListener('click', function () {
+                    document.getElementById('image').click();
+                });
+            }
+
+            // Category Image Preview
+            const imageInput = document.getElementById('image');
+            if (imageInput) {
+                imageInput.addEventListener('change', function () {
+                    const file = this.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            document.querySelector('#imagePreview img').src = e.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+
+            // Auto-generate slug from category name
+            const nameField = document.getElementById('name');
+            if (nameField) {
+                nameField.addEventListener('input', function () {
+                    const slugField = document.getElementById('slug');
+                    if (!slugField.value) {
+                        slugField.value = this.value
+                            .toLowerCase()
+                            .replace(/[^\w\s-]/g, '')
+                            .replace(/\s+/g, '-');
+                    }
+                });
+            }
+
+            // Initialize tooltips and popovers
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+            const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
+            const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
         });
 
-        // Category Image Dropzone Click
-        const dropzone = document.getElementById('categoryImageDropzone');
-        if (dropzone) {
-            dropzone.addEventListener('click', function () {
-                document.getElementById('image').click();
-            });
-        }
+        // CRUD Functions
+        function editCategory(url) {
+            fetch(url)
+                .then(response => response.text())
+                .then(html => {
+                    const modalBody = document.querySelector('#addCategoryModal .modal-body');
+                    modalBody.innerHTML = html.match(/<form[^>]*>[\s\S]*<\/form>/i)[0];
+                    const modal = new bootstrap.Modal(document.getElementById('addCategoryModal'));
+                    modal.show();
 
-        // Category Image Preview
-        const imageInput = document.getElementById('image');
-        if (imageInput) {
-            imageInput.addEventListener('change', function () {
-                const file = this.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        document.querySelector('#imagePreview img').src = e.target.result;
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-        }
-
-        // Auto-generate slug from category name
-        const nameField = document.getElementById('name');
-        if (nameField) {
-            nameField.addEventListener('input', function () {
-                const slugField = document.getElementById('slug');
-                if (!slugField.value) {
-                    slugField.value = this.value
-                        .toLowerCase()
-                        .replace(/[^\w\s-]/g, '')
-                        .replace(/\s+/g, '-');
-                }
-            });
-        }
-
-        // Initialize tooltips and popovers
-        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
-    });
-
-    // CRUD Functions
-    function editCategory(url) {
-        fetch(url)
-            .then(response => response.text())
-            .then(html => {
-                const modalBody = document.querySelector('#addCategoryModal .modal-body');
-                modalBody.innerHTML = html.match(/<form[^>]*>[\s\S]*<\/form>/i)[0];
-                const modal = new bootstrap.Modal(document.getElementById('addCategoryModal'));
-                modal.show();
-
-                // Reattach event listeners
-                const imageInput = document.getElementById('image');
-                if (imageInput) {
-                    imageInput.addEventListener('change', function () {
-                        const file = this.files[0];
-                        if (file) {
-                            const reader = new FileReader();
-                            reader.onload = function (e) {
-                                document.querySelector('#imagePreview img').src = e.target.result;
-                            };
-                            reader.readAsDataURL(file);
-                        }
-                    });
-                }
-
-                const nameField = document.getElementById('name');
-                if (nameField) {
-                    nameField.addEventListener('input', function () {
-                        const slugField = document.getElementById('slug');
-                        if (!slugField.value) {
-                            slugField.value = this.value
-                                .toLowerCase()
-                                .replace(/[^\w\s-]/g, '')
-                                .replace(/\s+/g, '-');
-                        }
-                    });
-                }
-
-                // Handle form submission
-                const form = document.getElementById('addCategoryForm');
-                form.addEventListener('submit', function (e) {
-                    e.preventDefault();
-                    const formData = new FormData(this);
-                    fetch(url, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {'X-Requested-With': 'XMLHttpRequest'}
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                modal.hide();
-                                window.location.reload(); // Refresh list
-                                showToast('successToast', 'Category updated successfully.');
-                            } else {
-                                console.error('Errors:', data.errors);
-                                // Optionally display errors in the modal
+                    // Reattach event listeners
+                    const imageInput = document.getElementById('image');
+                    if (imageInput) {
+                        imageInput.addEventListener('change', function () {
+                            const file = this.files[0];
+                            if (file) {
+                                const reader = new FileReader();
+                                reader.onload = function (e) {
+                                    document.querySelector('#imagePreview img').src = e.target.result;
+                                };
+                                reader.readAsDataURL(file);
                             }
-                        })
-                        .catch(error => console.error('Error:', error));
-                });
-            })
-            .catch(error => console.error('Error:', error));
-    }
-
-    function viewCategory(slug) {
-        alert('View category: ' + slug); // Replace with a view modal or detail page
-    }
-
-    function deleteCategory(slug) {
-        if (confirm('Are you sure you want to delete ' + slug + '?')) {
-            // Placeholder for DELETE request
-            fetch(`/admin/delete-category/${slug}/`, {  // Add this URL in your Django setup
-                method: 'POST',
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        window.location.reload();
-                        showToast('successToast', 'Category deleted successfully.');
+                        });
                     }
+
+                    const nameField = document.getElementById('name');
+                    if (nameField) {
+                        nameField.addEventListener('input', function () {
+                            const slugField = document.getElementById('slug');
+                            if (!slugField.value) {
+                                slugField.value = this.value
+                                    .toLowerCase()
+                                    .replace(/[^\w\s-]/g, '')
+                                    .replace(/\s+/g, '-');
+                            }
+                        });
+                    }
+
+                    // Handle form submission
+                    const form = document.getElementById('addCategoryForm');
+                    form.addEventListener('submit', function (e) {
+                        e.preventDefault();
+                        const formData = new FormData(this);
+                        fetch(url, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {'X-Requested-With': 'XMLHttpRequest'}
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    modal.hide();
+                                    window.location.reload(); // Refresh list
+                                    showToast('successToast', 'Category updated successfully.');
+                                } else {
+                                    console.error('Errors:', data.errors);
+                                    // Optionally display errors in the modal
+                                }
+                            })
+                            .catch(error => console.error('Error:', error));
+                    });
                 })
                 .catch(error => console.error('Error:', error));
         }
-    }
 
-    // Bulk Actions (Placeholder)
-    document.getElementById('bulkActivate').addEventListener('click', function (e) {
-        e.preventDefault();
-        const selected = Array.from(document.querySelectorAll('.category-checkbox:checked')).map(cb => cb.value);
-        if (selected.length === 0) {
-            showToast('errorToast', 'Please select at least one category.');
-            return;
+        function viewCategory(slug) {
+            alert('View category: ' + slug); // Replace with a view modal or detail page
         }
-        // Add AJAX POST to bulk activate endpoint
-        console.log('Activate:', selected);
-    });
 
-    document.getElementById('bulkDeactivate').addEventListener('click', function (e) {
-        e.preventDefault();
-        const selected = Array.from(document.querySelectorAll('.category-checkbox:checked')).map(cb => cb.value);
-        if (selected.length === 0) {
-            showToast('errorToast', 'Please select at least one category.');
-            return;
+        function deleteCategory(slug) {
+            if (confirm('Are you sure you want to delete ' + slug + '?')) {
+                // Placeholder for DELETE request
+                fetch(`/admin/delete-category/${slug}/`, {  // Add this URL in your Django setup
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            window.location.reload();
+                            showToast('successToast', 'Category deleted successfully.');
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
         }
-        // Add AJAX POST to bulk deactivate endpoint
-        console.log('Deactivate:', selected);
-    });
 
-    document.getElementById('bulkDelete').addEventListener('click', function (e) {
-        e.preventDefault();
-        const selected = Array.from(document.querySelectorAll('.category-checkbox:checked')).map(cb => cb.value);
-        if (selected.length === 0) {
-            showToast('errorToast', 'Please select at least one category.');
-            return;
-        }
-        // Add AJAX POST to bulk delete endpoint
-        console.log('Delete:', selected);
-    });
+        // Bulk Actions (Placeholder)
+        document.getElementById('bulkActivate').addEventListener('click', function (e) {
+            e.preventDefault();
+            const selected = Array.from(document.querySelectorAll('.category-checkbox:checked')).map(cb => cb.value);
+            if (selected.length === 0) {
+                showToast('errorToast', 'Please select at least one category.');
+                return;
+            }
+            // Add AJAX POST to bulk activate endpoint
+            console.log('Activate:', selected);
+        });
 
-    // Show Toast
-    function showToast(toastId, message) {
-        const toastEl = document.getElementById(toastId);
-        if (toastEl) {
-            const toast = new bootstrap.Toast(toastEl);
-            document.getElementById(`${toastId}Message`).textContent = message;
-            toast.show();
-        } else {
-            console.log(message); // Fallback if toast element is missing
+        document.getElementById('bulkDeactivate').addEventListener('click', function (e) {
+            e.preventDefault();
+            const selected = Array.from(document.querySelectorAll('.category-checkbox:checked')).map(cb => cb.value);
+            if (selected.length === 0) {
+                showToast('errorToast', 'Please select at least one category.');
+                return;
+            }
+            // Add AJAX POST to bulk deactivate endpoint
+            console.log('Deactivate:', selected);
+        });
+
+        document.getElementById('bulkDelete').addEventListener('click', function (e) {
+            e.preventDefault();
+            const selected = Array.from(document.querySelectorAll('.category-checkbox:checked')).map(cb => cb.value);
+            if (selected.length === 0) {
+                showToast('errorToast', 'Please select at least one category.');
+                return;
+            }
+            // Add AJAX POST to bulk delete endpoint
+            console.log('Delete:', selected);
+        });
+
+        // Show Toast
+        function showToast(toastId, message) {
+            const toastEl = document.getElementById(toastId);
+            if (toastEl) {
+                const toast = new bootstrap.Toast(toastEl);
+                document.getElementById(`${toastId}Message`).textContent = message;
+                toast.show();
+            } else {
+                console.log(message); // Fallback if toast element is missing
+            }
         }
-    }
-</script>
+    </script>
 {% endblock %}
 </body>

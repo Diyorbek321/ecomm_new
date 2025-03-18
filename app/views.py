@@ -2,19 +2,27 @@ from zipfile import error
 
 from django.contrib import messages
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, FormView, UpdateView, ListView
-from app.models import Category
-from app.forms import CategoryForm
+from app.models import Category, Product, ProductImage, CategoryImage
+from app.forms import CategoryForm, ProductForm, ProductImageForm, CategoryImageForm
 import logging
 
-logger = logging.getLogger(__name__)
+
+# logger = logging.getLogger(__name__)
 
 
 # Create your views here.
-class UserDashboard(TemplateView):
+class UserDashboard(ListView):
+    model = Category
+    context_object_name = 'categories'
     template_name = 'ecomm/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['products'] = Product.objects.all()
+        return context
 
 
 class CategoryView(TemplateView):
@@ -99,12 +107,47 @@ class AdminCategoryUpdate(UpdateView):
     template_name = 'ecomm/admin/category.html'
     success_url = reverse_lazy('admin-category')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.POST:
+            context['image_form'] = CategoryImageForm(self.request.POST, self.request.FILES)
+        else:
+            # Check if the category has an existing primary image
+            category = self.get_object()
+            existing_image = CategoryImage.objects.filter(category=category, is_primary=True).first()
+            context['image_form'] = CategoryImageForm(instance=existing_image)
+            context['existing_image'] = existing_image
+        return context
+
     def form_valid(self, form):
-        response = super().form_valid(form)
+        context = self.get_context_data()
+        image_form = context['image_form']
+
+        # Save the category first
+        self.object = form.save()
+
+        # Now handle the image form if it has data
+        if 'image' in self.request.FILES:
+            # Check if there's an existing primary image
+            existing_image = CategoryImage.objects.filter(category=self.object, is_primary=True).first()
+
+            if existing_image:
+                # Update existing image
+                existing_image.image = self.request.FILES['image']
+                existing_image.save()
+            else:
+                # Create new image
+                category_image = CategoryImage(
+                    category=self.object,
+                    image=self.request.FILES['image'],
+                    is_primary=True
+                )
+                category_image.save()
+
         if self.request.headers.get('x-requested-with') == 'XMLHttpRequest':
             return JsonResponse({'success': True})
         messages.success(self.request, "Category updated successfully!")
-        return response
+        return super().form_valid(form)
 
     def form_invalid(self, form):
         if self.request.headers.get('x-requested-with') == 'XMLHttpRequest':
@@ -120,8 +163,44 @@ class AdminOrder(TemplateView):
     template_name = 'ecomm/admin/ordermanagement.html'
 
 
-class AdminProduct(TemplateView):
+class AdminProduct(ListView):
     template_name = 'ecomm/admin/productmanagement.html'
+    model = Category
+    context_object_name = 'categories'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['product_form'] = ProductForm()
+        context['image_form'] = ProductImageForm()
+        context['products'] = Product.objects.all()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        product_form = ProductForm(request.POST)
+        image_form = ProductImageForm(request.POST, request.FILES)
+
+        if product_form.is_valid():
+            # Save product
+            product = product_form.save()
+
+            # Handle single image upload
+            if 'image' in request.FILES:
+                ProductImage.objects.create(
+                    product=product,
+                    image=request.FILES['image'],
+                    is_primary=True
+                )
+
+            messages.success(request, 'Product successfully added!')
+            return redirect('admin-product')
+        else:
+            messages.error(request, 'Error adding product. Please check the form.')
+
+        # If forms are invalid, render the page again
+        context = self.get_context_data()
+        context['product_form'] = product_form
+        context['image_form'] = image_form
+        return render(request, self.template_name, context)
 
 
 class AdminReview(TemplateView):
