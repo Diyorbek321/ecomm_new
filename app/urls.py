@@ -2,7 +2,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from app.views import UserDashboard, CategoryView, Contact, Cart, Checkout, About, Useraccount, Wishlist, \
-    Autheticate, OrderConfirmation, AdminDashboard, AdminCategory, AdminOrder, AdminProduct, AdminPromotions, \
+    Authenticate, OrderConfirmation, AdminDashboard, AdminCategory, AdminOrder, AdminProduct, AdminPromotions, \
     AdminUser, AdminCategoryUpdate, ProductDetailView
 
 urlpatterns = [
@@ -16,7 +16,7 @@ urlpatterns = [
                   path('about/', About.as_view(), name='about'),
                   path('user-account/', Useraccount.as_view(), name='user_account'),
                   path('wishlist/', Wishlist.as_view(), name='wishlist'),
-                  path('authenticate/', Autheticate.as_view(), name='autheticate'),
+                  path('authenticate/', Authenticate.as_view(), name='autheticate'),
                   path('order-confirmation/', OrderConfirmation.as_view(), name='order'),
 
                   path('admin-home/', AdminDashboard.as_view(), name='admin-home'),

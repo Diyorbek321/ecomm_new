@@ -1,6 +1,46 @@
+from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.text import slugify
+
+
+class User(AbstractUser):
+    """Extended User model with additional fields."""
+    email = models.EmailField(('email address'), unique=True)
+    first_name = models.CharField(('first name'), max_length=150, blank=False)
+    last_name = models.CharField(('last name'), max_length=150, blank=False)
+    agreed_to_terms = models.BooleanField(default=False)
+
+    # Social login fields (optional)
+    google_id = models.CharField(max_length=255, blank=True, null=True)
+    facebook_id = models.CharField(max_length=255, blank=True, null=True)
+
+    # Add related_name attributes to resolve the clashes
+    groups = models.ManyToManyField(
+        'auth.Group',
+        verbose_name=('groups'),
+        blank=True,
+        help_text=(
+            'The groups this user belongs to. A user will get all permissions '
+            'granted to each of their groups.'
+        ),
+        related_name='app_user_set',  # Custom related_name
+        related_query_name='app_user',
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        verbose_name=('user permissions'),
+        blank=True,
+        help_text=('Specific permissions for this user.'),
+        related_name='app_user_set',  # Custom related_name
+        related_query_name='app_user',
+    )
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
+
+    def __str__(self):
+        return self.email
 
 
 # Create your models here.
@@ -59,7 +99,6 @@ class Category(models.Model):
     class Meta:
         verbose_name = "Category"
         verbose_name_plural = "Categories"
-
 
 
 class Product(models.Model):

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,58 +18,58 @@
             --light-bg: #f8f9fa;
             --dark-text: #343a40;
         }
-        
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: var(--dark-text);
         }
-        
+
         .navbar-brand {
             font-weight: 700;
             color: var(--primary-color);
         }
-        
+
         .btn-primary {
             background-color: var(--primary-color);
             border-color: var(--primary-color);
             transition: all 0.3s ease;
         }
-        
+
         .btn-primary:hover {
             background-color: #2563eb;
             border-color: #2563eb;
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        
+
         .btn-outline-primary {
             color: var(--primary-color);
             border-color: var(--primary-color);
         }
-        
+
         .btn-outline-primary:hover {
             background-color: var(--primary-color);
             color: white;
         }
-        
+
         .product-title {
             font-weight: 700;
             font-size: 2.2rem;
             margin-bottom: 0.5rem;
         }
-        
+
         .price {
             font-size: 1.8rem;
             font-weight: 600;
             color: var(--secondary-color);
         }
-        
+
         .original-price {
             text-decoration: line-through;
             color: #6c757d;
             font-size: 1.2rem;
         }
-        
+
         .discount-badge {
             background-color: var(--secondary-color);
             color: white;
@@ -78,32 +79,32 @@
             font-size: 0.9rem;
             margin-left: 0.5rem;
         }
-        
+
         .product-rating i {
             color: #ffc107;
         }
-        
+
         .review-count {
             color: #6c757d;
             text-decoration: underline;
             cursor: pointer;
         }
-        
+
         .product-feature {
             display: flex;
             align-items: center;
             margin-bottom: 0.5rem;
         }
-        
+
         .product-feature i {
             color: var(--primary-color);
             margin-right: 0.5rem;
         }
-        
+
         .size-selector, .color-selector {
             margin-bottom: 1.5rem;
         }
-        
+
         .size-btn {
             width: 40px;
             height: 40px;
@@ -115,13 +116,13 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        
+
         .size-btn:hover, .size-btn.active {
             border-color: var(--primary-color);
             background-color: rgba(58, 134, 255, 0.1);
             color: var(--primary-color);
         }
-        
+
         .color-btn {
             width: 30px;
             height: 30px;
@@ -131,11 +132,11 @@
             transition: all 0.2s;
             position: relative;
         }
-        
+
         .color-btn:hover, .color-btn.active {
             transform: scale(1.2);
         }
-        
+
         .color-btn.active::after {
             content: '';
             position: absolute;
@@ -146,13 +147,13 @@
             top: -3px;
             left: -3px;
         }
-        
+
         .quantity-selector {
             display: flex;
             align-items: center;
             margin-bottom: 1.5rem;
         }
-        
+
         .quantity-btn {
             width: 40px;
             height: 40px;
@@ -165,7 +166,7 @@
             font-size: 1.2rem;
             user-select: none;
         }
-        
+
         .quantity-input {
             width: 60px;
             height: 40px;
@@ -175,98 +176,98 @@
             text-align: center;
             font-weight: 600;
         }
-        
+
         .in-stock {
             color: #198754;
             font-weight: 600;
         }
-        
+
         .action-buttons {
             display: flex;
             gap: 1rem;
             margin: 1.5rem 0;
         }
-        
+
         .product-guarantee {
             background-color: var(--light-bg);
             border-radius: 10px;
             padding: 1.5rem;
             margin: 2rem 0;
         }
-        
+
         .guarantee-item {
             display: flex;
             align-items: flex-start;
             margin-bottom: 1rem;
         }
-        
+
         .guarantee-item i {
             color: var(--primary-color);
             font-size: 1.5rem;
             margin-right: 1rem;
         }
-        
+
         .product-description {
             margin: 2rem 0;
         }
-        
+
         .tab-content {
             padding: 1.5rem;
             border: 1px solid #dee2e6;
             border-top: none;
             border-radius: 0 0 8px 8px;
         }
-        
+
         .nav-tabs .nav-link {
             font-weight: 600;
             color: var(--dark-text);
         }
-        
+
         .nav-tabs .nav-link.active {
             color: var(--primary-color);
             border-color: #dee2e6 #dee2e6 #fff;
         }
-        
+
         .review {
             padding: 1rem 0;
             border-bottom: 1px solid #dee2e6;
         }
-        
+
         .review:last-child {
             border-bottom: none;
         }
-        
+
         .review-header {
             display: flex;
             justify-content: space-between;
             margin-bottom: 0.5rem;
         }
-        
+
         .reviewer-name {
             font-weight: 600;
         }
-        
+
         .review-date {
             color: #6c757d;
             font-size: 0.9rem;
         }
-        
+
         .similar-product {
             margin-bottom: 2rem;
             transition: all 0.3s ease;
         }
-        
+
         .similar-product:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-        
+
         .similar-product img {
             border-radius: 8px;
             object-fit: cover;
             height: 200px;
         }
-        
+
         .similar-title {
             font-weight: 600;
             margin: 0.5rem 0;
@@ -275,97 +276,103 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        
+
         .similar-price {
             font-weight: 600;
             color: var(--secondary-color);
         }
-        
+
         .thumbnail {
             cursor: pointer;
             opacity: 0.6;
             transition: all 0.2s;
         }
-        
+
         .thumbnail:hover, .thumbnail.active {
             opacity: 1;
             border: 2px solid var(--primary-color);
         }
-        
+
         .breadcrumb-item a {
             color: var(--dark-text);
             text-decoration: none;
         }
-        
+
         .breadcrumb-item.active {
             color: var(--primary-color);
         }
-        
+
         .main-image {
             height: 400px;
             object-fit: contain;
             border-radius: 10px;
         }
-        
+
         @media (max-width: 768px) {
             .product-title {
                 font-size: 1.8rem;
             }
-            
+
             .main-image {
                 height: 300px;
             }
-            
+
             .action-buttons {
                 flex-direction: column;
             }
-            
+
             .action-buttons .btn {
                 width: 100%;
             }
         }
-        
+
         /* Zoom effect for main product image */
         .zoom-container {
             position: relative;
             overflow: hidden;
             border-radius: 10px;
         }
-        
+
         .zoom-image {
             transition: transform 0.5s ease;
         }
-        
+
         .zoom-container:hover .zoom-image {
             transform: scale(1.1);
         }
-        
+
         /* Animation for "Add to Cart" */
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
-        
+
         .btn-add-cart {
             animation: pulse 2s infinite;
         }
-        
+
         /* Wishlist heart animation */
         .btn-wishlist {
             position: relative;
             overflow: hidden;
         }
-        
+
         .btn-wishlist i {
             transition: transform 0.3s ease, color 0.3s ease;
         }
-        
+
         .btn-wishlist:hover i {
             transform: scale(1.2);
             color: var(--secondary-color);
         }
-        
+
         /* Toast notification */
         .toast-container {
             position: fixed;
@@ -376,161 +383,172 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">ShopSmart</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-bs-toggle="dropdown">
-                            Categories
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Electronics</a></li>
-                            <li><a class="dropdown-item" href="#">Clothing</a></li>
-                            <li><a class="dropdown-item" href="#">Home & Kitchen</a></li>
-                            <li><a class="dropdown-item" href="#">Beauty & Personal Care</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Deals</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
-                <form class="d-flex me-3">
-                    <div class="input-group">
-                        <input class="form-control" type="search" placeholder="Search products...">
-                        <button class="btn btn-outline-primary" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </form>
-                <div class="d-flex">
-                    <a href="#" class="btn btn-outline-primary me-2">
-                        <i class="far fa-user me-1"></i> Account
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">ShopSmart</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user_dashboard' %}">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{% url 'category' %}" id="categoryDropdown" role="button"
+                       data-bs-toggle="dropdown">
+                        Categories
                     </a>
-                    <a href="#" class="btn btn-outline-primary me-2">
-                        <i class="far fa-heart me-1"></i>
-                        <span class="badge bg-secondary rounded-pill">3</span>
-                    </a>
-                    <a href="#" class="btn btn-outline-primary position-relative">
-                        <i class="fas fa-shopping-cart me-1"></i>
-                        <span class="badge bg-secondary rounded-pill">2</span>
-                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Electronics</a></li>
+                        <li><a class="dropdown-item" href="#">Clothing</a></li>
+                        <li><a class="dropdown-item" href="#">Home & Kitchen</a></li>
+                        <li><a class="dropdown-item" href="#">Beauty & Personal Care</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Deals</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+            <form class="d-flex me-3">
+                <div class="input-group">
+                    <input class="form-control" type="search" placeholder="Search products...">
+                    <button class="btn btn-outline-primary" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
+            </form>
+            <div class="d-flex">
+                <a href="#" class="btn btn-outline-primary me-2">
+                    <i class="far fa-user me-1"></i> Account
+                </a>
+                <a href="#" class="btn btn-outline-primary me-2">
+                    <i class="far fa-heart me-1"></i>
+                    <span class="badge bg-secondary rounded-pill">3</span>
+                </a>
+                <a href="#" class="btn btn-outline-primary position-relative">
+                    <i class="fas fa-shopping-cart me-1"></i>
+                    <span class="badge bg-secondary rounded-pill">2</span>
+                </a>
             </div>
         </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container my-5">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Electronics</a></li>
+            <li class="breadcrumb-item"><a href="#">Headphones</a></li>
+            <li class="breadcrumb-item active">Premium Wireless Headphones</li>
+        </ol>
     </nav>
-
-    <!-- Main Content -->
-    <div class="container my-5">
-        <!-- Breadcrumb -->
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Electronics</a></li>
-                <li class="breadcrumb-item"><a href="#">Headphones</a></li>
-                <li class="breadcrumb-item active">Premium Wireless Headphones</li>
-            </ol>
-        </nav>
-
-        <!-- Product Details -->
+    <div class="container py-5">
         <div class="row">
             <!-- Product Images -->
             <div class="col-lg-6 mb-4">
                 <div class="zoom-container mb-3">
-                    <img src="/api/placeholder/600/600" alt="Premium Wireless Headphones" class="img-fluid main-image zoom-image" id="mainImage">
+
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" width="500">
                 </div>
                 <div class="row">
-                    <div class="col-3">
-                        <img src="/api/placeholder/150/150" alt="Thumbnail 1" class="img-fluid thumbnail active" onclick="changeImage(this, '/api/placeholder/600/600')">
-                    </div>
-                    <div class="col-3">
-                        <img src="/api/placeholder/150/150" alt="Thumbnail 2" class="img-fluid thumbnail" onclick="changeImage(this, '/api/placeholder/600/600')">
-                    </div>
-                    <div class="col-3">
-                        <img src="/api/placeholder/150/150" alt="Thumbnail 3" class="img-fluid thumbnail" onclick="changeImage(this, '/api/placeholder/600/600')">
-                    </div>
-                    <div class="col-3">
-                        <img src="/api/placeholder/150/150" alt="Thumbnail 4" class="img-fluid thumbnail" onclick="changeImage(this, '/api/placeholder/600/600')">
-                    </div>
+                    {% if product_images %}
+                        {% for image in product_images %}
+                            <div class="col-3">
+                                <img src="{{ image.image.url }}"
+                                     alt="{{ product.name }} - Image {{ forloop.counter }}"
+                                     class="img-fluid thumbnail {% if forloop.first %}active{% endif %}"
+                                     onclick="changeImage(this, '{{ image.image.url }}')">
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="col-3">
+                            <img src="" alt=""
+                                 class="img-fluid thumbnail active"
+                                 onclick="changeImage(this, '')">
+                        </div>
+                    {% endif %}
                 </div>
             </div>
 
             <!-- Product Info -->
             <div class="col-lg-6">
-                <h1 class="product-title">Premium Wireless Headphones</h1>
-                
+                <h1 class="product-title">{{ product.name }}</h1>
+
                 <!-- Rating -->
                 <div class="product-rating mb-2">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <span class="ms-2">4.5</span>
+                    {% for i in "12345" %}
+                        {% if forloop.counter <= product.average_rating %}
+                            <i class="fas fa-star"></i>
+                        {% elif forloop.counter <= product.average_rating|add:0.5 %}
+                            <i class="fas fa-star-half-alt"></i>
+                        {% else %}
+                            <i class="far fa-star"></i>
+                        {% endif %}
+                    {% endfor %}
+                    <span class="ms-2">{{ product.average_rating|floatformat:1 }}</span>
                     <span class="review-count ms-2" onclick="scrollToReviews()">
-                        (128 Reviews)
-                    </span>
+                    ({{ product.review_count }} Reviews)
+                </span>
                 </div>
 
                 <!-- Price -->
                 <div class="mb-3">
-                    <span class="price">$129.99</span>
-                    <span class="original-price ms-2">$199.99</span>
-                    <span class="discount-badge">35% OFF</span>
+                    <span class="price">${{ product.price }}</span>
+                    {% if product.original_price %}
+                        <span class="original-price ms-2">${{ product.original_price }}</span>
+                        <span class="discount-badge">
+{#                        {% widthratio product.original_price|sub:product.price 100 100 %}% OFF#}
+                    </span>
+                    {% endif %}
                 </div>
 
                 <!-- Availability -->
-                <p class="mb-3 in-stock">
-                    <i class="fas fa-check-circle me-2"></i>In Stock (15 units) - Free Shipping
+                <p class="mb-3 {% if product.in_stock %}in-stock{% else %}out-of-stock{% endif %}">
+                    {% if product.in_stock %}
+                        <i class="fas fa-check-circle me-2"></i>In Stock ({{ product.stock_quantity }} units) - Free
+                        Shipping
+                    {% else %}
+                        <i class="fas fa-times-circle me-2"></i>Out of Stock
+                    {% endif %}
                 </p>
 
                 <!-- Short Description -->
-                <p class="mb-4">
-                    Experience superior sound quality with our premium wireless headphones. Featuring active noise cancellation, 30-hour battery life, and ultra-comfortable design for extended wear.
-                </p>
+                <p class="mb-4">{{ product.short_description }}</p>
 
                 <!-- Features -->
-                <div class="mb-4">
-                    <div class="product-feature">
-                        <i class="fas fa-check"></i>
-                        <span>Active Noise Cancellation</span>
+                {% if product.features.all %}
+                    <div class="mb-4">
+                        {% for feature in product.features.all %}
+                            <div class="product-feature">
+                                <i class="fas fa-check"></i>
+                                <span>{{ feature.name }}</span>
+                            </div>
+                        {% endfor %}
                     </div>
-                    <div class="product-feature">
-                        <i class="fas fa-check"></i>
-                        <span>30-Hour Battery Life</span>
-                    </div>
-                    <div class="product-feature">
-                        <i class="fas fa-check"></i>
-                        <span>Bluetooth 5.0 Connectivity</span>
-                    </div>
-                    <div class="product-feature">
-                        <i class="fas fa-check"></i>
-                        <span>Quick Charge (10min = 5hr playback)</span>
-                    </div>
-                </div>
+                {% endif %}
 
                 <!-- Color Selection -->
-                <div class="color-selector">
-                    <h6 class="fw-bold mb-2">Color:</h6>
-                    <div class="d-flex">
-                        <div class="color-btn active" style="background-color: #000;" onclick="selectColor(this, 'Black')"></div>
-                        <div class="color-btn" style="background-color: #fff; border: 1px solid #dee2e6;" onclick="selectColor(this, 'White')"></div>
-                        <div class="color-btn" style="background-color: #3a86ff;" onclick="selectColor(this, 'Blue')"></div>
-                        <div class="color-btn" style="background-color: #ff006e;" onclick="selectColor(this, 'Pink')"></div>
+                {% if product.colors.all %}
+                    <div class="color-selector">
+                        <h6 class="fw-bold mb-2">Color:</h6>
+                        <div class="d-flex">
+                            {% for color in product.colors.all %}
+                                <div class="color-btn {% if forloop.first %}active{% endif %}"
+                                     style="background-color: {{ color.hex_code }}; {% if color.hex_code == '#FFF' or color.hex_code == '#FFFFFF' %}border: 1px solid #dee2e6;{% endif %}"
+                                     onclick="selectColor(this, '{{ color.name }}')"></div>
+                            {% endfor %}
+                        </div>
+                        <p class="mt-1 mb-0" id="selectedColor">Selected: {{ product.colors.first.name }}</p>
                     </div>
-                    <p class="mt-1 mb-0" id="selectedColor">Selected: Black</p>
-                </div>
+                {% endif %}
 
                 <!-- Quantity Selector -->
                 <div class="quantity-selector">
@@ -544,10 +562,13 @@
 
                 <!-- Action Buttons -->
                 <div class="action-buttons">
-                    <button class="btn btn-primary btn-lg flex-grow-1 btn-add-cart" onclick="addToCart()">
+                    <button class="btn btn-primary btn-lg flex-grow-1 btn-add-cart"
+                            {% if not product.in_stock %}disabled{% endif %}
+                            onclick="addToCart({{ product.id }})">
                         <i class="fas fa-shopping-cart me-2"></i>Add to Cart
                     </button>
-                    <button class="btn btn-outline-primary btn-lg btn-wishlist" onclick="addToWishlist()">
+                    <button class="btn btn-outline-primary btn-lg btn-wishlist"
+                            onclick="addToWishlist({{ product.id }})">
                         <i class="far fa-heart"></i>
                     </button>
                 </div>
@@ -579,31 +600,169 @@
             </div>
         </div>
 
+        <!-- Product Tabs -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <ul class="nav nav-tabs" id="productTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="description-tab" data-bs-toggle="tab"
+                                data-bs-target="#description" type="button" role="tab">Description
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="specs-tab" data-bs-toggle="tab" data-bs-target="#specs"
+                                type="button" role="tab">Specifications
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews"
+                                type="button" role="tab">Reviews ({{ product.review_count }})
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content p-4 border border-top-0 rounded-bottom" id="productTabsContent">
+                    <div class="tab-pane fade show active" id="description" role="tabpanel">
+                        {{ product.description|safe }}
+                    </div>
+                    <div class="tab-pane fade" id="specs" role="tabpanel">
+                        <table class="table">
+                            <tbody>
+                            {% for spec in product.specifications.all %}
+                                <tr>
+                                    <th>{{ spec.name }}</th>
+                                    <td>{{ spec.value }}</td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="2">No specifications available</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="reviews" role="tabpanel">
+                        {% for review in product.reviews.all %}
+                            <div class="review mb-4">
+                                <div class="d-flex justify-content-between">
+                                    <h5>{{ review.user.get_full_name }}</h5>
+                                    <div class="stars">
+                                        {% for i in "12345" %}
+                                            {% if forloop.counter <= review.rating %}
+                                                <i class="fas fa-star text-warning"></i>
+                                            {% else %}
+                                                <i class="far fa-star text-warning"></i>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <p class="text-muted small">{{ review.created_at|date:"F j, Y" }}</p>
+                                <p>{{ review.comment }}</p>
+                            </div>
+                        {% empty %}
+                            <p>No reviews yet. Be the first to review this product!</p>
+                        {% endfor %}
+
+                        {% if user.is_authenticated %}
+                            <h4 class="mt-4">Write a Review</h4>
+                            {#                            <form method="post" action="{% url 'add_review' product.id %}">#}
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="rating">Rating</label>
+                                <div class="rating-select">
+                                    <div class="stars">
+                                        {% for i in "12345" %}
+                                            <i class="far fa-star text-warning"
+                                               data-rating="{{ forloop.counter }}"></i>
+                                        {% endfor %}
+                                    </div>
+                                    <input type="hidden" name="rating" id="rating" value="5">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="comment">Your Review</label>
+                                <textarea class="form-control" id="comment" name="comment" rows="3"
+                                          required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit Review</button>
+                            </form>
+                        {% else %}
+                            <p class="mt-4">Please <a href="{% url 'login' %}">log in</a> to write a review.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+        {% if related_products %}
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h3 class="mb-4">You May Also Like</h3>
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                        {% for related in related_products %}
+                            <div class="col">
+                                <div class="card h-100 product-card">
+                                    {% if related.main_image %}
+                                        <img src="{{ related.main_image.url }}" class="card-img-top"
+                                             alt="{{ related.name }}">
+                                    {% else %}
+                                        <img src="" class="card-img-top"
+                                             alt="Product placeholder">
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ related.name }}</h5>
+                                        <p class="price">${{ related.price }}</p>
+                                        <a href="{% url 'product_detail' related.id %}"
+                                           class="btn btn-outline-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
         <!-- Product Description, Specs, and Reviews Tabs -->
         <div class="product-description">
             <ul class="nav nav-tabs" id="productTabs" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab">Description</button>
+                    <button class="nav-link active" id="description-tab" data-bs-toggle="tab"
+                            data-bs-target="#description" type="button" role="tab">Description
+                    </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="specs-tab" data-bs-toggle="tab" data-bs-target="#specs" type="button" role="tab">Specifications</button>
+                    <button class="nav-link" id="specs-tab" data-bs-toggle="tab" data-bs-target="#specs"
+                            type="button" role="tab">Specifications
+                    </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab">Reviews (128)</button>
+                    <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews"
+                            type="button" role="tab">Reviews (128)
+                    </button>
                 </li>
             </ul>
             <div class="tab-content" id="productTabsContent">
                 <!-- Description Tab -->
                 <div class="tab-pane fade show active" id="description" role="tabpanel">
                     <h4>Premium Wireless Headphones</h4>
-                    <p>Experience music like never before with our Premium Wireless Headphones. These headphones combine cutting-edge technology with exceptional comfort to deliver an unparalleled listening experience.</p>
-                    
-                    <p>The active noise cancellation technology effectively blocks out ambient noise, allowing you to focus entirely on your music or calls. With the latest Bluetooth 5.0 technology, enjoy stable and fast connections to your devices.</p>
-                    
-                    <p>The ergonomic design with memory foam ear cushions ensures comfort even during extended listening sessions. The adjustable headband fits perfectly on any head size, making these headphones suitable for everyone.</p>
-                    
-                    <p>The built-in microphone allows for clear calls, while the intuitive touch controls make it easy to adjust volume, change tracks, or answer calls with simple taps. The premium build quality ensures durability, making these headphones a long-term investment for any music enthusiast.</p>
-                    
+                    <p>Experience music like never before with our Premium Wireless Headphones. These headphones
+                        combine cutting-edge technology with exceptional comfort to deliver an unparalleled
+                        listening experience.</p>
+
+                    <p>The active noise cancellation technology effectively blocks out ambient noise, allowing you
+                        to focus entirely on your music or calls. With the latest Bluetooth 5.0 technology, enjoy
+                        stable and fast connections to your devices.</p>
+
+                    <p>The ergonomic design with memory foam ear cushions ensures comfort even during extended
+                        listening sessions. The adjustable headband fits perfectly on any head size, making these
+                        headphones suitable for everyone.</p>
+
+                    <p>The built-in microphone allows for clear calls, while the intuitive touch controls make it
+                        easy to adjust volume, change tracks, or answer calls with simple taps. The premium build
+                        quality ensures durability, making these headphones a long-term investment for any music
+                        enthusiast.</p>
+
                     <div class="row mt-4">
                         <div class="col-md-6">
                             <h5>What's in the Box</h5>
@@ -630,77 +789,77 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Specifications Tab -->
                 <div class="tab-pane fade" id="specs" role="tabpanel">
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <tbody>
-                                <tr>
-                                    <th style="width: 30%">Model</th>
-                                    <td>WH-1000X</td>
-                                </tr>
-                                <tr>
-                                    <th>Type</th>
-                                    <td>Wireless Over-Ear Headphones</td>
-                                </tr>
-                                <tr>
-                                    <th>Driver Size</th>
-                                    <td>40mm Dynamic Drivers</td>
-                                </tr>
-                                <tr>
-                                    <th>Frequency Response</th>
-                                    <td>4Hz-40,000Hz</td>
-                                </tr>
-                                <tr>
-                                    <th>Impedance</th>
-                                    <td>47 Ohms</td>
-                                </tr>
-                                <tr>
-                                    <th>Sensitivity</th>
-                                    <td>104.5 dB/mW</td>
-                                </tr>
-                                <tr>
-                                    <th>Battery Life</th>
-                                    <td>30 hours (ANC on), 38 hours (ANC off)</td>
-                                </tr>
-                                <tr>
-                                    <th>Charging Time</th>
-                                    <td>3 hours (full charge), 10 min for 5 hours playback</td>
-                                </tr>
-                                <tr>
-                                    <th>Bluetooth Version</th>
-                                    <td>Bluetooth 5.0</td>
-                                </tr>
-                                <tr>
-                                    <th>Bluetooth Range</th>
-                                    <td>Up to 30 feet (10 meters)</td>
-                                </tr>
-                                <tr>
-                                    <th>Codec Support</th>
-                                    <td>SBC, AAC, LDAC, aptX, aptX HD</td>
-                                </tr>
-                                <tr>
-                                    <th>Weight</th>
-                                    <td>254g (8.96 oz)</td>
-                                </tr>
-                                <tr>
-                                    <th>Dimensions</th>
-                                    <td>7.27 x 3.03 x 9.94 inches</td>
-                                </tr>
-                                <tr>
-                                    <th>Colors Available</th>
-                                    <td>Black, White, Blue, Pink</td>
-                                </tr>
-                                <tr>
-                                    <th>Warranty</th>
-                                    <td>1 Year Limited Warranty</td>
-                                </tr>
+                            <tr>
+                                <th style="width: 30%">Model</th>
+                                <td>WH-1000X</td>
+                            </tr>
+                            <tr>
+                                <th>Type</th>
+                                <td>Wireless Over-Ear Headphones</td>
+                            </tr>
+                            <tr>
+                                <th>Driver Size</th>
+                                <td>40mm Dynamic Drivers</td>
+                            </tr>
+                            <tr>
+                                <th>Frequency Response</th>
+                                <td>4Hz-40,000Hz</td>
+                            </tr>
+                            <tr>
+                                <th>Impedance</th>
+                                <td>47 Ohms</td>
+                            </tr>
+                            <tr>
+                                <th>Sensitivity</th>
+                                <td>104.5 dB/mW</td>
+                            </tr>
+                            <tr>
+                                <th>Battery Life</th>
+                                <td>30 hours (ANC on), 38 hours (ANC off)</td>
+                            </tr>
+                            <tr>
+                                <th>Charging Time</th>
+                                <td>3 hours (full charge), 10 min for 5 hours playback</td>
+                            </tr>
+                            <tr>
+                                <th>Bluetooth Version</th>
+                                <td>Bluetooth 5.0</td>
+                            </tr>
+                            <tr>
+                                <th>Bluetooth Range</th>
+                                <td>Up to 30 feet (10 meters)</td>
+                            </tr>
+                            <tr>
+                                <th>Codec Support</th>
+                                <td>SBC, AAC, LDAC, aptX, aptX HD</td>
+                            </tr>
+                            <tr>
+                                <th>Weight</th>
+                                <td>254g (8.96 oz)</td>
+                            </tr>
+                            <tr>
+                                <th>Dimensions</th>
+                                <td>7.27 x 3.03 x 9.94 inches</td>
+                            </tr>
+                            <tr>
+                                <th>Colors Available</th>
+                                <td>Black, White, Blue, Pink</td>
+                            </tr>
+                            <tr>
+                                <th>Warranty</th>
+                                <td>1 Year Limited Warranty</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                
+
                 <!-- Reviews Tab -->
                 <div class="tab-pane fade" id="reviews" role="tabpanel">
                     <div class="row mb-4">
@@ -759,7 +918,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-md-8">
                             <div class="mb-4">
                                 <h5>Customer Reviews</h5>
@@ -775,9 +934,12 @@
                                         <i class="fas fa-star text-warning"></i>
                                         <i class="fas fa-star text-warning"></i>
                                     </div>
-                                    <p>Absolutely love these headphones! The noise cancellation is fantastic, and the sound quality is crystal clear. Battery life is impressive - I've used them for a week of commuting without needing to recharge. Definitely worth the investment.</p>
+                                    <p>Absolutely love these headphones! The noise cancellation is fantastic, and
+                                        the sound quality is crystal clear. Battery life is impressive - I've used
+                                        them for a week of commuting without needing to recharge. Definitely worth
+                                        the investment.</p>
                                 </div>
-                                
+
                                 <div class="review">
                                     <div class="review-header">
                                         <div class="reviewer-name">Mike T.</div>
@@ -790,9 +952,12 @@
                                         <i class="fas fa-star text-warning"></i>
                                         <i class="far fa-star text-warning"></i>
                                     </div>
-                                    <p>Great sound quality and comfortable for long listening sessions. The noise cancellation works well in most environments. Only giving 4 stars because the app could use some improvements, but overall I'm very satisfied with my purchase.</p>
+                                    <p>Great sound quality and comfortable for long listening sessions. The noise
+                                        cancellation works well in most environments. Only giving 4 stars because
+                                        the app could use some improvements, but overall I'm very satisfied with my
+                                        purchase.</p>
                                 </div>
-                                
+
                                 <div class="review">
                                     <div class="review-header">
                                         <div class="reviewer-name">Lisa M.</div>
@@ -805,16 +970,19 @@
                                         <i class="fas fa-star text-warning"></i>
                                         <i class="fas fa-star-half-alt text-warning"></i>
                                     </div>
-                                    <p>These headphones have changed my work-from-home experience completely. The noise cancellation blocks out all the neighborhood noises, and the battery life is impressive. The ear cups are very comfortable even after hours of wear. Highly recommend!</p>
+                                    <p>These headphones have changed my work-from-home experience completely. The
+                                        noise cancellation blocks out all the neighborhood noises, and the battery
+                                        life is impressive. The ear cups are very comfortable even after hours of
+                                        wear. Highly recommend!</p>
                                 </div>
-                                
+
                                 <div class="text-center mt-4">
                                     <button class="btn btn-outline-primary">Load More Reviews</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Write a Review Form -->
                     <div class="card mt-4">
                         <div class="card-header bg-light">
@@ -834,11 +1002,13 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="reviewTitle">Review Title</label>
-                                    <input type="text" class="form-control" id="reviewTitle" placeholder="Summarize your experience">
+                                    <input type="text" class="form-control" id="reviewTitle"
+                                           placeholder="Summarize your experience">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="reviewContent">Your Review</label>
-                                    <textarea class="form-control" id="reviewContent" rows="4" placeholder="What did you like or dislike? How was your experience using the product?"></textarea>
+                                    <textarea class="form-control" id="reviewContent" rows="4"
+                                              placeholder="What did you like or dislike? How was your experience using the product?"></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit Review</button>
                             </form>
@@ -910,13 +1080,15 @@
 
     <!-- Toast Notification -->
     <div class="toast-container">
-        <div class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true" id="addToCartToast">
+        <div class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive"
+             aria-atomic="true" id="addToCartToast">
             <div class="d-flex">
                 <div class="toast-body">
                     <i class="fas fa-check-circle me-2"></i>
                     Product added to your cart!
                 </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
             </div>
         </div>
     </div>
@@ -927,7 +1099,8 @@
             <div class="row">
                 <div class="col-md-3 mb-4">
                     <h5 class="mb-3">ShopSmart</h5>
-                    <p class="text-muted">Your one-stop shop for premium electronics, fashion, home products, and more.</p>
+                    <p class="text-muted">Your one-stop shop for premium electronics, fashion, home products, and
+                        more.</p>
                     <div class="d-flex mt-3">
                         <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
@@ -941,7 +1114,8 @@
                         <li class="mb-2"><a href="#" class="text-light text-decoration-none">Electronics</a></li>
                         <li class="mb-2"><a href="#" class="text-light text-decoration-none">Clothing</a></li>
                         <li class="mb-2"><a href="#" class="text-light text-decoration-none">Home & Kitchen</a></li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Beauty & Personal Care</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Beauty & Personal
+                            Care</a></li>
                         <li><a href="#" class="text-light text-decoration-none">Today's Deals</a></li>
                     </ul>
                 </div>
@@ -949,9 +1123,12 @@
                     <h5 class="mb-3">Customer Service</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="#" class="text-light text-decoration-none">Contact Us</a></li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Track Your Order</a></li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Shipping & Delivery</a></li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Returns & Exchanges</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Track Your Order</a>
+                        </li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Shipping & Delivery</a>
+                        </li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Returns & Exchanges</a>
+                        </li>
                         <li><a href="#" class="text-light text-decoration-none">FAQs</a></li>
                     </ul>
                 </div>
@@ -960,7 +1137,8 @@
                     <p class="text-muted">Subscribe to receive updates, access to exclusive deals, and more.</p>
                     <form class="mt-3">
                         <div class="input-group mb-3">
-                            <input type="email" class="form-control" placeholder="Your Email" aria-label="Email" aria-describedby="button-addon2">
+                            <input type="email" class="form-control" placeholder="Your Email" aria-label="Email"
+                                   aria-describedby="button-addon2">
                             <button class="btn btn-primary" type="button" id="button-addon2">Subscribe</button>
                         </div>
                     </form>
@@ -983,94 +1161,133 @@
     <!-- JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Function to change main image when thumbnail is clicked
-        function changeImage(thumbnail, imgSrc) {
+        // Image zoom and thumbnail functionality
+        function changeImage(thumbnail, imageUrl) {
             // Update main image
-            document.getElementById('mainImage').src = imgSrc;
-            
-            // Update active state of thumbnails
-            let thumbnails = document.querySelectorAll('.thumbnail');
+            document.getElementById('mainImage').src = imageUrl;
+
+            // Update active thumbnail
+            const thumbnails = document.querySelectorAll('.thumbnail');
             thumbnails.forEach(thumb => {
                 thumb.classList.remove('active');
             });
             thumbnail.classList.add('active');
         }
-        
-        // Function to select color
-        function selectColor(element, colorName) {
-            // Update active state
-            let colorButtons = document.querySelectorAll('.color-btn');
-            colorButtons.forEach(btn => {
+
+        // Color selection
+        function selectColor(colorBtn, colorName) {
+            // Update active color
+            const colorBtns = document.querySelectorAll('.color-btn');
+            colorBtns.forEach(btn => {
                 btn.classList.remove('active');
             });
-            element.classList.add('active');
-            
+            colorBtn.classList.add('active');
+
             // Update selected color text
-            document.getElementById('selectedColor').textContent = `Selected: ${colorName}`;
+            document.getElementById('selectedColor').textContent = 'Selected: ' + colorName;
         }
-        
-        // Function to update quantity
+
+        // Quantity selector
         function updateQuantity(action) {
-            let quantityInput = document.getElementById('quantity');
-            let currentQuantity = parseInt(quantityInput.value);
-            
+            const quantityInput = document.getElementById('quantity');
+            let quantity = parseInt(quantityInput.value);
+
             if (action === 'increase') {
-                // Limit maximum quantity to 10
-                if (currentQuantity < 10) {
-                    quantityInput.value = currentQuantity + 1;
-                }
-            } else if (action === 'decrease') {
-                // Minimum quantity is 1
-                if (currentQuantity > 1) {
-                    quantityInput.value = currentQuantity - 1;
-                }
+                quantity++;
+            } else if (action === 'decrease' && quantity > 1) {
+                quantity--;
             }
+
+            quantityInput.value = quantity;
         }
-        
-        // Function to add to cart
-        function addToCart() {
-            // Get the toast element
-            const toast = new bootstrap.Toast(document.getElementById('addToCartToast'));
-            
-            // Show the toast
-            toast.show();
-            
-            // Update cart count (in a real application)
-            // This would typically involve AJAX calls to update the server
-            console.log("Product added to cart");
+
+        // Add to cart functionality
+        function addToCart(productId) {
+            const quantity = document.getElementById('quantity').value;
+            const selectedColor = document.querySelector('.color-btn.active');
+            const colorName = selectedColor ? document.getElementById('selectedColor').textContent.replace('Selected: ', '') : null;
+
+            // Send AJAX request to add item to cart
+            fetch('{% url "product_cart" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({
+                    product_id: productId,
+                    quantity: quantity,
+                    color: colorName
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Show success message
+                        alert('Product added to cart!');
+                        // Update cart count in header
+                        const cartCountElement = document.getElementById('cartCount');
+                        if (cartCountElement) {
+                            cartCountElement.textContent = data.cart_count;
+                        }
+                    } else {
+                        alert(data.error || 'Failed to add product to cart');
+                    }
+                });
         }
-        
-        // Function to add to wishlist
-        function addToWishlist() {
-            // Toggle heart icon
-            const wishlistBtn = document.querySelector('.btn-wishlist i');
-            if (wishlistBtn.classList.contains('far')) {
-                wishlistBtn.classList.remove('far');
-                wishlistBtn.classList.add('fas');
-                wishlistBtn.style.color = 'var(--secondary-color)';
-                
-                // Show a toast or notification (optional)
-                alert('Product added to your wishlist!');
-            } else {
-                wishlistBtn.classList.remove('fas');
-                wishlistBtn.classList.add('far');
-                wishlistBtn.style.color = '';
-                
-                // Show a toast or notification (optional)
-                alert('Product removed from your wishlist!');
-            }
+
+        // Add to wishlist functionality
+        function addToWishlist(productId) {
+            // Send AJAX request to add item to wishlist
+            fetch('{% url "wishlist" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({
+                    product_id: productId
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Show success message
+                        alert('Product added to wishlist!');
+                        // Update wishlist button
+                        const wishlistBtn = document.querySelector('.btn-wishlist i');
+                        wishlistBtn.classList.remove('far');
+                        wishlistBtn.classList.add('fas');
+                    } else {
+                        alert(data.error || 'Failed to add product to wishlist');
+                    }
+                });
         }
-        
-        // Function to scroll to reviews tab
+
+        // Scroll to reviews
         function scrollToReviews() {
-            // Activate the reviews tab
             document.getElementById('reviews-tab').click();
-            
-            // Scroll to the reviews section
-            document.getElementById('reviews').scrollIntoView({
-                behavior: 'smooth'
-            });
+            document.getElementById('reviews').scrollIntoView({behavior: 'smooth'});
         }
+
+        // Review star rating logic
+        document.querySelectorAll('.rating-select .stars i').forEach(star => {
+            star.addEventListener('click', function () {
+                const rating = this.getAttribute('data-rating');
+                document.getElementById('rating').value = rating;
+
+                // Update star display
+                document.querySelectorAll('.rating-select .stars i').forEach((s, index) => {
+                    if (index < rating) {
+                        s.classList.remove('far');
+                        s.classList.add('fas');
+                    } else {
+                        s.classList.remove('fas');
+                        s.classList.add('far');
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>

@@ -448,7 +448,7 @@
                             <img src="/static/images/placeholder.jpg" class="card-img-top" alt="No image available">
                         {% endif %}
                         <div class="card-body">
-                            <h5 class="card-title">{{ product.name }}</h5>
+                            <h5 class="card-title"><a href="{% url 'product_detail' product.pk %}">{{ product.name }}</a></h5>
                             <div class="rating">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -651,7 +651,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="banner-card">
-                    <img src="/api/placeholder/600/300" alt="Free Shipping">
+                    <img src="{% static 'images/freeshipping.png' %}" alt="Free Shipping">
                     <div class="card-img-overlay">
                         <h3 class="card-title">Free Shipping</h3>
                         <p class="card-text">On all orders over $50</p>
@@ -661,7 +661,7 @@
             </div>
             <div class="col-md-6">
                 <div class="banner-card">
-                    <img src="/api/placeholder/600/300" alt="Membership">
+                    <img src="{% static 'images/member.jpeg' %}" alt="Membership">
                     <div class="card-img-overlay">
                         <h3 class="card-title">Become a Member</h3>
                         <p class="card-text">Join now and get 10% off your first order</p>

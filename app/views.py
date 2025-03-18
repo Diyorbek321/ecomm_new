@@ -1,13 +1,16 @@
 from zipfile import error
 
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_protect
 from django.views.generic import TemplateView, CreateView, FormView, UpdateView, ListView, DetailView
 from app.models import Category, Product
-from app.forms import CategoryForm, ProductForm
+from app.forms import CategoryForm, ProductForm, LoginForm, RegisterForm
 import logging
 
 
@@ -95,8 +98,56 @@ class Wishlist(TemplateView):
     template_name = 'ecomm/wishlist.html'
 
 
-class Autheticate(TemplateView):
+class Authenticate(TemplateView):
     template_name = 'ecomm/authenticate.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['login_form'] = LoginForm()
+        context['register_form'] = RegisterForm()
+        return context
+
+    @method_decorator(csrf_protect)
+    def post(self, request, *args, **kwargs):
+        if 'register' in request.POST:
+            register_form = RegisterForm(request.POST)
+            if register_form.is_valid():
+                user = register_form.save(commit=False)
+                user.username = user.email  # Use email as username
+                user.save()
+                messages.success(request, 'Account created successfully! Please log in.')
+                return redirect('autheticate')
+            else:
+                login_form = LoginForm()
+                return render(request, self.template_name, {
+                    'login_form': login_form,
+                    'register_form': register_form,
+                    'active_form': 'register'
+                })
+        elif 'login' in request.POST:
+            login_form = LoginForm(data=request.POST)
+            if login_form.is_valid():
+                email = login_form.cleaned_data.get('username')  # This is email because we overrode the field
+                password = login_form.cleaned_data.get('password')
+                remember_me = login_form.cleaned_data.get('remember_me')
+
+                user = authenticate(request, username=email, password=password)
+                if user is not None:
+                    login(request, user)
+                    if not remember_me:
+                        request.session.set_expiry(0)  # Session expires when browser is closed
+                    return redirect('user_dashboard')  # Change to your post-login page
+                else:
+                    messages.error(request, 'Invalid email or password')
+            register_form = RegisterForm()
+            return render(request, self.template_name, {
+                'login_form': login_form,
+                'register_form': register_form,
+                'active_form': 'login'
+            })
+
+        # If we get here, something went wrong
+        return self.get(request, *args, **kwargs)
 
 
 class OrderConfirmation(TemplateView):
