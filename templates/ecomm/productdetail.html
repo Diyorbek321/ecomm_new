@@ -702,8 +702,8 @@
                         {% for related in related_products %}
                             <div class="col">
                                 <div class="card h-100 product-card">
-                                    {% if related.main_image %}
-                                        <img src="{{ related.main_image.url }}" class="card-img-top"
+                                    {% if related.image %}
+                                        <img src="{{ related.image.url }}" class="card-img-top"
                                              alt="{{ related.name }}">
                                     {% else %}
                                         <img src="" class="card-img-top"
